@@ -411,12 +411,14 @@ Thumbs.db
 .vs/**
 
 # Database file
-Oip.db
-
+/sources/Oip/Oip.db
+/sources/Oip/Oip.db-shm
+/sources/Oip/Oip.db-wal
 
 # Angular & node.js
-.angular/**
+.angular
 package-lock.json
 
 # Other
 .idea
+
