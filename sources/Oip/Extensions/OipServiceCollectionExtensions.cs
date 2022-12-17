@@ -5,6 +5,7 @@ using Oip.Dal.Core;
 using Oip.Dal.PostgreSql;
 using Oip.Dal.Sqlite;
 
+// ReSharper disable once CheckNamespace
 namespace Microsoft.Extensions.DependencyInjection;
 
 /// <summary>
