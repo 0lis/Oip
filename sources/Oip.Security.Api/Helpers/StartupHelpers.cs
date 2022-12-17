@@ -369,7 +369,7 @@ public static class StartupHelpers
                         .AddMySql(dataProtectionDbConnectionString, "DataProtectionDb");
                     break;
                 default:
-                    throw new NotImplementedException(
+                    throw new InvalidOperationException(
                         $"Health checks not defined for database provider {databaseProvider.ProviderType}");
             }
         }
