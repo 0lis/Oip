@@ -5,26 +5,25 @@ using Oip.Security.IntegrationTests.Common;
 using Oip.Security.UI.Configuration;
 using Xunit;
 
-namespace Oip.Security.IntegrationTests.Tests.Base
+namespace Oip.Security.IntegrationTests.Tests.Base;
+
+public class BaseClassFixture : IClassFixture<TestFixture>
 {
-	public class BaseClassFixture : IClassFixture<TestFixture>
+    protected readonly HttpClient Client;
+    protected readonly TestServer TestServer;
+
+    public BaseClassFixture(TestFixture fixture)
     {
-        protected readonly HttpClient Client;
-        protected readonly TestServer TestServer;
+        Client = fixture.Client;
+        TestServer = fixture.TestServer;
+    }
 
-        public BaseClassFixture(TestFixture fixture)
+    protected virtual void SetupAdminClaimsViaHeaders()
+    {
+        using (var scope = TestServer.Services.CreateScope())
         {
-            Client = fixture.Client;
-            TestServer = fixture.TestServer;
-        }
-
-        protected virtual void SetupAdminClaimsViaHeaders()
-        {
-            using (var scope = TestServer.Services.CreateScope())
-            {
-                var configuration = scope.ServiceProvider.GetRequiredService<AdminConfiguration>();
-                Client.SetAdminClaimsViaHeaders(configuration);
-            }
+            var configuration = scope.ServiceProvider.GetRequiredService<AdminConfiguration>();
+            Client.SetAdminClaimsViaHeaders(configuration);
         }
     }
 }

@@ -10,24 +10,24 @@
     </PropertyGroup>
 
     <ItemGroup Condition=" '$(TargetFramework)' == 'net6.0'">
-        <PackageReference Include="EFCore.BulkExtensions" Version="6.5.6" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.7" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.7" />
+        <PackageReference Include="EFCore.BulkExtensions" Version="6.5.6"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.7"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.7"/>
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="AutoMapper" Version="12.0.0" />
-        <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
-        <PackageReference Include="NodaTime" Version="3.1.6" />
+        <PackageReference Include="AutoMapper" Version="12.0.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7"/>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.2"/>
+        <PackageReference Include="NodaTime" Version="3.1.6"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Oip.Core\Oip.Core.csproj" />
+        <ProjectReference Include="..\Oip.Core\Oip.Core.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Context\" />
+        <Folder Include="Context\"/>
     </ItemGroup>
 
 </Project>

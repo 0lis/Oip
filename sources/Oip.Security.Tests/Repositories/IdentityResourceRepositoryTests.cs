@@ -10,268 +10,279 @@ using Oip.Security.EntityFramework.Shared.DbContexts;
 using Oip.Security.UnitTests.Mocks;
 using Xunit;
 
-namespace Oip.Security.UnitTests.Repositories
+namespace Oip.Security.UnitTests.Repositories;
+
+public class IdentityResourceRepositoryTests
 {
-    public class IdentityResourceRepositoryTests
+    private readonly DbContextOptions<IdentityServerConfigurationDbContext> _dbContextOptions;
+    private readonly OperationalStoreOptions _operationalStore;
+    private readonly ConfigurationStoreOptions _storeOptions;
+
+    public IdentityResourceRepositoryTests()
     {
-        private readonly DbContextOptions<IdentityServerConfigurationDbContext> _dbContextOptions;
-        private readonly ConfigurationStoreOptions _storeOptions;
-        private readonly OperationalStoreOptions _operationalStore;
+        var databaseName = Guid.NewGuid().ToString();
 
-        private IIdentityResourceRepository GetIdentityResourceRepository(IdentityServerConfigurationDbContext context)
+        _dbContextOptions = new DbContextOptionsBuilder<IdentityServerConfigurationDbContext>()
+            .UseInMemoryDatabase(databaseName)
+            .Options;
+
+        _storeOptions = new ConfigurationStoreOptions();
+        _operationalStore = new OperationalStoreOptions();
+    }
+
+    private IIdentityResourceRepository GetIdentityResourceRepository(IdentityServerConfigurationDbContext context)
+    {
+        IIdentityResourceRepository identityResourceRepository =
+            new IdentityResourceRepository<IdentityServerConfigurationDbContext>(context);
+
+        return identityResourceRepository;
+    }
+
+    [Fact]
+    public async Task AddIdentityResourceAsync()
+    {
+        using (var context = new IdentityServerConfigurationDbContext(_dbContextOptions, _storeOptions))
         {
-            IIdentityResourceRepository identityResourceRepository = new IdentityResourceRepository<IdentityServerConfigurationDbContext>(context);
+            var identityResourceRepository = GetIdentityResourceRepository(context);
 
-            return identityResourceRepository;
+            //Generate random new identity resource
+            var identityResource = IdentityResourceMock.GenerateRandomIdentityResource(0);
+
+            //Add new identity resource
+            await identityResourceRepository.AddIdentityResourceAsync(identityResource);
+
+            //Get new identity resource
+            var newIdentityResource =
+                await context.IdentityResources.Where(x => x.Id == identityResource.Id).SingleAsync();
+
+            //Assert new identity resource
+            newIdentityResource.Should().BeEquivalentTo(identityResource, options => options.Excluding(o => o.Id));
         }
+    }
 
-        public IdentityResourceRepositoryTests()
+    [Fact]
+    public async Task GetIdentityResourceAsync()
+    {
+        using (var context = new IdentityServerConfigurationDbContext(_dbContextOptions, _storeOptions))
         {
-            var databaseName = Guid.NewGuid().ToString();
+            var identityResourceRepository = GetIdentityResourceRepository(context);
 
-            _dbContextOptions = new DbContextOptionsBuilder<IdentityServerConfigurationDbContext>()
-                .UseInMemoryDatabase(databaseName)
-                .Options;
+            //Generate random new identity resource
+            var identityResource = IdentityResourceMock.GenerateRandomIdentityResource(0);
 
-            _storeOptions = new ConfigurationStoreOptions();
-            _operationalStore = new OperationalStoreOptions();
+            //Add new identity resource
+            await identityResourceRepository.AddIdentityResourceAsync(identityResource);
+
+            //Get new identity resource
+            var newIdentityResource = await identityResourceRepository.GetIdentityResourceAsync(identityResource.Id);
+
+            //Assert new identity resource
+            newIdentityResource.Should().BeEquivalentTo(identityResource,
+                options => options.Excluding(o => o.Id).Excluding(o => o.UserClaims));
+
+            newIdentityResource.UserClaims.Should().BeEquivalentTo(identityResource.UserClaims,
+                option => option.Excluding(x => x.Path.EndsWith("Id"))
+                    .Excluding(x => x.Path.EndsWith("IdentityResource")));
         }
+    }
 
-        [Fact]
-        public async Task AddIdentityResourceAsync()
+    [Fact]
+    public async Task DeleteIdentityResourceAsync()
+    {
+        using (var context = new IdentityServerConfigurationDbContext(_dbContextOptions, _storeOptions))
         {
-            using (var context = new IdentityServerConfigurationDbContext(_dbContextOptions, _storeOptions))
-            {
-                var identityResourceRepository = GetIdentityResourceRepository(context);
+            var identityResourceRepository = GetIdentityResourceRepository(context);
 
-                //Generate random new identity resource
-                var identityResource = IdentityResourceMock.GenerateRandomIdentityResource(0);
+            //Generate random new identity resource
+            var identityResource = IdentityResourceMock.GenerateRandomIdentityResource(0);
 
-                //Add new identity resource
-                await identityResourceRepository.AddIdentityResourceAsync(identityResource);
+            //Add new identity resource
+            await identityResourceRepository.AddIdentityResourceAsync(identityResource);
 
-                //Get new identity resource
-                var newIdentityResource = await context.IdentityResources.Where(x => x.Id == identityResource.Id).SingleAsync();
+            //Get new identity resource
+            var newIdentityResource =
+                await context.IdentityResources.Where(x => x.Id == identityResource.Id).SingleAsync();
 
-                //Assert new identity resource
-                newIdentityResource.Should().BeEquivalentTo(identityResource, options => options.Excluding(o => o.Id));
-            }
+            //Assert new identity resource
+            newIdentityResource.Should().BeEquivalentTo(identityResource, options => options.Excluding(o => o.Id));
+
+            //Delete identity resource
+            await identityResourceRepository.DeleteIdentityResourceAsync(newIdentityResource);
+
+            //Get deleted identity resource
+            var deletedIdentityResource = await context.IdentityResources.Where(x => x.Id == identityResource.Id)
+                .SingleOrDefaultAsync();
+
+            //Assert if it not exist
+            deletedIdentityResource.Should().BeNull();
         }
+    }
 
-        [Fact]
-        public async Task GetIdentityResourceAsync()
+    [Fact]
+    public async Task UpdateIdentityResourceAsync()
+    {
+        using (var context = new IdentityServerConfigurationDbContext(_dbContextOptions, _storeOptions))
         {
-            using (var context = new IdentityServerConfigurationDbContext(_dbContextOptions, _storeOptions))
-            {
-                var identityResourceRepository = GetIdentityResourceRepository(context);
+            var identityResourceRepository = GetIdentityResourceRepository(context);
 
-                //Generate random new identity resource
-                var identityResource = IdentityResourceMock.GenerateRandomIdentityResource(0);
+            //Generate random new identity resource
+            var identityResource = IdentityResourceMock.GenerateRandomIdentityResource(0);
 
-                //Add new identity resource
-                await identityResourceRepository.AddIdentityResourceAsync(identityResource);
+            //Add new identity resource
+            await identityResourceRepository.AddIdentityResourceAsync(identityResource);
 
-                //Get new identity resource
-                var newIdentityResource = await identityResourceRepository.GetIdentityResourceAsync(identityResource.Id);
+            //Get new identity resource
+            var newIdentityResource = await context.IdentityResources.Where(x => x.Id == identityResource.Id)
+                .SingleOrDefaultAsync();
 
-                //Assert new identity resource
-                newIdentityResource.Should().BeEquivalentTo(identityResource, options => options.Excluding(o => o.Id).Excluding(o => o.UserClaims));
+            //Assert new identity resource
+            newIdentityResource.Should().BeEquivalentTo(identityResource, options => options.Excluding(o => o.Id));
 
-                newIdentityResource.UserClaims.Should().BeEquivalentTo(identityResource.UserClaims,
-                    option => option.Excluding(x => x.Path.EndsWith("Id"))
-                        .Excluding(x => x.Path.EndsWith("IdentityResource")));
-            }
+            //Detached the added item
+            context.Entry(newIdentityResource).State = EntityState.Detached;
+
+            //Generete new identity resource with added item id
+            var updatedIdentityResource = IdentityResourceMock.GenerateRandomIdentityResource(newIdentityResource.Id);
+
+            //Update identity resource
+            await identityResourceRepository.UpdateIdentityResourceAsync(updatedIdentityResource);
+
+            //Get updated identity resource
+            var updatedIdentityResourceEntity =
+                await context.IdentityResources.Where(x => x.Id == updatedIdentityResource.Id).SingleAsync();
+
+            //Assert updated identity resource
+            updatedIdentityResource.Should().BeEquivalentTo(updatedIdentityResourceEntity);
         }
+    }
 
-        [Fact]
-        public async Task DeleteIdentityResourceAsync()
+    [Fact]
+    public async Task AddIdentityResourcePropertyAsync()
+    {
+        using (var context = new IdentityServerConfigurationDbContext(_dbContextOptions, _storeOptions))
         {
-            using (var context = new IdentityServerConfigurationDbContext(_dbContextOptions, _storeOptions))
-            {
-                var identityResourceRepository = GetIdentityResourceRepository(context);
+            var identityResourceRepository = GetIdentityResourceRepository(context);
 
-                //Generate random new identity resource
-                var identityResource = IdentityResourceMock.GenerateRandomIdentityResource(0);
+            //Generate random new identity resource without id
+            var identityResource = IdentityResourceMock.GenerateRandomIdentityResource(0);
 
-                //Add new identity resource
-                await identityResourceRepository.AddIdentityResourceAsync(identityResource);
+            //Add new identity resource
+            await identityResourceRepository.AddIdentityResourceAsync(identityResource);
 
-                //Get new identity resource
-                var newIdentityResource = await context.IdentityResources.Where(x => x.Id == identityResource.Id).SingleAsync();
+            //Get new identity resource
+            var resource = await identityResourceRepository.GetIdentityResourceAsync(identityResource.Id);
 
-                //Assert new identity resource
-                newIdentityResource.Should().BeEquivalentTo(identityResource, options => options.Excluding(o => o.Id));
+            //Assert new identity resource
+            resource.Should().BeEquivalentTo(identityResource, options => options.Excluding(o => o.Id)
+                .Excluding(o => o.UserClaims));
 
-                //Delete identity resource
-                await identityResourceRepository.DeleteIdentityResourceAsync(newIdentityResource);
+            resource.UserClaims.Should().BeEquivalentTo(identityResource.UserClaims,
+                option => option.Excluding(x => x.Path.EndsWith("Id"))
+                    .Excluding(x => x.Path.EndsWith("IdentityResource")));
 
-                //Get deleted identity resource
-                var deletedIdentityResource = await context.IdentityResources.Where(x => x.Id == identityResource.Id).SingleOrDefaultAsync();
+            //Generate random new identity resource property
+            var identityResourceProperty = IdentityResourceMock.GenerateRandomIdentityResourceProperty(0);
 
-                //Assert if it not exist
-                deletedIdentityResource.Should().BeNull();
-            }
+            //Add new identity resource property
+            await identityResourceRepository.AddIdentityResourcePropertyAsync(resource.Id, identityResourceProperty);
+
+            //Get new identity resource property
+            var resourceProperty = await context.IdentityResourceProperties
+                .Where(x => x.Id == identityResourceProperty.Id)
+                .SingleOrDefaultAsync();
+
+            resourceProperty.Should().BeEquivalentTo(identityResourceProperty,
+                options => options.Excluding(o => o.Id).Excluding(x => x.IdentityResource));
         }
+    }
 
-        [Fact]
-        public async Task UpdateIdentityResourceAsync()
+    [Fact]
+    public async Task DeleteIdentityResourcePropertyAsync()
+    {
+        using (var context = new IdentityServerConfigurationDbContext(_dbContextOptions, _storeOptions))
         {
-            using (var context = new IdentityServerConfigurationDbContext(_dbContextOptions, _storeOptions))
-            {
-                var identityResourceRepository = GetIdentityResourceRepository(context);
+            var identityResourceRepository = GetIdentityResourceRepository(context);
 
-                //Generate random new identity resource
-                var identityResource = IdentityResourceMock.GenerateRandomIdentityResource(0);
+            //Generate random new identity resource without id
+            var identityResource = IdentityResourceMock.GenerateRandomIdentityResource(0);
 
-                //Add new identity resource
-                await identityResourceRepository.AddIdentityResourceAsync(identityResource);
+            //Add new identity resource
+            await identityResourceRepository.AddIdentityResourceAsync(identityResource);
 
-                //Get new identity resource
-                var newIdentityResource = await context.IdentityResources.Where(x => x.Id == identityResource.Id).SingleOrDefaultAsync();
+            //Get new identity resource
+            var resource = await identityResourceRepository.GetIdentityResourceAsync(identityResource.Id);
 
-                //Assert new identity resource
-                newIdentityResource.Should().BeEquivalentTo(identityResource, options => options.Excluding(o => o.Id));
+            //Assert new identity resource
+            resource.Should().BeEquivalentTo(identityResource,
+                options => options.Excluding(o => o.Id).Excluding(o => o.UserClaims));
 
-                //Detached the added item
-                context.Entry(newIdentityResource).State = EntityState.Detached;
+            resource.UserClaims.Should().BeEquivalentTo(identityResource.UserClaims,
+                option => option.Excluding(x => x.Path.EndsWith("Id"))
+                    .Excluding(x => x.Path.EndsWith("IdentityResource")));
 
-                //Generete new identity resource with added item id
-                var updatedIdentityResource = IdentityResourceMock.GenerateRandomIdentityResource(newIdentityResource.Id);
+            //Generate random new identity resource property
+            var identityResourceProperty = IdentityResourceMock.GenerateRandomIdentityResourceProperty(0);
 
-                //Update identity resource
-                await identityResourceRepository.UpdateIdentityResourceAsync(updatedIdentityResource);
+            //Add new identity resource property
+            await identityResourceRepository.AddIdentityResourcePropertyAsync(resource.Id, identityResourceProperty);
 
-                //Get updated identity resource
-                var updatedIdentityResourceEntity = await context.IdentityResources.Where(x => x.Id == updatedIdentityResource.Id).SingleAsync();
+            //Get new identity resource property
+            var property = await context.IdentityResourceProperties.Where(x => x.Id == identityResourceProperty.Id)
+                .SingleOrDefaultAsync();
 
-                //Assert updated identity resource
-                updatedIdentityResource.Should().BeEquivalentTo(updatedIdentityResourceEntity);
-            }
+            //Assert
+            property.Should().BeEquivalentTo(identityResourceProperty,
+                options => options.Excluding(o => o.Id).Excluding(x => x.IdentityResource));
+
+            //Try delete it
+            await identityResourceRepository.DeleteIdentityResourcePropertyAsync(property);
+
+            //Get new identity resource property
+            var resourceProperty = await context.IdentityResourceProperties
+                .Where(x => x.Id == identityResourceProperty.Id)
+                .SingleOrDefaultAsync();
+
+            //Assert
+            resourceProperty.Should().BeNull();
         }
+    }
 
-		[Fact]
-		public async Task AddIdentityResourcePropertyAsync()
-		{
-			using (var context = new IdentityServerConfigurationDbContext(_dbContextOptions, _storeOptions))
-			{
-				var identityResourceRepository = GetIdentityResourceRepository(context);
+    [Fact]
+    public async Task GetIdentityResourcePropertyAsync()
+    {
+        using (var context = new IdentityServerConfigurationDbContext(_dbContextOptions, _storeOptions))
+        {
+            var identityResourceRepository = GetIdentityResourceRepository(context);
 
-				//Generate random new identity resource without id
-				var identityResource = IdentityResourceMock.GenerateRandomIdentityResource(0);
+            //Generate random new identity resource without id
+            var identityResource = IdentityResourceMock.GenerateRandomIdentityResource(0);
 
-				//Add new identity resource
-				await identityResourceRepository.AddIdentityResourceAsync(identityResource);
+            //Add new identity resource
+            await identityResourceRepository.AddIdentityResourceAsync(identityResource);
 
-				//Get new identity resource
-				var resource = await identityResourceRepository.GetIdentityResourceAsync(identityResource.Id);
+            //Get new identity resource
+            var resource = await identityResourceRepository.GetIdentityResourceAsync(identityResource.Id);
 
-				//Assert new identity resource
-				resource.Should().BeEquivalentTo(identityResource, options => options.Excluding(o => o.Id)
-                    .Excluding(o => o.UserClaims));
+            //Assert new identity resource
+            resource.Should().BeEquivalentTo(identityResource,
+                options => options.Excluding(o => o.Id).Excluding(o => o.UserClaims));
 
-                resource.UserClaims.Should().BeEquivalentTo(identityResource.UserClaims,
-                    option => option.Excluding(x => x.Path.EndsWith("Id"))
-                        .Excluding(x => x.Path.EndsWith("IdentityResource")));
+            resource.UserClaims.Should().BeEquivalentTo(identityResource.UserClaims,
+                option => option.Excluding(x => x.Path.EndsWith("Id"))
+                    .Excluding(x => x.Path.EndsWith("IdentityResource")));
 
-                //Generate random new identity resource property
-                var identityResourceProperty = IdentityResourceMock.GenerateRandomIdentityResourceProperty(0);
+            //Generate random new identity resource property
+            var identityResourceProperty = IdentityResourceMock.GenerateRandomIdentityResourceProperty(0);
 
-				//Add new identity resource property
-				await identityResourceRepository.AddIdentityResourcePropertyAsync(resource.Id, identityResourceProperty);
+            //Add new identity resource property
+            await identityResourceRepository.AddIdentityResourcePropertyAsync(resource.Id, identityResourceProperty);
 
-				//Get new identity resource property
-				var resourceProperty = await context.IdentityResourceProperties.Where(x => x.Id == identityResourceProperty.Id)
-					.SingleOrDefaultAsync();
+            //Get new identity resource property
+            var resourceProperty =
+                await identityResourceRepository.GetIdentityResourcePropertyAsync(identityResourceProperty.Id);
 
-				resourceProperty.Should().BeEquivalentTo(identityResourceProperty,
-					options => options.Excluding(o => o.Id).Excluding(x => x.IdentityResource));
-			}
-		}
-
-		[Fact]
-		public async Task DeleteIdentityResourcePropertyAsync()
-		{
-			using (var context = new IdentityServerConfigurationDbContext(_dbContextOptions, _storeOptions))
-			{
-				var identityResourceRepository = GetIdentityResourceRepository(context);
-
-				//Generate random new identity resource without id
-				var identityResource = IdentityResourceMock.GenerateRandomIdentityResource(0);
-
-				//Add new identity resource
-				await identityResourceRepository.AddIdentityResourceAsync(identityResource);
-
-				//Get new identity resource
-				var resource = await identityResourceRepository.GetIdentityResourceAsync(identityResource.Id);
-
-				//Assert new identity resource
-				resource.Should().BeEquivalentTo(identityResource, options => options.Excluding(o => o.Id).Excluding(o => o.UserClaims));
-
-                resource.UserClaims.Should().BeEquivalentTo(identityResource.UserClaims,
-                    option => option.Excluding(x => x.Path.EndsWith("Id"))
-                        .Excluding(x => x.Path.EndsWith("IdentityResource")));
-
-                //Generate random new identity resource property
-                var identityResourceProperty = IdentityResourceMock.GenerateRandomIdentityResourceProperty(0);
-
-				//Add new identity resource property
-				await identityResourceRepository.AddIdentityResourcePropertyAsync(resource.Id, identityResourceProperty);
-
-				//Get new identity resource property
-				var property = await context.IdentityResourceProperties.Where(x => x.Id == identityResourceProperty.Id)
-					.SingleOrDefaultAsync();
-
-				//Assert
-				property.Should().BeEquivalentTo(identityResourceProperty,
-					options => options.Excluding(o => o.Id).Excluding(x => x.IdentityResource));
-
-				//Try delete it
-				await identityResourceRepository.DeleteIdentityResourcePropertyAsync(property);
-
-				//Get new identity resource property
-				var resourceProperty = await context.IdentityResourceProperties.Where(x => x.Id == identityResourceProperty.Id)
-					.SingleOrDefaultAsync();
-
-				//Assert
-				resourceProperty.Should().BeNull();
-			}
-		}
-
-		[Fact]
-		public async Task GetIdentityResourcePropertyAsync()
-		{
-			using (var context = new IdentityServerConfigurationDbContext(_dbContextOptions, _storeOptions))
-			{
-				var identityResourceRepository = GetIdentityResourceRepository(context);
-
-				//Generate random new identity resource without id
-				var identityResource = IdentityResourceMock.GenerateRandomIdentityResource(0);
-
-				//Add new identity resource
-				await identityResourceRepository.AddIdentityResourceAsync(identityResource);
-
-				//Get new identity resource
-				var resource = await identityResourceRepository.GetIdentityResourceAsync(identityResource.Id);
-
-				//Assert new identity resource
-				resource.Should().BeEquivalentTo(identityResource, options => options.Excluding(o => o.Id).Excluding(o => o.UserClaims));
-
-                resource.UserClaims.Should().BeEquivalentTo(identityResource.UserClaims,
-                    option => option.Excluding(x => x.Path.EndsWith("Id"))
-                        .Excluding(x => x.Path.EndsWith("IdentityResource")));
-
-                //Generate random new identity resource property
-                var identityResourceProperty = IdentityResourceMock.GenerateRandomIdentityResourceProperty(0);
-
-				//Add new identity resource property
-				await identityResourceRepository.AddIdentityResourcePropertyAsync(resource.Id, identityResourceProperty);
-
-				//Get new identity resource property
-				var resourceProperty = await identityResourceRepository.GetIdentityResourcePropertyAsync(identityResourceProperty.Id);
-
-				resourceProperty.Should().BeEquivalentTo(identityResourceProperty,
-					options => options.Excluding(o => o.Id).Excluding(x => x.IdentityResource));
-			}
-		}
-	}
+            resourceProperty.Should().BeEquivalentTo(identityResourceProperty,
+                options => options.Excluding(o => o.Id).Excluding(x => x.IdentityResource));
+        }
+    }
 }

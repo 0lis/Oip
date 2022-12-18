@@ -102,14 +102,14 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Oip.Security.BusinessLogic.Identity\Oip.Security.BusinessLogic.Identity.csproj" />
-        <ProjectReference Include="..\Oip.Security.BusinessLogic\Oip.Security.BusinessLogic.csproj" />
-        <ProjectReference Include="..\Oip.Security.EntityFramework.Configuration\Oip.Security.EntityFramework.Configuration.csproj" />
+        <ProjectReference Include="..\Oip.Security.Bl.Identity\Oip.Security.Bl.Identity.csproj" />
+        <ProjectReference Include="..\Oip.Security.Bl\Oip.Security.Bl.csproj" />
+        <ProjectReference Include="..\Oip.Security.Dal.Configuration\Oip.Security.Dal.Configuration.csproj" />
         <ProjectReference Include="..\Oip.Security.Common\Oip.Security.Common.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <Content Remove="package.json" />
+        <Content Remove="package.json" />
     </ItemGroup>
 
 </Project>

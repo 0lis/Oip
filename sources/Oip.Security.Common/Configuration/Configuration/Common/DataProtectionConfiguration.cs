@@ -1,7 +1,6 @@
-﻿namespace Skoruba.IdentityServer4.Shared.Configuration.Configuration.Common
+﻿namespace Skoruba.IdentityServer4.Shared.Configuration.Configuration.Common;
+
+public class DataProtectionConfiguration
 {
-    public class DataProtectionConfiguration
-    {
-        public bool ProtectKeysWithAzureKeyVault { get; set; }
-    }
+    public bool ProtectKeysWithAzureKeyVault { get; set; }
 }

@@ -1,7 +1,6 @@
-﻿namespace Skoruba.IdentityServer4.Shared.Configuration.Configuration.Common
+﻿namespace Skoruba.IdentityServer4.Shared.Configuration.Configuration.Common;
+
+public class DockerConfiguration
 {
-    public class DockerConfiguration
-    {
-        public bool UpdateCaCertificate { get; set; } = false;
-    }
+    public bool UpdateCaCertificate { get; set; } = false;
 }

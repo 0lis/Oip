@@ -6,10 +6,9 @@
 
 using IdentityServer4.Models;
 
-namespace Skoruba.IdentityServer4.STS.Identity.ViewModels.Home
+namespace Skoruba.IdentityServer4.STS.Identity.ViewModels.Home;
+
+public class ErrorViewModel
 {
-    public class ErrorViewModel
-    {
-        public ErrorMessage Error { get; set; }
-    }
+    public ErrorMessage Error { get; set; }
 }

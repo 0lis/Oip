@@ -1,118 +1,137 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Reflection;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Localization;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Localization;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Reflection;
 
-namespace Oip.Security.UI.Helpers.Localization
+namespace Oip.Security.UI.Helpers.Localization;
+
+public class ResourceViewLocalizer : IViewLocalizer, IViewContextAware
 {
-	public class ResourceViewLocalizer : IViewLocalizer, IViewContextAware
-	{
-		// This class helps working around https://github.com/aspnet/Localization/issues/328:
-		// Somehow the resources in this library project fail to be resolved by the default view localizer (which 
-		// relies on the hosting environment's application name as a root path for the resources).
-		// We override this behaviour by forcing .NET to look into our assembly's Resources and fallback to the default
-		// view localizer for localization requests related to views outside of this library.
+    private readonly string _assemblyName;
+    private readonly ViewLocalizer _defaultViewLocalizer;
 
-		private class MockEnvironment : IWebHostEnvironment
-		{
-			// This fake environment implementation helps us leveraging .NET's default ViewLocalizer implementation 
-			// without having to rewrite it completely. The only used property is ApplicationName. The other properties 
-			// should be unused.
+    private readonly ViewLocalizer _internalViewLocalizer;
 
-			public string ApplicationName { get; set; }
+    public ResourceViewLocalizer(IHtmlLocalizerFactory localizerFactory, IWebHostEnvironment hostingEnvironment)
+    {
+        if (localizerFactory == null) throw new ArgumentNullException(nameof(localizerFactory));
 
-			#region Unused
-			public IFileProvider WebRootFileProvider { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-			public string WebRootPath { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-			public string EnvironmentName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-			public string ContentRootPath { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-			public IFileProvider ContentRootFileProvider { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        if (hostingEnvironment == null) throw new ArgumentNullException(nameof(hostingEnvironment));
 
-			#endregion
-		}
+        _assemblyName = Assembly.GetExecutingAssembly().GetName().Name;
+        _defaultViewLocalizer = new ViewLocalizer(localizerFactory, hostingEnvironment);
+        _internalViewLocalizer =
+            new ViewLocalizer(localizerFactory, new MockEnvironment { ApplicationName = _assemblyName });
+    }
 
-		private readonly ViewLocalizer _internalViewLocalizer;
-		private readonly ViewLocalizer _defaultViewLocalizer;
-		private readonly string _assemblyName;
+    public void Contextualize(ViewContext viewContext)
+    {
+        _internalViewLocalizer.Contextualize(viewContext);
+        _defaultViewLocalizer.Contextualize(viewContext);
+    }
 
-		public ResourceViewLocalizer(IHtmlLocalizerFactory localizerFactory, IWebHostEnvironment hostingEnvironment)
-		{
-			if (localizerFactory == null)
-			{
-				throw new ArgumentNullException(nameof(localizerFactory));
-			}
+    public LocalizedHtmlString this[string name]
+    {
+        get
+        {
+            // Resolves the resources into the default localizer first (to allow resource overriding by library 
+            // consumers).
+            var str = _defaultViewLocalizer[name];
+            return str.IsResourceNotFound ? _internalViewLocalizer[name] : str;
+        }
+    }
 
-			if (hostingEnvironment == null)
-			{
-				throw new ArgumentNullException(nameof(hostingEnvironment));
-			}
+    public LocalizedHtmlString this[string name, params object[] arguments]
+    {
+        get
+        {
+            // Resolves the resources into the default localizer first (to allow resource overriding by library 
+            // consumers).
+            var str = _defaultViewLocalizer[name, arguments];
+            return str.IsResourceNotFound ? _internalViewLocalizer[name, arguments] : str;
+        }
+    }
 
-			_assemblyName = Assembly.GetExecutingAssembly().GetName().Name;
-			_defaultViewLocalizer = new ViewLocalizer(localizerFactory, hostingEnvironment);
-			_internalViewLocalizer = new ViewLocalizer(localizerFactory, new MockEnvironment() { ApplicationName = _assemblyName });
-		}
+    public IEnumerable<LocalizedString> GetAllStrings(bool includeParentCultures)
+    {
+        return _defaultViewLocalizer.GetAllStrings(includeParentCultures)
+            .Union(_internalViewLocalizer.GetAllStrings(includeParentCultures));
+    }
 
-		public LocalizedHtmlString this[string name]
-		{
-			get
-			{
-				// Resolves the resources into the default localizer first (to allow resource overriding by library 
-				// consumers).
-				LocalizedHtmlString str = _defaultViewLocalizer[name];
-				return str.IsResourceNotFound ? _internalViewLocalizer[name] : str;
-			}
-		}
+    public LocalizedString GetString(string name)
+    {
+        // Resolves the resources into the default localizer first (to allow resource overriding by library 
+        // consumers).
+        var str = _defaultViewLocalizer.GetString(name);
+        return str.ResourceNotFound ? _internalViewLocalizer.GetString(name) : str;
+    }
 
-		public LocalizedHtmlString this[string name, params object[] arguments]
-		{
-			get
-			{
-				// Resolves the resources into the default localizer first (to allow resource overriding by library 
-				// consumers).
-				LocalizedHtmlString str = _defaultViewLocalizer[name, arguments];
-				return str.IsResourceNotFound ? _internalViewLocalizer[name, arguments] : str;
-			}
-		}
+    public LocalizedString GetString(string name, params object[] arguments)
+    {
+        // Resolves the resources into the default localizer first (to allow resource overriding by library 
+        // consumers).
+        var str = _defaultViewLocalizer.GetString(name, arguments);
+        return str.ResourceNotFound ? _internalViewLocalizer.GetString(name, arguments) : str;
+    }
 
-		public void Contextualize(ViewContext viewContext)
-		{
-			_internalViewLocalizer.Contextualize(viewContext);
-			_defaultViewLocalizer.Contextualize(viewContext);
-		}
+    [Obsolete("This method is obsolete. Use `CurrentCulture` and `CurrentUICulture` instead.")]
+    public IHtmlLocalizer WithCulture(CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+    // This class helps working around https://github.com/aspnet/Localization/issues/328:
+    // Somehow the resources in this library project fail to be resolved by the default view localizer (which 
+    // relies on the hosting environment's application name as a root path for the resources).
+    // We override this behaviour by forcing .NET to look into our assembly's Resources and fallback to the default
+    // view localizer for localization requests related to views outside of this library.
 
-		public IEnumerable<LocalizedString> GetAllStrings(bool includeParentCultures)
-		{
-			return _defaultViewLocalizer.GetAllStrings(includeParentCultures)
-				.Union(_internalViewLocalizer.GetAllStrings(includeParentCultures));
-		}
+    private class MockEnvironment : IWebHostEnvironment
+    {
+        // This fake environment implementation helps us leveraging .NET's default ViewLocalizer implementation 
+        // without having to rewrite it completely. The only used property is ApplicationName. The other properties 
+        // should be unused.
 
-		public LocalizedString GetString(string name)
-		{
-			// Resolves the resources into the default localizer first (to allow resource overriding by library 
-			// consumers).
-			LocalizedString str = _defaultViewLocalizer.GetString(name);
-			return str.ResourceNotFound ? _internalViewLocalizer.GetString(name) : str;
-		}
+        public string ApplicationName { get; set; }
 
-		public LocalizedString GetString(string name, params object[] arguments)
-		{
-			// Resolves the resources into the default localizer first (to allow resource overriding by library 
-			// consumers).
-			LocalizedString str = _defaultViewLocalizer.GetString(name, arguments);
-			return str.ResourceNotFound ? _internalViewLocalizer.GetString(name, arguments) : str;
-		}
+        #region Unused
 
-		[Obsolete("This method is obsolete. Use `CurrentCulture` and `CurrentUICulture` instead.")]
-		public IHtmlLocalizer WithCulture(CultureInfo culture)
-		{
-			throw new NotImplementedException();
-		}
-	}
+        public IFileProvider WebRootFileProvider
+        {
+            get => throw new NotImplementedException();
+            set => throw new NotImplementedException();
+        }
+
+        public string WebRootPath
+        {
+            get => throw new NotImplementedException();
+            set => throw new NotImplementedException();
+        }
+
+        public string EnvironmentName
+        {
+            get => throw new NotImplementedException();
+            set => throw new NotImplementedException();
+        }
+
+        public string ContentRootPath
+        {
+            get => throw new NotImplementedException();
+            set => throw new NotImplementedException();
+        }
+
+        public IFileProvider ContentRootFileProvider
+        {
+            get => throw new NotImplementedException();
+            set => throw new NotImplementedException();
+        }
+
+        #endregion
+    }
 }

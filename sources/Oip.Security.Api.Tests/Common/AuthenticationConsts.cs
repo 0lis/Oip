@@ -1,7 +1,6 @@
-﻿namespace Oip.Security.Api.IntegrationTests.Common
+﻿namespace Oip.Security.Api.IntegrationTests.Common;
+
+public class AuthenticationConsts
 {
-    public class AuthenticationConsts
-    {
-        public const string AccountLoginPage = "Account/Login";
-    }
+    public const string AccountLoginPage = "Account/Login";
 }

@@ -10,136 +10,135 @@ using Oip.Security.EntityFramework.Shared.DbContexts;
 using Oip.Security.UnitTests.Mocks;
 using Xunit;
 
-namespace Oip.Security.UnitTests.Repositories
+namespace Oip.Security.UnitTests.Repositories;
+
+public class ApiScopeRepositoryTests
 {
-    public class ApiScopeRepositoryTests
+    private readonly DbContextOptions<IdentityServerConfigurationDbContext> _dbContextOptions;
+    private readonly ConfigurationStoreOptions _storeOptions;
+
+    public ApiScopeRepositoryTests()
     {
-        private readonly DbContextOptions<IdentityServerConfigurationDbContext> _dbContextOptions;
-        private readonly ConfigurationStoreOptions _storeOptions;
+        var databaseName = Guid.NewGuid().ToString();
 
-        public ApiScopeRepositoryTests()
+        _dbContextOptions = new DbContextOptionsBuilder<IdentityServerConfigurationDbContext>()
+            .UseInMemoryDatabase(databaseName)
+            .Options;
+
+        _storeOptions = new ConfigurationStoreOptions();
+    }
+
+    private IApiScopeRepository GetApiScopeRepository(IdentityServerConfigurationDbContext context)
+    {
+        IApiScopeRepository apiScopeRepository = new ApiScopeRepository<IdentityServerConfigurationDbContext>(context);
+
+        return apiScopeRepository;
+    }
+
+    [Fact]
+    public async Task AddApiScopeAsync()
+    {
+        using (var context = new IdentityServerConfigurationDbContext(_dbContextOptions, _storeOptions))
         {
-            var databaseName = Guid.NewGuid().ToString();
+            var apiResourceRepository = GetApiScopeRepository(context);
 
-            _dbContextOptions = new DbContextOptionsBuilder<IdentityServerConfigurationDbContext>()
-                .UseInMemoryDatabase(databaseName)
-                .Options;
+            //Generate random new api scope
+            var apiScope = ApiScopeMock.GenerateRandomApiScope(0);
 
-            _storeOptions = new ConfigurationStoreOptions();
+            //Add new api scope
+            await apiResourceRepository.AddApiScopeAsync(apiScope);
+
+            //Get new api scope
+            var newApiScopes = await context.ApiScopes.Where(x => x.Id == apiScope.Id).SingleAsync();
+
+            //Assert new api scope
+            newApiScopes.Should().BeEquivalentTo(apiScope, options => options.Excluding(o => o.Id));
         }
+    }
 
-        private IApiScopeRepository GetApiScopeRepository(IdentityServerConfigurationDbContext context)
+    [Fact]
+    public async Task UpdateApiScopeAsync()
+    {
+        using (var context = new IdentityServerConfigurationDbContext(_dbContextOptions, _storeOptions))
         {
-            IApiScopeRepository apiScopeRepository = new ApiScopeRepository<IdentityServerConfigurationDbContext>(context);
+            var apiResourceRepository = GetApiScopeRepository(context);
 
-            return apiScopeRepository;
+            //Generate random new api scope
+            var apiScope = ApiScopeMock.GenerateRandomApiScope(0);
+
+            //Add new api scope
+            await apiResourceRepository.AddApiScopeAsync(apiScope);
+
+            //Detached the added item
+            context.Entry(apiScope).State = EntityState.Detached;
+
+            //Generete new api scope with added item id
+            var updatedApiScope = ApiScopeMock.GenerateRandomApiScope(apiScope.Id);
+
+            //Update api scope
+            await apiResourceRepository.UpdateApiScopeAsync(updatedApiScope);
+
+            //Get updated api scope
+            var updatedApiScopeEntity = await context.ApiScopes.Where(x => x.Id == updatedApiScope.Id).SingleAsync();
+
+            //Assert updated api scope
+            updatedApiScope.Should().BeEquivalentTo(updatedApiScopeEntity);
         }
+    }
 
-        [Fact]
-        public async Task AddApiScopeAsync()
+    [Fact]
+    public async Task DeleteApiScopeAsync()
+    {
+        using (var context = new IdentityServerConfigurationDbContext(_dbContextOptions, _storeOptions))
         {
-            using (var context = new IdentityServerConfigurationDbContext(_dbContextOptions, _storeOptions))
-            {
-                var apiResourceRepository = GetApiScopeRepository(context);
+            var apiResourceRepository = GetApiScopeRepository(context);
 
-                //Generate random new api scope
-                var apiScope = ApiScopeMock.GenerateRandomApiScope(0);
+            //Generate random new api scope
+            var apiScope = ApiScopeMock.GenerateRandomApiScope(0);
 
-                //Add new api scope
-                await apiResourceRepository.AddApiScopeAsync(apiScope);
+            //Add new api resource
+            await apiResourceRepository.AddApiScopeAsync(apiScope);
 
-                //Get new api scope
-                var newApiScopes = await context.ApiScopes.Where(x => x.Id == apiScope.Id).SingleAsync();
+            //Get new api resource
+            var newApiScopes = await context.ApiScopes.Where(x => x.Id == apiScope.Id).SingleOrDefaultAsync();
 
-                //Assert new api scope
-                newApiScopes.Should().BeEquivalentTo(apiScope, options => options.Excluding(o => o.Id));
-            }
+            //Assert new api resource
+            newApiScopes.Should().BeEquivalentTo(apiScope, options => options.Excluding(o => o.Id));
+
+            //Try delete it
+            await apiResourceRepository.DeleteApiScopeAsync(newApiScopes);
+
+            //Get new api scope
+            var deletedApiScopes = await context.ApiScopes.Where(x => x.Id == newApiScopes.Id).SingleOrDefaultAsync();
+
+            //Assert if it exist
+            deletedApiScopes.Should().BeNull();
         }
+    }
 
-        [Fact]
-        public async Task UpdateApiScopeAsync()
+    [Fact]
+    public async Task GetApiScopeAsync()
+    {
+        using (var context = new IdentityServerConfigurationDbContext(_dbContextOptions, _storeOptions))
         {
-            using (var context = new IdentityServerConfigurationDbContext(_dbContextOptions, _storeOptions))
-            {
-                var apiResourceRepository = GetApiScopeRepository(context);
+            var apiResourceRepository = GetApiScopeRepository(context);
 
-                //Generate random new api scope
-                var apiScope = ApiScopeMock.GenerateRandomApiScope(0);
+            //Generate random new api scope
+            var apiScope = ApiScopeMock.GenerateRandomApiScope(0);
 
-                //Add new api scope
-                await apiResourceRepository.AddApiScopeAsync(apiScope);
+            //Add new api scope
+            await apiResourceRepository.AddApiScopeAsync(apiScope);
 
-                //Detached the added item
-                context.Entry(apiScope).State = EntityState.Detached;
+            //Get new api scope
+            var newApiScopes = await apiResourceRepository.GetApiScopeAsync(apiScope.Id);
 
-                //Generete new api scope with added item id
-                var updatedApiScope = ApiScopeMock.GenerateRandomApiScope(apiScope.Id);
+            //Assert new api resource
+            newApiScopes.Should().BeEquivalentTo(apiScope, options => options.Excluding(o => o.Id)
+                .Excluding(o => o.UserClaims));
 
-                //Update api scope
-                await apiResourceRepository.UpdateApiScopeAsync(updatedApiScope);
-
-                //Get updated api scope
-                var updatedApiScopeEntity = await context.ApiScopes.Where(x => x.Id == updatedApiScope.Id).SingleAsync();
-
-                //Assert updated api scope
-                updatedApiScope.Should().BeEquivalentTo(updatedApiScopeEntity);
-            }
-        }
-
-        [Fact]
-        public async Task DeleteApiScopeAsync()
-        {
-            using (var context = new IdentityServerConfigurationDbContext(_dbContextOptions, _storeOptions))
-            {
-                var apiResourceRepository = GetApiScopeRepository(context);
-
-                //Generate random new api scope
-                var apiScope = ApiScopeMock.GenerateRandomApiScope(0);
-
-                //Add new api resource
-                await apiResourceRepository.AddApiScopeAsync(apiScope);
-
-                //Get new api resource
-                var newApiScopes = await context.ApiScopes.Where(x => x.Id == apiScope.Id).SingleOrDefaultAsync();
-
-                //Assert new api resource
-                newApiScopes.Should().BeEquivalentTo(apiScope, options => options.Excluding(o => o.Id));
-
-                //Try delete it
-                await apiResourceRepository.DeleteApiScopeAsync(newApiScopes);
-
-                //Get new api scope
-                var deletedApiScopes = await context.ApiScopes.Where(x => x.Id == newApiScopes.Id).SingleOrDefaultAsync();
-
-                //Assert if it exist
-                deletedApiScopes.Should().BeNull();
-            }
-        }
-
-        [Fact]
-        public async Task GetApiScopeAsync()
-        {
-            using (var context = new IdentityServerConfigurationDbContext(_dbContextOptions, _storeOptions))
-            {
-                var apiResourceRepository = GetApiScopeRepository(context);
-
-                //Generate random new api scope
-                var apiScope = ApiScopeMock.GenerateRandomApiScope(0);
-
-                //Add new api scope
-                await apiResourceRepository.AddApiScopeAsync(apiScope);
-
-                //Get new api scope
-                var newApiScopes = await apiResourceRepository.GetApiScopeAsync(apiScope.Id);
-
-                //Assert new api resource
-                newApiScopes.Should().BeEquivalentTo(apiScope, options => options.Excluding(o => o.Id)
-                    .Excluding(o => o.UserClaims));
-
-                newApiScopes.UserClaims.Should().BeEquivalentTo(apiScope.UserClaims,
-                    option => option.Excluding(x => x.Path.EndsWith("Id"))
-                        .Excluding(x => x.Path.EndsWith("Scope")));
-            }
+            newApiScopes.UserClaims.Should().BeEquivalentTo(apiScope.UserClaims,
+                option => option.Excluding(x => x.Path.EndsWith("Id"))
+                    .Excluding(x => x.Path.EndsWith("Scope")));
         }
     }
 }

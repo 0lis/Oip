@@ -1,4 +1,3 @@
-using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using NLog;
 using NLog.Web;
@@ -13,8 +12,7 @@ try
     var app = builder.BuildOip();
     using (var scope = app.Services.CreateScope())
     {
-        var provider = scope.ServiceProvider;
-        var context = provider.GetRequiredService<OipContext>();
+        var context = scope.ServiceProvider.GetRequiredService<OipContext>();
         context.Database.Migrate();
     }
 

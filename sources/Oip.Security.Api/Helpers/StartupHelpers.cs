@@ -10,11 +10,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Skoruba.AuditLogging.EntityFramework.DbContexts;
-using Skoruba.AuditLogging.EntityFramework.Entities;
-using Skoruba.AuditLogging.EntityFramework.Extensions;
-using Skoruba.AuditLogging.EntityFramework.Repositories;
-using Skoruba.AuditLogging.EntityFramework.Services;
 using Oip.Security.Api.AuditLogging;
 using Oip.Security.Api.Configuration;
 using Oip.Security.Api.Configuration.ApplicationParts;
@@ -27,6 +22,11 @@ using Oip.Security.EntityFramework.Configuration.PostgreSQL;
 using Oip.Security.EntityFramework.Configuration.SqlServer;
 using Oip.Security.EntityFramework.Helpers;
 using Oip.Security.EntityFramework.Interfaces;
+using Skoruba.AuditLogging.EntityFramework.DbContexts;
+using Skoruba.AuditLogging.EntityFramework.Entities;
+using Skoruba.AuditLogging.EntityFramework.Extensions;
+using Skoruba.AuditLogging.EntityFramework.Repositories;
+using Skoruba.AuditLogging.EntityFramework.Services;
 
 namespace Oip.Security.Api.Helpers;
 

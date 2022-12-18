@@ -1,7 +1,7 @@
 using System;
 using System.IO;
-using Microsoft.AspNetCore.Builder;
 using System.Reflection;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using NLog.Web;
@@ -11,7 +11,7 @@ namespace Microsoft.Extensions.DependencyInjection;
 
 public static class OipWebApplication
 {
-    public static WebApplicationBuilder CreateBuilder(string [] args, object config)
+    public static WebApplicationBuilder CreateBuilder(string[] args, object config)
     {
         var builder = WebApplication.CreateBuilder(args);
         builder.Configuration.Bind(config);

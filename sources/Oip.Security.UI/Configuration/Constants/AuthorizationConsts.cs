@@ -1,7 +1,6 @@
-﻿namespace Oip.Security.UI.Configuration.Constants
+﻿namespace Oip.Security.UI.Configuration.Constants;
+
+public class AuthorizationConsts
 {
-    public class AuthorizationConsts
-    {
-        public const string AdministrationPolicy = "RequireAdministratorRole";
-    }
+    public const string AdministrationPolicy = "RequireAdministratorRole";
 }

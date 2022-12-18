@@ -1,22 +1,21 @@
-﻿namespace Oip.Security.UI.Helpers
+﻿namespace Oip.Security.UI.Helpers;
+
+public class NotificationHelpers
 {
-    public class NotificationHelpers
+    public enum AlertType
     {
-        public const string NotificationKey = "IdentityServerAdmin.Notification";
+        Info,
+        Success,
+        Warning,
+        Error
+    }
 
-        public class Alert
-        {
-            public AlertType Type { get; set; }
-            public string Message { get; set; }
-            public string Title { get; set; }
-        }
+    public const string NotificationKey = "IdentityServerAdmin.Notification";
 
-        public enum AlertType
-        {
-            Info,
-            Success,
-            Warning,
-            Error
-        }
+    public class Alert
+    {
+        public AlertType Type { get; set; }
+        public string Message { get; set; }
+        public string Title { get; set; }
     }
 }

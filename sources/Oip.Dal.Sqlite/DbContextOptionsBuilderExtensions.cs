@@ -10,6 +10,6 @@ public static class DbContextOptionsBuilderExtensions
     {
         return builder.UseSqlite(connectionString, db => db
             .MigrationsAssembly(typeof(SqliteOipContextFactory).Assembly.GetName().Name)
-            .MigrationsHistoryTable(OipContext.MigrationsHistoryTable, OipContext.OipSchema));
+            .MigrationsHistoryTable(OipContext.MigrationsHistoryTable));
     }
 }

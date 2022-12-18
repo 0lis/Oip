@@ -2,12 +2,11 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 // Original file: https://github.com/IdentityServer/IdentityServer4.Quickstart.UI
-// Modified by Jan Škoruba
+// Modified by Jan ï¿½koruba
 
-namespace Skoruba.IdentityServer4.STS.Identity.ViewModels.Account
+namespace Skoruba.IdentityServer4.STS.Identity.ViewModels.Account;
+
+public class RedirectViewModel
 {
-    public class RedirectViewModel
-    {
-        public string RedirectUrl { get; set; }
-    }
+    public string RedirectUrl { get; set; }
 }

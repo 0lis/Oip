@@ -21,7 +21,9 @@
             </p>
         </li>
         <li>
-            <p>@Localizer["ScanQR"] <kbd>@Model.SharedKey</kbd> @Localizer["ScanQRSubTitle"]</p>
+            <p>
+                @Localizer["ScanQR"] <kbd>@Model.SharedKey</kbd> @Localizer["ScanQRSubTitle"]
+            </p>
             <div id="qrCode"></div>
             <div id="qrCodeData" data-url="@Html.Raw(Model.AuthenticatorUri)"></div>
         </li>
@@ -34,7 +36,7 @@
                     <form method="post">
                         <div class="form-group">
                             <label asp-for="Code" class="control-label">@Localizer["Code"]</label>
-                            <input asp-for="Code" class="form-control" autocomplete="off" />
+                            <input asp-for="Code" class="form-control" autocomplete="off"/>
                             <span asp-validation-for="Code" class="text-danger"></span>
                         </div>
                         <button type="submit" class="btn btn-primary">@Localizer["Verify"]</button>

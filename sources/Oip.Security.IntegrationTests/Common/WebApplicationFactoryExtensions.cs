@@ -4,22 +4,21 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Oip.Security.Configuration.Test;
 
-namespace Oip.Security.IntegrationTests.Common
-{
-    public static class WebApplicationFactoryExtensions
-    {
-        public static HttpClient SetupClient(this WebApplicationFactory<StartupTest> fixture)
-        {
-            var options = new WebApplicationFactoryClientOptions
-            {
-                AllowAutoRedirect = false
-            };
+namespace Oip.Security.IntegrationTests.Common;
 
-            return fixture.WithWebHostBuilder(
-                builder => builder
-                    .UseStartup<StartupTest>()
-                    .ConfigureTestServices(services => { })
-            ).CreateClient(options);
-        }
+public static class WebApplicationFactoryExtensions
+{
+    public static HttpClient SetupClient(this WebApplicationFactory<StartupTest> fixture)
+    {
+        var options = new WebApplicationFactoryClientOptions
+        {
+            AllowAutoRedirect = false
+        };
+
+        return fixture.WithWebHostBuilder(
+            builder => builder
+                .UseStartup<StartupTest>()
+                .ConfigureTestServices(services => { })
+        ).CreateClient(options);
     }
 }

@@ -14,9 +14,15 @@
         <div class="col-12">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a asp-area="@CommonConsts.AdminUIArea" asp-controller="Identity" asp-action="Users">@Localizer["NavigationUsers"]</a></li>
-                    <li class="breadcrumb-item"><a asp-area="@CommonConsts.AdminUIArea" asp-controller="Identity" asp-action="UserProfile" asp-route-id="@Model.UserId">@Model.UserName</a></li>
-                    <li class="breadcrumb-item"><a asp-area="@CommonConsts.AdminUIArea" asp-controller="Identity" asp-action="UserClaims" asp-route-id="@Model.UserId">@Localizer["NavigationUserClaims"]</a></li>
+                    <li class="breadcrumb-item">
+                        <a asp-area="@CommonConsts.AdminUIArea" asp-controller="Identity" asp-action="Users">@Localizer["NavigationUsers"]</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a asp-area="@CommonConsts.AdminUIArea" asp-controller="Identity" asp-action="UserProfile" asp-route-id="@Model.UserId">@Model.UserName</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a asp-area="@CommonConsts.AdminUIArea" asp-controller="Identity" asp-action="UserClaims" asp-route-id="@Model.UserId">@Localizer["NavigationUserClaims"]</a>
+                    </li>
                     <li class="breadcrumb-item active" aria-current="page">@Localizer["PageTitle"]</li>
                 </ol>
             </nav>
@@ -26,10 +32,10 @@
             <h3>@Localizer["PageTitle"]</h3>
 
             <!--Hidden -->
-            <input type="hidden" asp-for="UserId" />
+            <input type="hidden" asp-for="UserId"/>
 
             <!--Hidden -->
-            <input type="hidden" asp-for="ClaimId" />
+            <input type="hidden" asp-for="ClaimId"/>
 
             <div class="card mt-3">
                 <h5 class="card-header">@Localizer["PanelTitle"]</h5>

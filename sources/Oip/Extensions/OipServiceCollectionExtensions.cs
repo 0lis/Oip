@@ -4,6 +4,7 @@ using Oip.Core.Runtime;
 using Oip.Dal.Core;
 using Oip.Dal.PostgreSql;
 using Oip.Dal.Sqlite;
+using Oip.Dal.SqlServer;
 
 // ReSharper disable once CheckNamespace
 namespace Microsoft.Extensions.DependencyInjection;
@@ -30,9 +31,9 @@ public static class OipServiceCollectionExtensions
                 switch (OipConfiguration.Configuration.Storage)
                 {
                     case "MSSQL":
-                        ef.UseSqlite(OipConfiguration.Configuration.ConnectionString);
+                        ef.UseSqlServer(OipConfiguration.Configuration.ConnectionString);
                         break;
-                    case "Postgres":
+                    case "PostgreSql":
                         ef.UsePostgreSql(OipConfiguration.Configuration.ConnectionString);
                         break;
                     case "Sqlite":

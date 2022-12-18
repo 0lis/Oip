@@ -4,11 +4,10 @@
 // Original file: https://github.com/IdentityServer/IdentityServer4.Samples
 // Modified by Jan Škoruba
 
-namespace Skoruba.IdentityServer4.STS.Identity.ViewModels.Account
+namespace Skoruba.IdentityServer4.STS.Identity.ViewModels.Account;
+
+public class ExternalProvider
 {
-    public class ExternalProvider
-    {
-        public string DisplayName { get; set; }
-        public string AuthenticationScheme { get; set; }
-    }
+    public string DisplayName { get; set; }
+    public string AuthenticationScheme { get; set; }
 }

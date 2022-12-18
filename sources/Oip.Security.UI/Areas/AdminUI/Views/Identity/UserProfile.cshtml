@@ -12,7 +12,9 @@
     <div class="col-12">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a asp-area="@CommonConsts.AdminUIArea" asp-controller="Identity" asp-action="Users">@Localizer["NavigationUsers"]</a></li>
+                <li class="breadcrumb-item">
+                    <a asp-area="@CommonConsts.AdminUIArea" asp-controller="Identity" asp-action="Users">@Localizer["NavigationUsers"]</a>
+                </li>
                 <li class="breadcrumb-item active" aria-current="page">@Model.UserName</li>
             </ol>
         </nav>
@@ -43,7 +45,7 @@
     }
 
     <!--Hidden -->
-    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="Id"/>
 
     <div class="card mt-3">
         <h5 class="card-header">@Localizer["PanelTitle"]</h5>
@@ -51,7 +53,7 @@
 
             <div class="row">
                 <div class="col-lg-2 mb-3">
-                    <img-gravatar email="@Model.Email" class="img-thumbnail" size="150" />
+                    <img-gravatar email="@Model.Email" class="img-thumbnail" size="150"/>
                 </div>
                 <div class="col-sm-10">
                     <!--Input - text -->
@@ -153,7 +155,9 @@
                             <div class="input-group date" id="logoutend-picker" data-target-input="nearest">
                                 <input asp-for="LockoutEnd" type="text" class="form-control">
                                 <div class="input-group-append" data-target="#logoutend-picker" data-toggle="datetimepicker">
-                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    <div class="input-group-text">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -174,7 +178,7 @@
 </form>
 
 @section scripts
-    {
+{
     <script type="text/javascript">
         $(function () {
             $('#logoutend-picker').datetimepicker();

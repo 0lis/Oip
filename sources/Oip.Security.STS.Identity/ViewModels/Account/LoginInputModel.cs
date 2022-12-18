@@ -6,15 +6,14 @@
 
 using System.ComponentModel.DataAnnotations;
 
-namespace Skoruba.IdentityServer4.STS.Identity.ViewModels.Account
+namespace Skoruba.IdentityServer4.STS.Identity.ViewModels.Account;
+
+public class LoginInputModel
 {
-    public class LoginInputModel
-    {
-        [Required]
-        public string Username { get; set; }
-        [Required]
-        public string Password { get; set; }
-        public bool RememberLogin { get; set; }
-        public string ReturnUrl { get; set; }
-    }
+    [Required] public string Username { get; set; }
+
+    [Required] public string Password { get; set; }
+
+    public bool RememberLogin { get; set; }
+    public string ReturnUrl { get; set; }
 }

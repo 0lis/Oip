@@ -5,37 +5,36 @@ using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
 using Oip.Security.Api.Configuration.Test;
 
-namespace Oip.Security.Api.IntegrationTests.Tests.Base
+namespace Oip.Security.Api.IntegrationTests.Tests.Base;
+
+public class TestFixture : IDisposable
 {
-    public class TestFixture : IDisposable
+    public TestServer TestServer;
+
+    public TestFixture()
     {
-        public TestServer TestServer;
+        var builder = new WebHostBuilder()
+            .ConfigureAppConfiguration((hostContext, configApp) =>
+            {
+                configApp.AddJsonFile("appsettings.json", true, true);
+                configApp.AddJsonFile("serilog.json", true, true);
 
-        public HttpClient Client { get; }
+                var env = hostContext.HostingEnvironment;
 
-        public TestFixture()
-        {
-            var builder = new WebHostBuilder()
-                .ConfigureAppConfiguration((hostContext, configApp) =>
-                {
-                    configApp.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-                    configApp.AddJsonFile("serilog.json", optional: true, reloadOnChange: true);
+                configApp.AddJsonFile($"serilog.{env.EnvironmentName}.json", true, true);
+                configApp.AddJsonFile($"appsettings.{env.EnvironmentName}.json", true, true);
+            })
+            .UseStartup<StartupTest>();
 
-                    var env = hostContext.HostingEnvironment;
+        TestServer = new TestServer(builder);
+        Client = TestServer.CreateClient();
+    }
 
-                    configApp.AddJsonFile($"serilog.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
-                    configApp.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
-                })
-                .UseStartup<StartupTest>();
+    public HttpClient Client { get; }
 
-            TestServer = new TestServer(builder);
-            Client = TestServer.CreateClient();
-        }
-
-        public void Dispose()
-        {
-            Client.Dispose();
-            TestServer.Dispose();
-        }
+    public void Dispose()
+    {
+        Client.Dispose();
+        TestServer.Dispose();
     }
 }

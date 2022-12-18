@@ -1,5 +1,5 @@
-@model Skoruba.IdentityServer4.STS.Identity.ViewModels.Device.DeviceAuthorizationViewModel
 @using Microsoft.AspNetCore.Mvc.Localization
+@model Skoruba.IdentityServer4.STS.Identity.ViewModels.Device.DeviceAuthorizationViewModel
 @inject IViewLocalizer Localizer
 
 <div class="consent-container">
@@ -7,7 +7,9 @@
         <div class="col-sm-10">
             @if (Model.ClientLogoUrl != null)
             {
-                <div class="client-logo"><img src="@Model.ClientLogoUrl"></div>
+                <div class="client-logo">
+                    <img src="@Model.ClientLogoUrl">
+                </div>
             }
             <h1>
                 @Model.ClientName
@@ -20,7 +22,7 @@
         <div class="row">
             <div class="col-sm-8">
                 <p>
-                   @Localizer["ConfirmCode"] "@Model.UserCode".
+                    @Localizer["ConfirmCode"] "@Model.UserCode".
                 </p>
             </div>
         </div>
@@ -31,7 +33,7 @@
             @await Html.PartialAsync("_ValidationSummary")
 
             <form asp-action="Callback" class="consent-form">
-                <input type="hidden" asp-for="UserCode" />
+                <input type="hidden" asp-for="UserCode"/>
 
                 <div>@Localizer["UnCheckPermission"]</div>
 
@@ -81,7 +83,7 @@
                         <div class="col-sm-12">
                             <div class="toggle-button__input">
                                 <toggle-button>
-                                    <input asp-for="RememberConsent" />
+                                    <input asp-for="RememberConsent"/>
                                 </toggle-button>
                             </div>
                             <div class="toggle-button__text">

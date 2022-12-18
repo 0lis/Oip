@@ -6,23 +6,22 @@ using IdentityModel;
 using Oip.Security.Api.Configuration;
 using Oip.Security.Api.Middlewares;
 
-namespace Oip.Security.Api.IntegrationTests.Common
-{
-    public static class HttpClientExtensions
-    {
-        public static void SetAdminClaimsViaHeaders(this HttpClient client, AdminApiConfiguration adminConfiguration)
-        {
-            var claims = new[]
-            {
-                new Claim(JwtClaimTypes.Subject, Guid.NewGuid().ToString()),
-                new Claim(JwtClaimTypes.Name, Guid.NewGuid().ToString()),
-                new Claim(JwtClaimTypes.Role, adminConfiguration.AdministrationRole),
-                new Claim(JwtClaimTypes.Scope, adminConfiguration.OidcApiName),
-            };
+namespace Oip.Security.Api.IntegrationTests.Common;
 
-            var token = new JwtSecurityToken(claims: claims);
-            var t = new JwtSecurityTokenHandler().WriteToken(token);
-            client.DefaultRequestHeaders.Add(AuthenticatedTestRequestMiddleware.TestAuthorizationHeader, t);
-        }
+public static class HttpClientExtensions
+{
+    public static void SetAdminClaimsViaHeaders(this HttpClient client, AdminApiConfiguration adminConfiguration)
+    {
+        var claims = new[]
+        {
+            new Claim(JwtClaimTypes.Subject, Guid.NewGuid().ToString()),
+            new Claim(JwtClaimTypes.Name, Guid.NewGuid().ToString()),
+            new Claim(JwtClaimTypes.Role, adminConfiguration.AdministrationRole),
+            new Claim(JwtClaimTypes.Scope, adminConfiguration.OidcApiName)
+        };
+
+        var token = new JwtSecurityToken(claims: claims);
+        var t = new JwtSecurityTokenHandler().WriteToken(token);
+        client.DefaultRequestHeaders.Add(AuthenticatedTestRequestMiddleware.TestAuthorizationHeader, t);
     }
 }

@@ -27,7 +27,6 @@ public class OipContext : DbContext
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(OipContext).Assembly);
 
         if (Database.IsSqlite())
-        {            
             // SQLite does not have proper support for DateTimeOffset via Entity Framework Core, see the limitations
             // here: https://docs.microsoft.com/en-us/ef/core/providers/sqlite/limitations#query-limitations
             foreach (var entityType in modelBuilder.Model.GetEntityTypes())
@@ -40,7 +39,6 @@ public class OipContext : DbContext
                         .Property(property.Name)
                         .HasConversion(ValueConverters.SqliteInstantConverter);
             }
-        }
 
         if (Database.IsOracle())
             // In order to use data more than 2000 char we have to use NCLOB. In oracle we have to explicitly say the column is NCLOB otherwise it would be considered nvarchar(2000).

@@ -1,32 +1,29 @@
 ﻿using System.Net.Http;
-using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
 using Oip.Security.Api.Configuration;
-using Oip.Security.Api.Configuration.Test;
 using Oip.Security.Api.IntegrationTests.Common;
 using Xunit;
 
-namespace Oip.Security.Api.IntegrationTests.Tests.Base
+namespace Oip.Security.Api.IntegrationTests.Tests.Base;
+
+public class BaseClassFixture : IClassFixture<TestFixture>
 {
-    public class BaseClassFixture : IClassFixture<TestFixture>
+    protected readonly HttpClient Client;
+    protected readonly TestServer TestServer;
+
+    public BaseClassFixture(TestFixture fixture)
     {
-        protected readonly HttpClient Client;
-        protected readonly TestServer TestServer;
+        Client = fixture.Client;
+        TestServer = fixture.TestServer;
+    }
 
-        public BaseClassFixture(TestFixture fixture)
+    protected virtual void SetupAdminClaimsViaHeaders()
+    {
+        using (var scope = TestServer.Services.CreateScope())
         {
-            Client = fixture.Client;
-            TestServer = fixture.TestServer;
-        }
-
-        protected virtual void SetupAdminClaimsViaHeaders()
-        {
-            using (var scope = TestServer.Services.CreateScope())
-            {
-                var configuration = scope.ServiceProvider.GetRequiredService<AdminApiConfiguration>();
-                Client.SetAdminClaimsViaHeaders(configuration);
-            }
+            var configuration = scope.ServiceProvider.GetRequiredService<AdminApiConfiguration>();
+            Client.SetAdminClaimsViaHeaders(configuration);
         }
     }
 }

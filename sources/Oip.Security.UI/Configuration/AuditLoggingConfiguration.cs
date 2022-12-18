@@ -1,10 +1,9 @@
-﻿namespace Oip.Security.UI.Configuration
+﻿namespace Oip.Security.UI.Configuration;
+
+public class AuditLoggingConfiguration
 {
-    public class AuditLoggingConfiguration
-    {
-        public string Source { get; set; }
-        public string SubjectIdentifierClaim { get; set; }
-        public string SubjectNameClaim { get; set; }
-        public bool IncludeFormVariables { get; set; }
-    }
+    public string Source { get; set; }
+    public string SubjectIdentifierClaim { get; set; }
+    public string SubjectNameClaim { get; set; }
+    public bool IncludeFormVariables { get; set; }
 }

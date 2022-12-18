@@ -5,147 +5,148 @@ using Oip.Security.BusinessLogic.Mappers.Converters;
 using Oip.Security.UnitTests.Mocks;
 using Xunit;
 
-namespace Oip.Security.UnitTests.Mappers
+namespace Oip.Security.UnitTests.Mappers;
+
+public class ApiResourceMappers
 {
-	public class ApiResourceMappers
-	{
-		[Fact]
-		public void CanMapApiResourceToModel()
-		{
-			//Generate entity
-			var apiResource = ApiResourceMock.GenerateRandomApiResource(1);
+    [Fact]
+    public void CanMapApiResourceToModel()
+    {
+        //Generate entity
+        var apiResource = ApiResourceMock.GenerateRandomApiResource(1);
 
-			//Try map to DTO
-			var apiResourceDto = apiResource.ToModel();
+        //Try map to DTO
+        var apiResourceDto = apiResource.ToModel();
 
-			//Assert
-			apiResourceDto.Should().NotBeNull();
+        //Assert
+        apiResourceDto.Should().NotBeNull();
 
-			apiResourceDto.Should().BeEquivalentTo(apiResource, options =>
-				options.Excluding(o => o.Secrets)
-					   .Excluding(o => o.Scopes)
-					   .Excluding(o => o.Properties)
-					   .Excluding(o => o.Created)
-					   .Excluding(o => o.Updated)
-					   .Excluding(o => o.LastAccessed)
-					   .Excluding(o => o.NonEditable)
-                       .Excluding(o => o.AllowedAccessTokenSigningAlgorithms)
-					   .Excluding(o => o.UserClaims));
+        apiResourceDto.Should().BeEquivalentTo(apiResource, options =>
+            options.Excluding(o => o.Secrets)
+                .Excluding(o => o.Scopes)
+                .Excluding(o => o.Properties)
+                .Excluding(o => o.Created)
+                .Excluding(o => o.Updated)
+                .Excluding(o => o.LastAccessed)
+                .Excluding(o => o.NonEditable)
+                .Excluding(o => o.AllowedAccessTokenSigningAlgorithms)
+                .Excluding(o => o.UserClaims));
 
-			//Assert collection
-			apiResource.UserClaims.Select(x => x.Type).Should().BeEquivalentTo(apiResourceDto.UserClaims);
+        //Assert collection
+        apiResource.UserClaims.Select(x => x.Type).Should().BeEquivalentTo(apiResourceDto.UserClaims);
 
-            var allowedAlgList = AllowedSigningAlgorithmsConverter.Converter.Convert(apiResource.AllowedAccessTokenSigningAlgorithms, null);
-			allowedAlgList.Should().BeEquivalentTo(apiResourceDto.AllowedAccessTokenSigningAlgorithms);
-		}
+        var allowedAlgList =
+            AllowedSigningAlgorithmsConverter.Converter.Convert(apiResource.AllowedAccessTokenSigningAlgorithms, null);
+        allowedAlgList.Should().BeEquivalentTo(apiResourceDto.AllowedAccessTokenSigningAlgorithms);
+    }
 
-		[Fact]
-		public void CanMapApiResourceDtoToEntity()
-		{
-			//Generate DTO
-			var apiResourceDto = ApiResourceDtoMock.GenerateRandomApiResource(1);
+    [Fact]
+    public void CanMapApiResourceDtoToEntity()
+    {
+        //Generate DTO
+        var apiResourceDto = ApiResourceDtoMock.GenerateRandomApiResource(1);
 
-			//Try map to entity
-			var apiResource = apiResourceDto.ToEntity();
+        //Try map to entity
+        var apiResource = apiResourceDto.ToEntity();
 
-			apiResource.Should().NotBeNull();
+        apiResource.Should().NotBeNull();
 
-			apiResourceDto.Should().BeEquivalentTo(apiResource, options =>
-				options.Excluding(o => o.Secrets)
-					.Excluding(o => o.Scopes)
-					.Excluding(o => o.Properties)
-					.Excluding(o => o.Created)
-					.Excluding(o => o.Updated)
-					.Excluding(o => o.LastAccessed)
-					.Excluding(o => o.NonEditable)
-                    .Excluding(o => o.AllowedAccessTokenSigningAlgorithms)
-					.Excluding(o => o.UserClaims));
+        apiResourceDto.Should().BeEquivalentTo(apiResource, options =>
+            options.Excluding(o => o.Secrets)
+                .Excluding(o => o.Scopes)
+                .Excluding(o => o.Properties)
+                .Excluding(o => o.Created)
+                .Excluding(o => o.Updated)
+                .Excluding(o => o.LastAccessed)
+                .Excluding(o => o.NonEditable)
+                .Excluding(o => o.AllowedAccessTokenSigningAlgorithms)
+                .Excluding(o => o.UserClaims));
 
-			//Assert collection
-			apiResource.UserClaims.Select(x => x.Type).Should().BeEquivalentTo(apiResourceDto.UserClaims);
-            var allowedAlgList = AllowedSigningAlgorithmsConverter.Converter.Convert(apiResource.AllowedAccessTokenSigningAlgorithms, null);
-            allowedAlgList.Should().BeEquivalentTo(apiResourceDto.AllowedAccessTokenSigningAlgorithms);
-		}
+        //Assert collection
+        apiResource.UserClaims.Select(x => x.Type).Should().BeEquivalentTo(apiResourceDto.UserClaims);
+        var allowedAlgList =
+            AllowedSigningAlgorithmsConverter.Converter.Convert(apiResource.AllowedAccessTokenSigningAlgorithms, null);
+        allowedAlgList.Should().BeEquivalentTo(apiResourceDto.AllowedAccessTokenSigningAlgorithms);
+    }
 
-		[Fact]
-		public void CanMapApiScopeToModel()
-		{
-            //Generate DTO
-            var apiScopeDto = ApiScopeMock.GenerateRandomApiScope(1);
+    [Fact]
+    public void CanMapApiScopeToModel()
+    {
+        //Generate DTO
+        var apiScopeDto = ApiScopeMock.GenerateRandomApiScope(1);
 
-			//Try map to entity
-			var apiScope = apiScopeDto.ToModel();
+        //Try map to entity
+        var apiScope = apiScopeDto.ToModel();
 
-            apiScope.Should().NotBeNull();
+        apiScope.Should().NotBeNull();
 
-            apiScopeDto.Should().BeEquivalentTo(apiScope, options =>
-                options.Excluding(o => o.UserClaims)
-                    .Excluding(o => o.ApiScopeProperties)
-                    .Excluding(o => o.UserClaimsItems));
+        apiScopeDto.Should().BeEquivalentTo(apiScope, options =>
+            options.Excluding(o => o.UserClaims)
+                .Excluding(o => o.ApiScopeProperties)
+                .Excluding(o => o.UserClaimsItems));
 
-			//Assert collection
-            apiScopeDto.UserClaims.Select(x => x.Type).Should().BeEquivalentTo(apiScope.UserClaims);
-            apiScope.Id.Should().Be(apiScopeDto.Id);
-		}
+        //Assert collection
+        apiScopeDto.UserClaims.Select(x => x.Type).Should().BeEquivalentTo(apiScope.UserClaims);
+        apiScope.Id.Should().Be(apiScopeDto.Id);
+    }
 
-		[Fact]
-		public void CanMapApiScopeDtoToEntity()
-		{
-			//Generate DTO
-			var apiScopeDto = ApiScopeDtoMock.GenerateRandomApiScope(1);
+    [Fact]
+    public void CanMapApiScopeDtoToEntity()
+    {
+        //Generate DTO
+        var apiScopeDto = ApiScopeDtoMock.GenerateRandomApiScope(1);
 
-			//Try map to entity
-			var apiScope = apiScopeDto.ToEntity();
+        //Try map to entity
+        var apiScope = apiScopeDto.ToEntity();
 
-			apiScope.Should().NotBeNull();
+        apiScope.Should().NotBeNull();
 
-			apiScopeDto.Should().BeEquivalentTo(apiScope, options =>
-				options.Excluding(o => o.UserClaims)
-                       .Excluding(o => o.Properties)
-					   .Excluding(o => o.Id));
+        apiScopeDto.Should().BeEquivalentTo(apiScope, options =>
+            options.Excluding(o => o.UserClaims)
+                .Excluding(o => o.Properties)
+                .Excluding(o => o.Id));
 
-			//Assert collection
-			apiScope.UserClaims.Select(x => x.Type).Should().BeEquivalentTo(apiScopeDto.UserClaims);
-			apiScope.Id.Should().Be(apiScopeDto.Id);
-		}
+        //Assert collection
+        apiScope.UserClaims.Select(x => x.Type).Should().BeEquivalentTo(apiScopeDto.UserClaims);
+        apiScope.Id.Should().Be(apiScopeDto.Id);
+    }
 
-		[Fact]
-		public void CanMapApiSecretToModel()
-		{
-			//Generate entity
-			var apiSecret = ApiResourceMock.GenerateRandomApiSecret(1);
+    [Fact]
+    public void CanMapApiSecretToModel()
+    {
+        //Generate entity
+        var apiSecret = ApiResourceMock.GenerateRandomApiSecret(1);
 
-			//Try map to DTO
-			var apiSecretsDto = apiSecret.ToModel();
+        //Try map to DTO
+        var apiSecretsDto = apiSecret.ToModel();
 
-			//Assert
-			apiSecretsDto.Should().NotBeNull();
+        //Assert
+        apiSecretsDto.Should().NotBeNull();
 
-			apiSecretsDto.Should().BeEquivalentTo(apiSecret, options =>
-				options.Excluding(o => o.ApiResource)
-					.Excluding(o => o.Created)
-					.Excluding(o => o.Id));
+        apiSecretsDto.Should().BeEquivalentTo(apiSecret, options =>
+            options.Excluding(o => o.ApiResource)
+                .Excluding(o => o.Created)
+                .Excluding(o => o.Id));
 
-			apiSecret.Id.Should().Be(apiSecretsDto.ApiSecretId);
-		}
+        apiSecret.Id.Should().Be(apiSecretsDto.ApiSecretId);
+    }
 
-		[Fact]
-		public void CanMapApiSecretDtoToEntity()
-		{
-			//Generate DTO
-			var apiSecretsDto = ApiResourceDtoMock.GenerateRandomApiSecret(1, 1);
+    [Fact]
+    public void CanMapApiSecretDtoToEntity()
+    {
+        //Generate DTO
+        var apiSecretsDto = ApiResourceDtoMock.GenerateRandomApiSecret(1, 1);
 
-			//Try map to entity
-			var apiSecret = apiSecretsDto.ToEntity();
+        //Try map to entity
+        var apiSecret = apiSecretsDto.ToEntity();
 
-			apiSecret.Should().NotBeNull();
+        apiSecret.Should().NotBeNull();
 
-			apiSecretsDto.Should().BeEquivalentTo(apiSecret, options =>
-				options.Excluding(o => o.ApiResource)
-					.Excluding(o => o.Created)
-					.Excluding(o => o.Id));
+        apiSecretsDto.Should().BeEquivalentTo(apiSecret, options =>
+            options.Excluding(o => o.ApiResource)
+                .Excluding(o => o.Created)
+                .Excluding(o => o.Id));
 
-			apiSecret.Id.Should().Be(apiSecretsDto.ApiSecretId);
-		}
-	}
+        apiSecret.Id.Should().Be(apiSecretsDto.ApiSecretId);
+    }
 }

@@ -43,11 +43,11 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Oip.Security.BusinessLogic.Identity\Oip.Security.BusinessLogic.Identity.csproj" />
-        <ProjectReference Include="..\Oip.Security.BusinessLogic\Oip.Security.BusinessLogic.csproj" />
-        <ProjectReference Include="..\Oip.Security.EntityFramework.MySql\Oip.Security.EntityFramework.MySql.csproj" />
-        <ProjectReference Include="..\Oip.Security.EntityFramework.PostgreSQL\Oip.Security.EntityFramework.PostgreSQL.csproj" />
-        <ProjectReference Include="..\Oip.Security.EntityFramework.SqlServer\Oip.Security.EntityFramework.SqlServer.csproj" />
+        <ProjectReference Include="..\Oip.Security.Bl.Identity\Oip.Security.Bl.Identity.csproj" />
+        <ProjectReference Include="..\Oip.Security.Bl\Oip.Security.Bl.csproj" />
+        <ProjectReference Include="..\Oip.Security.Dal.MySql\Oip.Security.Dal.MySql.csproj" />
+        <ProjectReference Include="..\Oip.Security.Dal.PostgreSql\Oip.Security.Dal.PostgreSql.csproj" />
+        <ProjectReference Include="..\Oip.Security.Dal.SqlServer\Oip.Security.Dal.SqlServer.csproj" />
         <ProjectReference Include="..\Oip.Security.Common\Oip.Security.Common.csproj" />
     </ItemGroup>
 

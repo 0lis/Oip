@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using Microsoft.AspNetCore.Http;
+using Oip.Security.Api.Configuration;
 using Skoruba.AuditLogging.Constants;
 using Skoruba.AuditLogging.Events;
-using Oip.Security.Api.Configuration;
 
 namespace Oip.Security.Api.AuditLogging;
 

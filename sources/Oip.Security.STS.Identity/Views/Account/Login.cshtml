@@ -1,7 +1,7 @@
-﻿@using Microsoft.AspNetCore.Mvc.Localization
+﻿@inject IViewLocalizer Localizer
+@using Microsoft.AspNetCore.Mvc.Localization
 @using Skoruba.IdentityServer4.STS.Identity.Configuration.Interfaces
 @using Skoruba.IdentityServer4.STS.Identity.Helpers.Localization
-@inject IViewLocalizer Localizer
 @model Skoruba.IdentityServer4.STS.Identity.ViewModels.Account.LoginViewModel
 @inject IRootConfiguration RootConfiguration
 
@@ -21,7 +21,7 @@
                     <h5 class="card-header">@Localizer["LocalLogin"]</h5>
                     <div class="card-body">
                         <form asp-route="Login">
-                            <input type="hidden" asp-for="ReturnUrl" />
+                            <input type="hidden" asp-for="ReturnUrl"/>
 
                             <fieldset>
                                 <div class="form-group row">
@@ -69,7 +69,7 @@
                                     <div class="col-sm-12">
                                         <button class="btn btn-primary" name="button" value="login">@Localizer["Login"]</button>
                                         <button class="btn btn-secondary" name="button" value="cancel">@Localizer["Cancel"]</button>
-                                        <a asp-action="ForgotPassword" asp-controller="Account" class="btn btn-info" value="forgot">@Localizer["Forgot"]</a>                                        
+                                        <a asp-action="ForgotPassword" asp-controller="Account" class="btn btn-info" value="forgot">@Localizer["Forgot"]</a>
                                         @if (RootConfiguration.RegisterConfiguration.Enabled)
                                         {
                                             <a asp-action="Register" asp-controller="Account" class="btn btn-dark" value="forgot">@Localizer["Register"]</a>

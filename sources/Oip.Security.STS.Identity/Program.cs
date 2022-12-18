@@ -6,92 +6,87 @@ using Microsoft.Extensions.Hosting;
 using Serilog;
 using Skoruba.IdentityServer4.Shared.Configuration.Helpers;
 
-namespace Skoruba.IdentityServer4.STS.Identity
+namespace Skoruba.IdentityServer4.STS.Identity;
+
+public class Program
 {
-    public class Program
+    public static void Main(string[] args)
     {
-        public static void Main(string[] args)
+        var configuration = GetConfiguration(args);
+
+        Log.Logger = new LoggerConfiguration()
+            .ReadFrom.Configuration(configuration)
+            .CreateLogger();
+        try
         {
-            var configuration = GetConfiguration(args);
+            DockerHelpers.ApplyDockerConfiguration(configuration);
 
-            Log.Logger = new LoggerConfiguration()
-                .ReadFrom.Configuration(configuration)
-                .CreateLogger();
-            try
-            {
-                DockerHelpers.ApplyDockerConfiguration(configuration);
-
-                CreateHostBuilder(args).Build().Run();
-            }
-            catch (Exception ex)
-            {
-                Log.Fatal(ex, "Host terminated unexpectedly");
-            }
-            finally
-            {
-                Log.CloseAndFlush();
-            }
+            CreateHostBuilder(args).Build().Run();
         }
-
-        private static IConfiguration GetConfiguration(string[] args)
+        catch (Exception ex)
         {
-            var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-            var isDevelopment = environment == Environments.Development;
-
-            var configurationBuilder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{environment}.json", optional: true, reloadOnChange: true)
-                .AddJsonFile("serilog.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"serilog.{environment}.json", optional: true, reloadOnChange: true);
-
-            if (isDevelopment)
-            {
-                configurationBuilder.AddUserSecrets<Startup>(true);
-            }
-
-            var configuration = configurationBuilder.Build();
-
-            configuration.AddAzureKeyVaultConfiguration(configurationBuilder);
-
-            configurationBuilder.AddCommandLine(args);
-            configurationBuilder.AddEnvironmentVariables();
-
-            return configurationBuilder.Build();
+            Log.Fatal(ex, "Host terminated unexpectedly");
         }
+        finally
+        {
+            Log.CloseAndFlush();
+        }
+    }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                 .ConfigureAppConfiguration((hostContext, configApp) =>
-                 {
-                     var configurationRoot = configApp.Build();
+    private static IConfiguration GetConfiguration(string[] args)
+    {
+        var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+        var isDevelopment = environment == Environments.Development;
 
-                     configApp.AddJsonFile("serilog.json", optional: true, reloadOnChange: true);
+        var configurationBuilder = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json", false, true)
+            .AddJsonFile($"appsettings.{environment}.json", true, true)
+            .AddJsonFile("serilog.json", true, true)
+            .AddJsonFile($"serilog.{environment}.json", true, true);
 
-                     var env = hostContext.HostingEnvironment;
+        if (isDevelopment) configurationBuilder.AddUserSecrets<Startup>(true);
 
-                     configApp.AddJsonFile($"serilog.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
+        var configuration = configurationBuilder.Build();
 
-                     if (env.IsDevelopment())
-                     {
-                         configApp.AddUserSecrets<Startup>(true);
-                     }
+        configuration.AddAzureKeyVaultConfiguration(configurationBuilder);
 
-                     configurationRoot.AddAzureKeyVaultConfiguration(configApp);
+        configurationBuilder.AddCommandLine(args);
+        configurationBuilder.AddEnvironmentVariables();
 
-                     configApp.AddEnvironmentVariables();
-                     configApp.AddCommandLine(args);
-                 })
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.ConfigureKestrel(options => options.AddServerHeader = false);
-                    webBuilder.UseStartup<Startup>();
-                })
-                .UseSerilog((hostContext, loggerConfig) =>
-                {
-                    loggerConfig
-                        .ReadFrom.Configuration(hostContext.Configuration)
-                        .Enrich.WithProperty("ApplicationName", hostContext.HostingEnvironment.ApplicationName);
-                });
+        return configurationBuilder.Build();
+    }
+
+    public static IHostBuilder CreateHostBuilder(string[] args)
+    {
+        return Host.CreateDefaultBuilder(args)
+            .ConfigureAppConfiguration((hostContext, configApp) =>
+            {
+                var configurationRoot = configApp.Build();
+
+                configApp.AddJsonFile("serilog.json", true, true);
+
+                var env = hostContext.HostingEnvironment;
+
+                configApp.AddJsonFile($"serilog.{env.EnvironmentName}.json", true, true);
+
+                if (env.IsDevelopment()) configApp.AddUserSecrets<Startup>(true);
+
+                configurationRoot.AddAzureKeyVaultConfiguration(configApp);
+
+                configApp.AddEnvironmentVariables();
+                configApp.AddCommandLine(args);
+            })
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.ConfigureKestrel(options => options.AddServerHeader = false);
+                webBuilder.UseStartup<Startup>();
+            })
+            .UseSerilog((hostContext, loggerConfig) =>
+            {
+                loggerConfig
+                    .ReadFrom.Configuration(hostContext.Configuration)
+                    .Enrich.WithProperty("ApplicationName", hostContext.HostingEnvironment.ApplicationName);
+            });
     }
 }

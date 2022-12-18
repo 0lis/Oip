@@ -1,56 +1,56 @@
-﻿using HealthChecks.UI.Client;
+﻿using System;
+using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Oip.Security.UI.Configuration;
-using Oip.Security.UI.Helpers;
-using Oip.Security.UI.Middlewares;
-using System;
-using System.Collections.Generic;
 using Oip.Security.UI.Configuration.Constants;
+using Oip.Security.UI.Helpers;
 
-namespace Microsoft.AspNetCore.Builder
+namespace Microsoft.AspNetCore.Builder;
+
+public static class AdminUIApplicationBuilderExtensions
 {
-    public static class AdminUIApplicationBuilderExtensions
+    /// <summary>
+    ///     Adds the Skoruba IdentityServer4 Admin UI to the pipeline of this application. This method must be called
+    ///     between UseRouting() and UseEndpoints().
+    /// </summary>
+    /// <param name="app"></param>
+    /// <returns></returns>
+    public static IApplicationBuilder UseIdentityServer4AdminUI(this IApplicationBuilder app)
     {
-        /// <summary>
-        /// Adds the Skoruba IdentityServer4 Admin UI to the pipeline of this application. This method must be called 
-        /// between UseRouting() and UseEndpoints().
-        /// </summary>
-        /// <param name="app"></param>
-        /// <returns></returns>
-        public static IApplicationBuilder UseIdentityServer4AdminUI(this IApplicationBuilder app)
+        app.UseRoutingDependentMiddleware(app.ApplicationServices.GetRequiredService<TestingConfiguration>());
+
+        return app;
+    }
+
+    /// <summary>
+    ///     Maps the Skoruba IdentityServer4 Admin UI to the routes of this application.
+    /// </summary>
+    /// <param name="endpoint"></param>
+    /// <param name="patternPrefix"></param>
+    public static IEndpointConventionBuilder MapIdentityServer4AdminUI(this IEndpointRouteBuilder endpoint,
+        string patternPrefix = "/")
+    {
+        return endpoint.MapAreaControllerRoute(CommonConsts.AdminUIArea, CommonConsts.AdminUIArea,
+            patternPrefix + "{controller=Home}/{action=Index}/{id?}");
+    }
+
+    /// <summary>
+    ///     Maps the Skoruba IdentityServer4 Admin UI health checks to the routes of this application.
+    /// </summary>
+    /// <param name="endpoint"></param>
+    /// <param name="pattern"></param>
+    public static IEndpointConventionBuilder MapIdentityServer4AdminUIHealthChecks(this IEndpointRouteBuilder endpoint,
+        string pattern = "/health", Action<HealthCheckOptions> configureAction = null)
+    {
+        var options = new HealthCheckOptions
         {
-            app.UseRoutingDependentMiddleware(app.ApplicationServices.GetRequiredService<TestingConfiguration>());
+            ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+        };
 
-            return app;
-        }
+        configureAction?.Invoke(options);
 
-        /// <summary>
-        /// Maps the Skoruba IdentityServer4 Admin UI to the routes of this application.
-        /// </summary>
-        /// <param name="endpoint"></param>
-        /// <param name="patternPrefix"></param>
-        public static IEndpointConventionBuilder MapIdentityServer4AdminUI(this IEndpointRouteBuilder endpoint, string patternPrefix = "/")
-        {
-            return endpoint.MapAreaControllerRoute(CommonConsts.AdminUIArea, CommonConsts.AdminUIArea, patternPrefix + "{controller=Home}/{action=Index}/{id?}");
-        }
-
-        /// <summary>
-        /// Maps the Skoruba IdentityServer4 Admin UI health checks to the routes of this application.
-        /// </summary>
-        /// <param name="endpoint"></param>
-        /// <param name="pattern"></param>
-        public static IEndpointConventionBuilder MapIdentityServer4AdminUIHealthChecks(this IEndpointRouteBuilder endpoint, string pattern = "/health", Action<HealthCheckOptions> configureAction = null)
-        {
-            var options = new HealthCheckOptions
-            {
-                ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
-            };
-
-            configureAction?.Invoke(options);
-
-            return endpoint.MapHealthChecks(pattern, options);
-        }
+        return endpoint.MapHealthChecks(pattern, options);
     }
 }
