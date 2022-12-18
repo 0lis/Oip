@@ -26,14 +26,15 @@ using Microsoft.IdentityModel.Tokens;
 using Oip.Security.BusinessLogic.Identity.Dtos.Identity;
 using Oip.Security.BusinessLogic.Services;
 using Oip.Security.BusinessLogic.Services.Interfaces;
+using Oip.Security.Dal.Sqlite.Extensions;
 using Oip.Security.EntityFramework.Configuration.Configuration;
 using Oip.Security.EntityFramework.Configuration.PostgreSQL;
-using Oip.Security.EntityFramework.Configuration.SqlServer;
 using Oip.Security.EntityFramework.Helpers;
 using Oip.Security.EntityFramework.Interfaces;
 using Oip.Security.EntityFramework.MySql.Extensions;
 using Oip.Security.EntityFramework.Repositories;
 using Oip.Security.EntityFramework.Repositories.Interfaces;
+using Oip.Security.EntityFramework.SqlServer.Extensions;
 using Oip.Security.UI.Configuration;
 using Oip.Security.UI.Configuration.ApplicationParts;
 using Oip.Security.UI.Configuration.Constants;
@@ -129,6 +130,13 @@ public static class StartupHelpers
                         TLogDbContext, TAuditLoggingDbContext, TDataProtectionDbContext, TAuditLog>(connectionStrings,
                         databaseMigrations);
                 break;
+            case DatabaseProviderType.Sqlite:
+                services
+                    .RegisterSqliteDbContexts<TIdentityDbContext, TConfigurationDbContext, TPersistedGrantDbContext,
+                        TLogDbContext, TAuditLoggingDbContext, TDataProtectionDbContext, TAuditLog>(connectionStrings,
+                        databaseMigrations);
+                break;
+            
             default:
                 throw new ArgumentOutOfRangeException(nameof(databaseProvider.ProviderType),
                     $@"The value needs to be one of {string.Join(", ", Enum.GetNames(typeof(DatabaseProviderType)))}.");
@@ -504,6 +512,15 @@ public static class StartupHelpers
                         .AddMySql(logDbConnectionString, "LogDb")
                         .AddMySql(auditLogDbConnectionString, "AuditLogDb")
                         .AddMySql(dataProtectionDbConnectionString, "DataProtectionDb");
+                    break;
+                case DatabaseProviderType.Sqlite:
+                    healthChecksBuilder
+                        .AddSqlite(configurationDbConnectionString, "ConfigurationDb")
+                        .AddSqlite(persistedGrantsDbConnectionString, "PersistentGrantsDb")
+                        .AddSqlite(identityDbConnectionString, "IdentityDb")
+                        .AddSqlite(logDbConnectionString, "LogDb")
+                        .AddSqlite(auditLogDbConnectionString, "AuditLogDb")
+                        .AddSqlite(dataProtectionDbConnectionString, "DataProtectionDb");
                     break;
                 default:
                     throw new NotImplementedException(

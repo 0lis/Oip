@@ -19,4 +19,9 @@
         <ProjectReference Include="..\Oip.Security.Dal.Identity\Oip.Security.Dal.Identity.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="PostgreSQL" />
+      <Folder Include="SqlServer" />
+    </ItemGroup>
+
 </Project>

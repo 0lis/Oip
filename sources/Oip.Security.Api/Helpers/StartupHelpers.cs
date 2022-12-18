@@ -18,10 +18,11 @@ using Oip.Security.Api.Helpers.Localization;
 using Oip.Security.BusinessLogic.Identity.Dtos.Identity;
 using Oip.Security.EntityFramework.Configuration.Configuration;
 using Oip.Security.EntityFramework.Configuration.PostgreSQL;
-using Oip.Security.EntityFramework.Configuration.SqlServer;
 using Oip.Security.EntityFramework.Helpers;
 using Oip.Security.EntityFramework.Interfaces;
 using Oip.Security.EntityFramework.MySql.Extensions;
+using Oip.Security.EntityFramework.SqlServer.Extensions;
+using Oip.Security.Dal.Sqlite.Extensions;
 using Skoruba.AuditLogging.EntityFramework.DbContexts;
 using Skoruba.AuditLogging.EntityFramework.Entities;
 using Skoruba.AuditLogging.EntityFramework.Extensions;
@@ -167,6 +168,12 @@ public static class StartupHelpers
             case DatabaseProviderType.MySql:
                 services
                     .RegisterMySqlDbContexts<TIdentityDbContext, TConfigurationDbContext, TPersistedGrantDbContext,
+                        TLogDbContext, TAuditLoggingDbContext, TDataProtectionDbContext, TAuditLog>(connectionStrings,
+                        databaseMigrations);
+                break;
+            case DatabaseProviderType.Sqlite:
+                services
+                    .RegisterSqliteDbContexts<TIdentityDbContext, TConfigurationDbContext, TPersistedGrantDbContext,
                         TLogDbContext, TAuditLoggingDbContext, TDataProtectionDbContext, TAuditLog>(connectionStrings,
                         databaseMigrations);
                 break;
@@ -369,7 +376,14 @@ public static class StartupHelpers
                         .AddMySql(dataProtectionDbConnectionString, "DataProtectionDb");
                     break;
                 case DatabaseProviderType.Sqlite:
-                    
+                    healthChecksBuilder
+                        .AddSqlite(configurationDbConnectionString, "ConfigurationDb")
+                        .AddSqlite(persistedGrantsDbConnectionString, "PersistentGrantsDb")
+                        .AddSqlite(identityDbConnectionString, "IdentityDb")
+                        .AddSqlite(logDbConnectionString, "LogDb")
+                        .AddSqlite(auditLogDbConnectionString, "AuditLogDb")
+                        .AddSqlite(dataProtectionDbConnectionString, "DataProtectionDb");
+                    break;
                 default:
                     throw new InvalidOperationException(
                         $"Health checks not defined for database provider {databaseProvider.ProviderType}");

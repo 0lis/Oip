@@ -18,12 +18,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 using Microsoft.Identity.Web;
+using Oip.Security.Dal.Sqlite.Extensions;
 using Oip.Security.EntityFramework.Configuration.Configuration;
 using Oip.Security.EntityFramework.Configuration.PostgreSQL;
-using Oip.Security.EntityFramework.Configuration.SqlServer;
 using Oip.Security.EntityFramework.Helpers;
 using Oip.Security.EntityFramework.Interfaces;
 using Oip.Security.EntityFramework.MySql.Extensions;
+using Oip.Security.EntityFramework.SqlServer.Extensions;
 using Skoruba.IdentityServer4.Shared.Configuration.Authentication;
 using Skoruba.IdentityServer4.Shared.Configuration.Configuration.Identity;
 using Skoruba.IdentityServer4.STS.Identity.Configuration;
@@ -226,6 +227,12 @@ public static class StartupHelpers
             case DatabaseProviderType.MySql:
                 services
                     .RegisterMySqlDbContexts<TIdentityDbContext, TConfigurationDbContext, TPersistedGrantDbContext,
+                        TDataProtectionDbContext>(identityConnectionString, configurationConnectionString,
+                        persistedGrantsConnectionString, dataProtectionConnectionString);
+                break;
+            case DatabaseProviderType.Sqlite:
+                services
+                    .RegisterSqliteDbContexts<TIdentityDbContext, TConfigurationDbContext, TPersistedGrantDbContext,
                         TDataProtectionDbContext>(identityConnectionString, configurationConnectionString,
                         persistedGrantsConnectionString, dataProtectionConnectionString);
                 break;
@@ -509,6 +516,13 @@ public static class StartupHelpers
                         .AddMySql(persistedGrantsDbConnectionString, "PersistentGrantsDb")
                         .AddMySql(identityDbConnectionString, "IdentityDb")
                         .AddMySql(dataProtectionDbConnectionString, "DataProtectionDb");
+                    break;
+                case DatabaseProviderType.Sqlite:
+                    healthChecksBuilder
+                        .AddSqlite(configurationDbConnectionString, "ConfigurationDb")
+                        .AddSqlite(persistedGrantsDbConnectionString, "PersistentGrantsDb")
+                        .AddSqlite(identityDbConnectionString, "IdentityDb")
+                        .AddSqlite(dataProtectionDbConnectionString, "DataProtectionDb");
                     break;
                 default:
                     throw new NotImplementedException(

@@ -12,6 +12,7 @@
         <PackageReference Include="AspNet.Security.OAuth.GitHub" Version="6.0.3" />
         <PackageReference Include="AspNetCore.HealthChecks.MySql" Version="6.0.1" />
         <PackageReference Include="AspNetCore.HealthChecks.NpgSql" Version="6.0.1" />
+        <PackageReference Include="AspNetCore.HealthChecks.Sqlite" Version="6.0.2" />
         <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="6.0.1" />
         <PackageReference Include="AspNetCore.HealthChecks.UI" Version="6.0.2" />
         <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="6.0.2" />
@@ -50,6 +51,9 @@
         <ProjectReference Include="..\Oip.Security.Dal.Common\Oip.Security.Dal.Common.csproj" />
         <ProjectReference Include="..\Oip.Security.Common\Oip.Security.Common.csproj" />
         <ProjectReference Include="..\Oip.Security.Dal.MySql\Oip.Security.Dal.MySql.csproj" />
+        <ProjectReference Include="..\Oip.Security.Dal.PostgreSql\Oip.Security.Dal.PostgreSql.csproj" />
+        <ProjectReference Include="..\Oip.Security.Dal.Sqlite\Oip.Security.Dal.Sqlite.csproj" />
+        <ProjectReference Include="..\Oip.Security.Dal.SqlServer\Oip.Security.Dal.SqlServer.csproj" />
     </ItemGroup>
 
     <ItemGroup>
