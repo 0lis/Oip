@@ -8,7 +8,7 @@ using Oip.Security.EntityFramework.Interfaces;
 using Skoruba.AuditLogging.EntityFramework.DbContexts;
 using Skoruba.AuditLogging.EntityFramework.Entities;
 
-namespace Oip.Security.EntityFramework.Configuration.MySql;
+namespace Oip.Security.EntityFramework.MySql.Extensions;
 
 public static class DatabaseExtensions
 {

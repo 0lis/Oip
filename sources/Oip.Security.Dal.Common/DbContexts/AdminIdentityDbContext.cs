@@ -6,9 +6,12 @@ using Oip.Security.EntityFramework.Shared.Entities.Identity;
 
 namespace Oip.Security.EntityFramework.Common.DbContexts;
 
-public class AdminIdentityDbContext : IdentityDbContext<UserIdentity, UserIdentityRole, string, UserIdentityUserClaim,
+public class AdminIdentityDbContext : 
+    IdentityDbContext<UserIdentity, UserIdentityRole, string, UserIdentityUserClaim,
     UserIdentityUserRole, UserIdentityUserLogin, UserIdentityRoleClaim, UserIdentityUserToken>
 {
+    public const string MigrationsHistoryTable = "AdminIdentityDbContextMigrationHistory";
+
     public AdminIdentityDbContext(DbContextOptions<AdminIdentityDbContext> options) : base(options)
     {
     }

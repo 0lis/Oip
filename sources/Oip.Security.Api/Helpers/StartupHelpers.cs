@@ -17,11 +17,11 @@ using Oip.Security.Api.Configuration.Constants;
 using Oip.Security.Api.Helpers.Localization;
 using Oip.Security.BusinessLogic.Identity.Dtos.Identity;
 using Oip.Security.EntityFramework.Configuration.Configuration;
-using Oip.Security.EntityFramework.Configuration.MySql;
 using Oip.Security.EntityFramework.Configuration.PostgreSQL;
 using Oip.Security.EntityFramework.Configuration.SqlServer;
 using Oip.Security.EntityFramework.Helpers;
 using Oip.Security.EntityFramework.Interfaces;
+using Oip.Security.EntityFramework.MySql.Extensions;
 using Skoruba.AuditLogging.EntityFramework.DbContexts;
 using Skoruba.AuditLogging.EntityFramework.Entities;
 using Skoruba.AuditLogging.EntityFramework.Extensions;
@@ -368,6 +368,8 @@ public static class StartupHelpers
                         .AddMySql(auditLogDbConnectionString, "AuditLogDb")
                         .AddMySql(dataProtectionDbConnectionString, "DataProtectionDb");
                     break;
+                case DatabaseProviderType.Sqlite:
+                    
                 default:
                     throw new InvalidOperationException(
                         $"Health checks not defined for database provider {databaseProvider.ProviderType}");

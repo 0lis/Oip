@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using IdentityServer4.EntityFramework.Options;
 using Microsoft.EntityFrameworkCore;
+using Oip.Security.Dal.Common.DbContexts;
 using Oip.Security.EntityFramework.Repositories;
 using Oip.Security.EntityFramework.Repositories.Interfaces;
-using Oip.Security.EntityFramework.Shared.DbContexts;
 using Oip.Security.UnitTests.Mocks;
 using Xunit;
 

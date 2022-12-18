@@ -4,7 +4,7 @@ using IdentityServer4.EntityFramework.Options;
 using Microsoft.EntityFrameworkCore;
 using Oip.Security.EntityFramework.Interfaces;
 
-namespace Oip.Security.EntityFramework.Shared.DbContexts;
+namespace Oip.Security.Dal.Common.DbContexts;
 
 public class IdentityServerConfigurationDbContext : ConfigurationDbContext<IdentityServerConfigurationDbContext>,
     IAdminConfigurationDbContext

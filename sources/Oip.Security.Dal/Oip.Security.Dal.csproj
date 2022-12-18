@@ -3,7 +3,6 @@
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <Description>Entity Framework layer for the administration of the IdentityServer4</Description>
-        <RootNamespace>Oip.Security.EntityFramework</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

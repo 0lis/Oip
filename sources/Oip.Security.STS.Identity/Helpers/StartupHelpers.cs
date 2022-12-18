@@ -19,20 +19,21 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 using Microsoft.Identity.Web;
 using Oip.Security.EntityFramework.Configuration.Configuration;
-using Oip.Security.EntityFramework.Configuration.MySql;
 using Oip.Security.EntityFramework.Configuration.PostgreSQL;
 using Oip.Security.EntityFramework.Configuration.SqlServer;
 using Oip.Security.EntityFramework.Helpers;
 using Oip.Security.EntityFramework.Interfaces;
+using Oip.Security.EntityFramework.MySql.Extensions;
 using Skoruba.IdentityServer4.Shared.Configuration.Authentication;
 using Skoruba.IdentityServer4.Shared.Configuration.Configuration.Identity;
 using Skoruba.IdentityServer4.STS.Identity.Configuration;
 using Skoruba.IdentityServer4.STS.Identity.Configuration.ApplicationParts;
 using Skoruba.IdentityServer4.STS.Identity.Configuration.Constants;
 using Skoruba.IdentityServer4.STS.Identity.Configuration.Interfaces;
+using Skoruba.IdentityServer4.STS.Identity.Helpers;
 using Skoruba.IdentityServer4.STS.Identity.Helpers.Localization;
 
-namespace Skoruba.IdentityServer4.STS.Identity.Helpers;
+namespace Oip.Security.STS.Identity.Helpers;
 
 public static class StartupHelpers
 {

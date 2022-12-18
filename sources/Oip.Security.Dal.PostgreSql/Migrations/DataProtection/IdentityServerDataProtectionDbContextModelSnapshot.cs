@@ -3,7 +3,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using Oip.Security.EntityFramework.Shared.DbContexts;
+using Oip.Security.Dal.Common.DbContexts;
 
 namespace Oip.Security.EntityFramework.PostgreSQL.Migrations.DataProtection
 {

@@ -106,6 +106,7 @@
         <ProjectReference Include="..\Oip.Security.Bl\Oip.Security.Bl.csproj" />
         <ProjectReference Include="..\Oip.Security.Dal.Configuration\Oip.Security.Dal.Configuration.csproj" />
         <ProjectReference Include="..\Oip.Security.Common\Oip.Security.Common.csproj" />
+        <ProjectReference Include="..\Oip.Security.Dal.MySql\Oip.Security.Dal.MySql.csproj" />
     </ItemGroup>
 
     <ItemGroup>

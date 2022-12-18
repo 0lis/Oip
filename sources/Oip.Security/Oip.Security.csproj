@@ -49,7 +49,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="log\" />
         <Folder Include="Helpers\" />
     </ItemGroup>
 

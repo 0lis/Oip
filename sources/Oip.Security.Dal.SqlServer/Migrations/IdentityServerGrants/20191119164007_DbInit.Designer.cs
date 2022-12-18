@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Oip.Security.EntityFramework.Shared.DbContexts;
+using Oip.Security.Dal.Common.DbContexts;
 
 namespace Oip.Security.EntityFramework.SqlServer.Migrations.IdentityServerGrants
 {

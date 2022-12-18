@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Oip.Security.EntityFramework.Common.DbContexts;
-using Oip.Security.EntityFramework.Shared.DbContexts;
 
 namespace Oip.Security.EntityFramework.MySql.Migrations.Identity
 {

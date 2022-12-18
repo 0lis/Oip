@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.DataProtection.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Oip.Security.EntityFramework.Shared.DbContexts;
+namespace Oip.Security.Dal.Common.DbContexts;
 
 public class IdentityServerDataProtectionDbContext : DbContext, IDataProtectionKeyContext
 {

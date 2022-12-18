@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore;
 using Skoruba.AuditLogging.EntityFramework.DbContexts;
 using Skoruba.AuditLogging.EntityFramework.Entities;
 
-namespace Oip.Security.EntityFramework.Common.DbContexts;
+namespace Oip.Security.Dal.Common.DbContexts;
 
 public class AdminAuditLogDbContext : DbContext, IAuditLoggingDbContext<AuditLog>
 {
+    public const string MigrationsHistoryTable = "AdminAuditLogDbContextMigrationHistory";
+
     public AdminAuditLogDbContext(DbContextOptions<AdminAuditLogDbContext> dbContextOptions)
         : base(dbContextOptions)
     {

@@ -3,7 +3,7 @@ using Oip.Security.EntityFramework.Constants;
 using Oip.Security.EntityFramework.Entities;
 using Oip.Security.EntityFramework.Interfaces;
 
-namespace Oip.Security.EntityFramework.Shared.DbContexts;
+namespace Oip.Security.Dal.Common.DbContexts;
 
 public class AdminLogDbContext : DbContext, IAdminLogDbContext
 {

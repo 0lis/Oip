@@ -3,8 +3,8 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Oip.Security.Dal.Common.DbContexts;
 using Oip.Security.EntityFramework.Common.DbContexts;
-using Oip.Security.EntityFramework.Shared.DbContexts;
 
 namespace Oip.Security.EntityFramework.MySql.Migrations.AuditLogging
 {

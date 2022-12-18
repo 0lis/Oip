@@ -2,7 +2,7 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Oip.Security.EntityFramework.Shared.DbContexts;
+using Oip.Security.Dal.Common.DbContexts;
 
 namespace Oip.Security.EntityFramework.MySql.Migrations.DataProtection
 {
