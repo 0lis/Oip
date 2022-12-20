@@ -3,7 +3,6 @@ using IdentityServer4.EntityFramework.Storage;
 using Microsoft.AspNetCore.DataProtection.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Oip.Security.Dal.Configuration.Configuration;
 using Oip.Security.Dal.Interfaces;
 using Skoruba.AuditLogging.EntityFramework.DbContexts;
 using Skoruba.AuditLogging.EntityFramework.Entities;
@@ -43,7 +42,7 @@ public static class DatabaseExtensions
 
         // Config DB for identity
         services.AddDbContext<TIdentityDbContext>(options =>
-            options.UseNpgsql(connectionStrings.ConfigurationDbConnection, sql => 
+            options.UseNpgsql(connectionStrings.ConfigurationDbConnection, sql =>
                 sql.MigrationsAssembly(databaseMigrations.IdentityDbMigrationsAssembly ?? migrationsAssembly)));
 
         // Config DB from existing connection

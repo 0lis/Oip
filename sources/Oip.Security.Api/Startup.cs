@@ -15,11 +15,11 @@ using Oip.Security.Api.ExceptionHandling;
 using Oip.Security.Api.Helpers;
 using Oip.Security.Api.Mappers;
 using Oip.Security.Api.Resources;
+using Oip.Security.Common.Configuration.Helpers;
 using Oip.Security.Dal.Common.DbContexts;
 using Oip.Security.Dal.Common.Entities.Identity;
 using Oip.Security.Dal.Shared.Entities.Identity;
 using Skoruba.AuditLogging.EntityFramework.Entities;
-using Skoruba.IdentityServer4.Shared.Configuration.Helpers;
 using Skoruba.IdentityServer4.Shared.Dtos;
 using Skoruba.IdentityServer4.Shared.Dtos.Identity;
 

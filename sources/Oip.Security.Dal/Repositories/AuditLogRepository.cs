@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Oip.Security.Dal.Extensions.Common;
 using Oip.Security.Dal.Extensions.Enums;
-using Oip.Security.Dal.Repositories.Interfaces;
 using Oip.Security.Dal.Extensions.Extensions;
+using Oip.Security.Dal.Repositories.Interfaces;
 using Skoruba.AuditLogging.EntityFramework.DbContexts;
 using Skoruba.AuditLogging.EntityFramework.Entities;
 

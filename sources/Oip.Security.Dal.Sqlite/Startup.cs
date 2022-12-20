@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Oip.Security.Dal.Sqlite;
 
+// ReSharper disable once UnusedType.Global
 public class Startup : EntityFrameworkCoreStartupBase
 {
     protected override string ProviderName => "Sqlite";

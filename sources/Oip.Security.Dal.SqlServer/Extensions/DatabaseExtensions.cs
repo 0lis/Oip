@@ -3,7 +3,7 @@ using IdentityServer4.EntityFramework.Storage;
 using Microsoft.AspNetCore.DataProtection.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Oip.Security.Dal.Configuration.Configuration;
+using Oip.Security.Dal.Configuration;
 using Oip.Security.Dal.Interfaces;
 using Skoruba.AuditLogging.EntityFramework.DbContexts;
 using Skoruba.AuditLogging.EntityFramework.Entities;
@@ -59,7 +59,8 @@ public static class DatabaseExtensions
                                               migrationsAssembly)));
 
         // Log DB from existing connection
-        services.AddDbContext<TLogDbContext>(options => options.UseSqlServer(connectionStrings.ConfigurationDbConnection,
+        services.AddDbContext<TLogDbContext>(options => options.UseSqlServer(
+            connectionStrings.ConfigurationDbConnection,
             optionsSql =>
                 optionsSql.MigrationsAssembly(databaseMigrations.AdminLogDbMigrationsAssembly ?? migrationsAssembly)));
 

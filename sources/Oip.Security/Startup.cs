@@ -5,13 +5,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Oip.Security.Common.Configuration.Helpers;
 using Oip.Security.Configuration.Database;
 using Oip.Security.Dal.Common.DbContexts;
 using Oip.Security.Dal.Common.Entities.Identity;
 using Oip.Security.Dal.Shared.Entities.Identity;
 using Oip.Security.Helpers;
 using Skoruba.AuditLogging.EntityFramework.Entities;
-using Skoruba.IdentityServer4.Shared.Configuration.Helpers;
 using Skoruba.IdentityServer4.Shared.Dtos;
 using Skoruba.IdentityServer4.Shared.Dtos.Identity;
 

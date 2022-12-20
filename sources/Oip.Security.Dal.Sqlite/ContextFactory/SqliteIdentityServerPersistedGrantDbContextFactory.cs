@@ -6,9 +6,9 @@ using Oip.Security.Dal.Common.DbContexts;
 
 namespace Oip.Security.Dal.Sqlite.ContextFactory;
 
-public class
-    SqliteIdentityServerPersistedGrantDbContextFactory : IDesignTimeDbContextFactory<
-        IdentityServerPersistedGrantDbContext>
+// ReSharper disable once UnusedType.Global
+public class SqliteIdentityServerPersistedGrantDbContextFactory :
+    IDesignTimeDbContextFactory<IdentityServerPersistedGrantDbContext>
 {
     public IdentityServerPersistedGrantDbContext CreateDbContext(string[] args)
     {

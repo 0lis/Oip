@@ -1,5 +1,4 @@
 ﻿using Oip.Security.Bl.Helpers;
-using Oip.Security.Bl.Resources;
 
 namespace Oip.Security.Bl.Resources;
 

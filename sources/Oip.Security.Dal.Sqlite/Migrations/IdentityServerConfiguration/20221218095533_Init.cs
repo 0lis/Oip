@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Oip.Security.Dal.Sqlite.Migrations.IdentityServerConfiguration;
 
+// ReSharper disable once UnusedType.Global
 public partial class Init : Migration
 {
     protected override void Up(MigrationBuilder migrationBuilder)

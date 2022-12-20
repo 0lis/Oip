@@ -6,9 +6,9 @@ using IdentityServer4.EntityFramework.Entities;
 using Microsoft.EntityFrameworkCore;
 using Oip.Security.Dal.Extensions.Common;
 using Oip.Security.Dal.Extensions.Enums;
+using Oip.Security.Dal.Extensions.Extensions;
 using Oip.Security.Dal.Interfaces;
 using Oip.Security.Dal.Repositories.Interfaces;
-using Oip.Security.Dal.Extensions.Extensions;
 
 namespace Oip.Security.Dal.Repositories;
 

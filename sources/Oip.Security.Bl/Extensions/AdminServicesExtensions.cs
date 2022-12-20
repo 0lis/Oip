@@ -59,7 +59,7 @@ public static class AdminServicesExtensions
 
         return services;
     }
-    
+
     public static IMapperConfigurationBuilder AddAdminAspNetIdentityMapping(this IServiceCollection services)
     {
         var builder = new MapperConfigurationBuilder();

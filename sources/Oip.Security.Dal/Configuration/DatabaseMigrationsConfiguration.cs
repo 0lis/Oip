@@ -1,8 +1,8 @@
-﻿namespace Oip.Security.Dal.Configuration.Configuration;
+﻿namespace Oip.Security.Dal.Configuration;
 
 public class DatabaseMigrationsConfiguration
 {
-    public bool ApplyDatabaseMigrations { get; set; } = false;
+    public bool ApplyDatabaseMigrations { get; set; }
 
     public string ConfigurationDbMigrationsAssembly { get; set; }
 

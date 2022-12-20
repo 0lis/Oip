@@ -1,4 +1,4 @@
-﻿namespace Oip.Security.Dal.Configuration.Configuration;
+﻿namespace Oip.Security.Dal.Configuration;
 
 public class DatabaseProviderConfiguration
 {

@@ -14,7 +14,7 @@ using Skoruba.IdentityServer4.Shared.Configuration.Configuration.Common;
 using Skoruba.IdentityServer4.Shared.Configuration.Configuration.Email;
 using Skoruba.IdentityServer4.Shared.Configuration.Email;
 
-namespace Skoruba.IdentityServer4.Shared.Configuration.Helpers;
+namespace Oip.Security.Common.Configuration.Helpers;
 
 public static class StartupHelpers
 {

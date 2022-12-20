@@ -2,12 +2,12 @@
 using IdentityServer4.Models;
 using Client = Oip.Security.Dal.Configuration.Configuration.IdentityServer.Client;
 
-namespace Oip.Security.Dal.Configuration.Configuration;
+namespace Oip.Security.Dal.Configuration;
 
 public class IdentityServerData
 {
-    public List<IdentityServer.Client> Clients { get; set; } = new();
-    public List<IdentityResource> IdentityResources { get; set; } = new();
-    public List<ApiResource> ApiResources { get; set; } = new();
-    public List<ApiScope> ApiScopes { get; set; } = new();
+    public List<Client> Clients { get; } = new();
+    public List<IdentityResource> IdentityResources { get; } = new();
+    public List<ApiResource> ApiResources { get; } = new();
+    public List<ApiScope> ApiScopes { get; } = new();
 }

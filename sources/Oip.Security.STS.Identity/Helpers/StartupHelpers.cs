@@ -18,12 +18,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 using Microsoft.Identity.Web;
-using Oip.Security.Dal.Sqlite.Extensions;
-using Oip.Security.Dal.Configuration.Configuration;
+using Oip.Security.Dal.Configuration;
 using Oip.Security.Dal.Configuration.PostgreSQL;
 using Oip.Security.Dal.Helpers;
 using Oip.Security.Dal.Interfaces;
 using Oip.Security.Dal.MySql.Extensions;
+using Oip.Security.Dal.Sqlite.Extensions;
 using Oip.Security.Dal.SqlServer.Extensions;
 using Skoruba.IdentityServer4.Shared.Configuration.Authentication;
 using Skoruba.IdentityServer4.Shared.Configuration.Configuration.Identity;
@@ -465,7 +465,7 @@ public static class StartupHelpers
             var persistedGrantTableName =
                 DbContextHelpers.GetEntityTable<TPersistedGrantDbContext>(scope.ServiceProvider);
             var identityTableName = DbContextHelpers.GetEntityTable<TIdentityDbContext>(scope.ServiceProvider);
-            var dataProtectionTableName = 
+            var dataProtectionTableName =
                 DbContextHelpers.GetEntityTable<TDataProtectionDbContext>(scope.ServiceProvider);
 
             var databaseProvider = configuration.GetSection(nameof(DatabaseProviderConfiguration))

@@ -50,7 +50,7 @@ public class LogControllerTests : BaseClassFixture
     {
         //Remove
         Client.DefaultRequestHeaders.Clear();
-        
+
         SetupAdminClaimsViaHeaders();
 
         // Act

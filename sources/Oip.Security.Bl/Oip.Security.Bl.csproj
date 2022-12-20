@@ -6,11 +6,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="IdentityServer4.EntityFramework" Version="4.1.2" />
+        <PackageReference Include="IdentityServer4.EntityFramework" Version="4.1.2"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Oip.Security.Dal\Oip.Security.Dal.csproj" />
+        <ProjectReference Include="..\Oip.Security.Dal\Oip.Security.Dal.csproj"/>
     </ItemGroup>
 
     <ItemGroup>

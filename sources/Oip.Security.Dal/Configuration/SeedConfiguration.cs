@@ -1,6 +1,6 @@
-﻿namespace Oip.Security.Dal.Configuration.Configuration;
+﻿namespace Oip.Security.Dal.Configuration;
 
 public class SeedConfiguration
 {
-    public bool ApplySeed { get; set; } = false;
+    public bool ApplySeed { get; set; }
 }

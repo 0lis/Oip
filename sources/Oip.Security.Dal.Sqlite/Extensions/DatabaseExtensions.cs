@@ -3,7 +3,7 @@ using IdentityServer4.EntityFramework.Storage;
 using Microsoft.AspNetCore.DataProtection.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Oip.Security.Dal.Configuration.Configuration;
+using Oip.Security.Dal.Configuration;
 using Oip.Security.Dal.Interfaces;
 using Skoruba.AuditLogging.EntityFramework.DbContexts;
 using Skoruba.AuditLogging.EntityFramework.Entities;
@@ -54,24 +54,24 @@ public static class DatabaseExtensions
 
         // Operational DB from existing connection
         services.AddOperationalDbContext<TPersistedGrantDbContext>(options => options.ConfigureDbContext = b =>
-            b.UseSqlite(connectionStrings.ConfigurationDbConnection, sql => 
+            b.UseSqlite(connectionStrings.ConfigurationDbConnection, sql =>
                 sql.MigrationsAssembly(databaseMigrations.PersistedGrantDbMigrationsAssembly ??
-                                              migrationsAssembly)));
+                                       migrationsAssembly)));
 
         // Log DB from existing connection
-        services.AddDbContext<TLogDbContext>(options => 
+        services.AddDbContext<TLogDbContext>(options =>
             options.UseSqlite(connectionStrings.ConfigurationDbConnection, optionsSql =>
                 optionsSql.MigrationsAssembly(databaseMigrations.AdminLogDbMigrationsAssembly ?? migrationsAssembly)));
 
         // Audit logging connection
-        services.AddDbContext<TAuditLoggingDbContext>(options => 
+        services.AddDbContext<TAuditLoggingDbContext>(options =>
             options.UseSqlite(connectionStrings.ConfigurationDbConnection, optionsSql =>
                 optionsSql.MigrationsAssembly(
                     databaseMigrations.AdminAuditLogDbMigrationsAssembly ?? migrationsAssembly)));
 
         // DataProtectionKey DB from existing connection
         if (!string.IsNullOrEmpty(connectionStrings.ConfigurationDbConnection))
-            services.AddDbContext<TDataProtectionDbContext>(options => 
+            services.AddDbContext<TDataProtectionDbContext>(options =>
                 options.UseSqlite(connectionStrings.ConfigurationDbConnection, optionsSql =>
                     optionsSql.MigrationsAssembly(databaseMigrations.DataProtectionDbMigrationsAssembly ??
                                                   migrationsAssembly)));
@@ -87,9 +87,6 @@ public static class DatabaseExtensions
     /// <typeparam name="TDataProtectionDbContext"></typeparam>
     /// <param name="services"></param>
     /// <param name="connectionString"></param>
-    /// <param name="configurationConnectionString"></param>
-    /// <param name="persistedGrantConnectionString"></param>
-    /// <param name="dataProtectionConnectionString"></param>
     public static void RegisterSqliteDbContexts<TIdentityDbContext, TConfigurationDbContext,
         TPersistedGrantDbContext, TDataProtectionDbContext>(this IServiceCollection services,
         string connectionString)

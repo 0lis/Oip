@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Reflection;
-using Microsoft.CodeAnalysis.VisualBasic.Syntax;
-using Oip.Security.Dal.Configuration.Configuration;
+using Oip.Security.Dal.Configuration;
 using SqlMigrationAssembly = Oip.Security.Dal.SqlServer.Helpers.MigrationAssembly;
 using MySqlMigrationAssembly = Oip.Security.Dal.MySql.Helpers.MigrationAssembly;
 using PostgreSQLMigrationAssembly = Oip.Security.Dal.PostgreSQL.Helpers.MigrationAssembly;

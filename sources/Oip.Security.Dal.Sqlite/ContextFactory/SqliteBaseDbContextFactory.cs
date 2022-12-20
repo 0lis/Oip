@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore.Design;
 
 namespace Oip.Security.Dal.Sqlite.ContextFactory;
 
+// ReSharper disable once UnusedType.Global
 public class SqliteBaseDbContextFactory<TDbContext> : IDesignTimeDbContextFactory<TDbContext>
     where TDbContext : DbContext
 {
