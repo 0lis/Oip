@@ -12,13 +12,11 @@
     </ItemGroup>
 
     <ItemGroup>
-        <EmbeddedResource Update="Resources\IdentityServiceResource.resx">
-            <Generator></Generator>
-        </EmbeddedResource>
+      <ProjectReference Include="..\Oip.Security.Dal\Oip.Security.Dal.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Oip.Security.Dal\Oip.Security.Dal.csproj" />
+      <Folder Include="Resources" />
     </ItemGroup>
 
 </Project>

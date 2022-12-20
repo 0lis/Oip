@@ -34,7 +34,7 @@ public class Startup
     {
         // Adds the IdentityServer4 Admin UI with custom options.
         services
-            .AddIdentityServer4AdminUI<AdminIdentityDbContext, IdentityServerConfigurationDbContext,
+            .AddIdentityServer4AdminUi<AdminIdentityDbContext, IdentityServerConfigurationDbContext,
                 IdentityServerPersistedGrantDbContext,
                 AdminLogDbContext, AdminAuditLogDbContext, AuditLog, IdentityServerDataProtectionDbContext,
                 UserIdentity, UserIdentityRole, UserIdentityUserClaim, UserIdentityUserRole,

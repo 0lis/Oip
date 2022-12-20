@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Oip.Security.Bl.Identity.Dtos.Common;
+using Oip.Security.Bl.Dtos.Common;
 using Oip.Security.Dal.Helpers;
 
 namespace Oip.Security.Bl.Dtos.Configuration;

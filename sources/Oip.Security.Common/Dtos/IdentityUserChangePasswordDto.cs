@@ -1,4 +1,4 @@
-﻿using Oip.Security.Bl.Identity.Dtos.Identity;
+﻿using Oip.Security.Bl.Dtos.Identity;
 
 namespace Skoruba.IdentityServer4.Shared.Dtos;
 

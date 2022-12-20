@@ -17,7 +17,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using Oip.Security.Bl.Dtos.Configuration;
-using Oip.Security.Bl.Identity.Dtos.Identity;
+using Oip.Security.Bl.Dtos.Identity;
 using Oip.Security.Bl.Services.Interfaces;
 using Oip.Security.Dal.Common.DbContexts;
 using Oip.Security.Dal.Common.Entities.Identity;

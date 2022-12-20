@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.AspNetCore.Mvc.Controllers;
-using Oip.Security.Bl.Identity.Dtos.Identity;
+using Oip.Security.Bl.Dtos.Identity;
 
 namespace Oip.Security.Api.Configuration.ApplicationParts;
 

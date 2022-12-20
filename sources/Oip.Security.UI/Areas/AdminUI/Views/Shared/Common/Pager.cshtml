@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Localization
 @using Oip.Security.UI.Configuration.Constants
 @using Oip.Security.UI.Helpers
-@model Oip.Security.Bl.Identity.Dtos.Common.Pager
+@model Oip.Security.Bl.Dtos.Common.Pager
 @inject IViewLocalizer Localizer
 @{
     var currentPage = PagerHelpers.GetCurrentPage(Context.Request.Query["page"]);

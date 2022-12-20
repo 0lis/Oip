@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Oip.Security.Bl.Dtos.Identity;
 using Oip.Security.Bl.Identity.Dtos.Identity;
 using Oip.Security.Dal.Interfaces;
 using Skoruba.AuditLogging.EntityFramework.DbContexts;
@@ -12,9 +13,10 @@ using Skoruba.AuditLogging.EntityFramework.Entities;
 using Skoruba.IdentityServer4.Shared.Configuration.Helpers;
 using static Oip.Security.UI.Helpers.StartupHelpers;
 
+// ReSharper disable once CheckNamespace
 namespace Microsoft.Extensions.DependencyInjection
 {
-    public static class AdminUIServiceCollectionExtensions
+    public static class AdminUiServiceCollectionExtensions
     {
         /// <summary>
         ///     Adds the Skoruba IdentityServer4 Admin UI with the default entity model.
@@ -35,7 +37,7 @@ namespace Microsoft.Extensions.DependencyInjection
             where TDataProtectionDbContext : DbContext, IDataProtectionKeyContext
             where TAuditLog : AuditLog, new()
         {
-            return AddIdentityServer4AdminUI<TIdentityDbContext, TIdentityServerDbContext, TPersistedGrantDbContext,
+            return AddIdentityServer4AdminUi<TIdentityDbContext, TIdentityServerDbContext, TPersistedGrantDbContext,
                 TLogDbContext, TAuditLogDbContext, TAuditLog, TDataProtectionDbContext, IdentityUser<string>, IdentityRole,
                 IdentityUserClaim<string>,
                 IdentityUserRole<string>, IdentityUserLogin<string>, IdentityRoleClaim<string>,
@@ -52,10 +54,16 @@ namespace Microsoft.Extensions.DependencyInjection
         /// </summary>
         /// <typeparam name="TIdentityDbContext"></typeparam>
         /// <typeparam name="TUser"></typeparam>
+        /// <typeparam name="TPersistedGrantDbContext"></typeparam>
+        /// <typeparam name="TLogDbContext"></typeparam>
+        /// <typeparam name="TIdentityServerDbContext"></typeparam>
+        /// <typeparam name="TAuditLogDbContext"></typeparam>
+        /// <typeparam name="TAuditLog"></typeparam>
+        /// <typeparam name="TDataProtectionDbContext"></typeparam>
         /// <param name="services"></param>
         /// <param name="optionsAction"></param>
         /// <returns></returns>
-        public static IServiceCollection AddIdentityServer4AdminUI<TIdentityDbContext, TIdentityServerDbContext,
+        public static IServiceCollection AddIdentityServer4AdminUi<TIdentityDbContext, TIdentityServerDbContext,
             TPersistedGrantDbContext, TLogDbContext, TAuditLogDbContext, TAuditLog, TDataProtectionDbContext, TUser>(
             this IServiceCollection services, Action<IdentityServer4AdminUIOptions> optionsAction)
             where TIdentityDbContext : IdentityDbContext<TUser, IdentityRole, string, IdentityUserClaim<string>,
@@ -69,7 +77,7 @@ namespace Microsoft.Extensions.DependencyInjection
             where TUser : IdentityUser<string>
             where TAuditLog : AuditLog, new()
         {
-            return AddIdentityServer4AdminUI<TIdentityDbContext, TIdentityServerDbContext, TPersistedGrantDbContext,
+            return AddIdentityServer4AdminUi<TIdentityDbContext, TIdentityServerDbContext, TPersistedGrantDbContext,
                 TLogDbContext, TAuditLogDbContext, TAuditLog, TDataProtectionDbContext, TUser, IdentityRole,
                 IdentityUserClaim<string>,
                 IdentityUserRole<string>, IdentityUserLogin<string>, IdentityRoleClaim<string>,
@@ -87,7 +95,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="services"></param>
         /// <param name="optionsAction"></param>
         /// <returns></returns>
-        public static IServiceCollection AddIdentityServer4AdminUI<TIdentityDbContext, TIdentityServerDbContext,
+        public static IServiceCollection AddIdentityServer4AdminUi<TIdentityDbContext, TIdentityServerDbContext,
                 TPersistedGrantDbContext, TLogDbContext, TAuditLogDbContext, TAuditLog, TDataProtectionDbContext, TUser,
                 TRole, TUserClaim,
                 TUserRole, TUserLogin, TRoleClaim, TUserToken, TKey, TUserDto, TRoleDto, TUsersDto, TRolesDto,

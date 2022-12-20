@@ -10,8 +10,8 @@ using Oip.Security.Api.Dtos.Roles;
 using Oip.Security.Api.ExceptionHandling;
 using Oip.Security.Api.Helpers.Localization;
 using Oip.Security.Api.Resources;
-using Oip.Security.Bl.Identity.Dtos.Identity;
-using Oip.Security.Bl.Identity.Services.Interfaces;
+using Oip.Security.Bl.Dtos.Identity;
+using Oip.Security.Bl.Services.Interfaces;
 
 namespace Oip.Security.Api.Controllers;
 

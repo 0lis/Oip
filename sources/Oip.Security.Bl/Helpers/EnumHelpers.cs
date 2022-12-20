@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Oip.Security.Bl.Identity.Dtos.Common;
+using Oip.Security.Bl.Dtos.Common;
 
 namespace Oip.Security.Bl.Helpers;
 

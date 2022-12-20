@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Oip.Security.Bl.Dtos.Configuration;
-using Oip.Security.Bl.Identity.Dtos.Common;
+using Oip.Security.Bl.Dtos.Common;
 
 namespace Oip.Security.Bl.Services.Interfaces;
 

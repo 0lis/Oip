@@ -23,7 +23,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using Oip.Security.Bl.Identity.Dtos.Identity;
+using Oip.Security.Bl.Dtos.Identity;
 using Oip.Security.Bl.Services;
 using Oip.Security.Bl.Services.Interfaces;
 using Oip.Security.Dal.Sqlite.Extensions;

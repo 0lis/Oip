@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Oip.Security.Bl.Dtos.Enums;
-using Oip.Security.Bl.Identity.Dtos.Common;
+using Oip.Security.Bl.Dtos.Common;
 
 namespace Oip.Security.Bl.Dtos.Configuration;
 

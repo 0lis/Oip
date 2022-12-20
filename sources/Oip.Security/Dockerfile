@@ -15,7 +15,7 @@ COPY ["src/Oip.Security.EntityFramework.Configuration/Oip.Security.EntityFramewo
 COPY ["src/Oip.Security.Bl/Oip.Security.Bl.csproj", "src/Oip.Security.Bl/"]
 COPY ["src/Oip.Security.Bl.Shared/Oip.Security.Bl.Shared.csproj", "src/Oip.Security.Bl.Shared/"]
 COPY ["src/Oip.Security.EntityFramework.PostgreSQL/Oip.Security.EntityFramework.PostgreSQL.csproj", "src/Oip.Security.EntityFramework.PostgreSQL/"]
-COPY ["src/Oip.Security.Bl.Identity/Oip.Security.Bl.Identity.csproj", "src/Oip.Security.Bl.Identity/"]
+COPY ["src/Oip.Security.Bl.Identity/Oip.Security.Bl.csproj", "src/Oip.Security.Bl.Identity/"]
 COPY ["src/Oip.Security.UI/Oip.Security.UI.csproj", "src/Oip.Security.UI/"]
 COPY ["src/Skoruba.IdentityServer4.Shared.Configuration/Skoruba.IdentityServer4.Shared.Configuration.csproj", "src/Skoruba.IdentityServer4.Shared.Configuration/"]
 COPY ["src/Skoruba.IdentityServer4.Shared/Skoruba.IdentityServer4.Shared.csproj", "src/Skoruba.IdentityServer4.Shared/"]

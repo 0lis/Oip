@@ -7,7 +7,7 @@ using Oip.Security.Bl.Dtos.Configuration;
 using Oip.Security.Bl.Dtos.Enums;
 using Oip.Security.Bl.Events.Client;
 using Oip.Security.Bl.Helpers;
-using Oip.Security.Bl.Identity.Dtos.Common;
+using Oip.Security.Bl.Dtos.Common;
 using Oip.Security.Bl.Mappers;
 using Oip.Security.Bl.Resources;
 using Oip.Security.Bl.Services.Interfaces;
