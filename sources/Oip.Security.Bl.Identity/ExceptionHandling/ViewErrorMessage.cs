@@ -1,4 +1,4 @@
-﻿namespace Oip.Security.BusinessLogic.Shared.ExceptionHandling;
+﻿namespace Oip.Security.Bl.Shared.ExceptionHandling;
 
 public class ViewErrorMessage
 {

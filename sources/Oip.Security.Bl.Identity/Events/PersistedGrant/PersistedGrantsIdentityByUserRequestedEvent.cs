@@ -1,7 +1,7 @@
-﻿using Oip.Security.BusinessLogic.Identity.Dtos.Grant;
+﻿using Oip.Security.Bl.Identity.Dtos.Grant;
 using Skoruba.AuditLogging.Events;
 
-namespace Oip.Security.BusinessLogic.Identity.Events.PersistedGrant;
+namespace Oip.Security.Bl.Identity.Events.PersistedGrant;
 
 public class PersistedGrantsIdentityByUserRequestedEvent : AuditEvent
 {

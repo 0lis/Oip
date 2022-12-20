@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
-using Oip.Security.BusinessLogic.Identity.Dtos.Identity;
+using Oip.Security.Bl.Identity.Dtos.Identity;
 
-namespace Oip.Security.BusinessLogic.Identity.Mappers.Configuration;
+namespace Oip.Security.Bl.Identity.Mappers.Configuration;
 
 public interface IMapperConfigurationBuilder
 {

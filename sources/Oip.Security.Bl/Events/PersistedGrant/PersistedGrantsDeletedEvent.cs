@@ -1,6 +1,6 @@
 ﻿using Skoruba.AuditLogging.Events;
 
-namespace Oip.Security.BusinessLogic.Events.PersistedGrant;
+namespace Oip.Security.Bl.Events.PersistedGrant;
 
 public class PersistedGrantsDeletedEvent : AuditEvent
 {

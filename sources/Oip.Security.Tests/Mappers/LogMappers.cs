@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using Oip.Security.BusinessLogic.Mappers;
+using Oip.Security.Bl.Mappers;
 using Oip.Security.UnitTests.Mocks;
 using Xunit;
 

@@ -1,6 +1,6 @@
-﻿using Oip.Security.BusinessLogic.Helpers;
+﻿using Oip.Security.Bl.Helpers;
 
-namespace Oip.Security.BusinessLogic.Resources;
+namespace Oip.Security.Bl.Resources;
 
 public interface IApiScopeServiceResources
 {

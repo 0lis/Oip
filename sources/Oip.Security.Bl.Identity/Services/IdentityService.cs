@@ -5,16 +5,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
-using Oip.Security.BusinessLogic.Identity.Dtos.Common;
-using Oip.Security.BusinessLogic.Identity.Dtos.Identity;
-using Oip.Security.BusinessLogic.Identity.Events.Identity;
-using Oip.Security.BusinessLogic.Identity.Resources;
-using Oip.Security.BusinessLogic.Identity.Services.Interfaces;
-using Oip.Security.BusinessLogic.Shared.ExceptionHandling;
-using Oip.Security.EntityFramework.Identity.Repositories.Interfaces;
+using Oip.Security.Bl.Identity.Dtos.Common;
+using Oip.Security.Bl.Identity.Dtos.Identity;
+using Oip.Security.Bl.Identity.Events.Identity;
+using Oip.Security.Bl.Identity.Resources;
+using Oip.Security.Bl.Identity.Services.Interfaces;
+using Oip.Security.Bl.Shared.ExceptionHandling;
+using Oip.Security.Dal.Identity.Repositories.Interfaces;
 using Skoruba.AuditLogging.Services;
 
-namespace Oip.Security.BusinessLogic.Identity.Services;
+namespace Oip.Security.Bl.Identity.Services;
 
 public class IdentityService<TUserDto, TRoleDto, TUser, TRole, TKey, TUserClaim, TUserRole,
     TUserLogin, TRoleClaim, TUserToken,

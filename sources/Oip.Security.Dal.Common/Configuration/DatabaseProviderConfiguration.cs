@@ -1,4 +1,4 @@
-﻿namespace Oip.Security.EntityFramework.Configuration.Configuration;
+﻿namespace Oip.Security.Dal.Configuration.Configuration;
 
 public class DatabaseProviderConfiguration
 {

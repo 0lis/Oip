@@ -1,4 +1,4 @@
-﻿namespace Oip.Security.EntityFramework.Entities;
+﻿namespace Oip.Security.Dal.Entities;
 
 public class PersistedGrantDataView
 {

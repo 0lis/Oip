@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Oip.Security.EntityFramework.Extensions.Common;
+using Oip.Security.Dal.Extensions.Common;
 using Skoruba.AuditLogging.EntityFramework.Entities;
 
-namespace Oip.Security.EntityFramework.Repositories.Interfaces;
+namespace Oip.Security.Dal.Repositories.Interfaces;
 
 public interface IAuditLogRepository<TAuditLog> where TAuditLog : AuditLog
 {

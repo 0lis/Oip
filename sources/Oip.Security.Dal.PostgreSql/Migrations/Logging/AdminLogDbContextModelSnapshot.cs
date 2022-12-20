@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Oip.Security.Dal.Common.DbContexts;
 
-namespace Oip.Security.EntityFramework.PostgreSQL.Migrations.Logging
+namespace Oip.Security.Dal.PostgreSQL.Migrations.Logging
 {
     [DbContext(typeof(AdminLogDbContext))]
     partial class AdminLogDbContextModelSnapshot : ModelSnapshot

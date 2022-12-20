@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Oip.Security.Dal.Common.DbContexts;
 
-namespace Oip.Security.EntityFramework.PostgreSQL.Migrations.IdentityServerGrants
+namespace Oip.Security.Dal.PostgreSQL.Migrations.IdentityServerGrants
 {
     [DbContext(typeof(IdentityServerPersistedGrantDbContext))]
     [Migration("20201108165927_UpdateIdentityServerToVersion4")]

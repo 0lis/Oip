@@ -4,14 +4,14 @@ using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Oip.Security.BusinessLogic.Identity.Dtos.Identity;
-using Oip.Security.BusinessLogic.Identity.Mappers.Configuration;
-using Oip.Security.BusinessLogic.Identity.Resources;
-using Oip.Security.BusinessLogic.Identity.Services;
-using Oip.Security.BusinessLogic.Identity.Services.Interfaces;
-using Oip.Security.EntityFramework.Identity.Repositories;
-using Oip.Security.EntityFramework.Identity.Repositories.Interfaces;
-using Oip.Security.EntityFramework.Interfaces;
+using Oip.Security.Bl.Identity.Dtos.Identity;
+using Oip.Security.Bl.Identity.Mappers.Configuration;
+using Oip.Security.Bl.Identity.Resources;
+using Oip.Security.Bl.Identity.Services;
+using Oip.Security.Bl.Identity.Services.Interfaces;
+using Oip.Security.Dal.Identity.Repositories;
+using Oip.Security.Dal.Identity.Repositories.Interfaces;
+using Oip.Security.Dal.Interfaces;
 
 namespace Microsoft.Extensions.DependencyInjection;
 

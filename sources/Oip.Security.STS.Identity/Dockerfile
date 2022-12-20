@@ -13,8 +13,8 @@ COPY ["src/Oip.Security.EntityFramework/Oip.Security.EntityFramework.csproj", "s
 COPY ["src/Oip.Security.EntityFramework.Extensions/Oip.Security.EntityFramework.Extensions.csproj", "src/Oip.Security.EntityFramework.Extensions/"]
 COPY ["src/Oip.Security.EntityFramework.Configuration/Oip.Security.EntityFramework.Configuration.csproj", "src/Oip.Security.EntityFramework.Configuration/"]
 COPY ["src/Skoruba.IdentityServer4.Shared/Skoruba.IdentityServer4.Shared.csproj", "src/Skoruba.IdentityServer4.Shared/"]
-COPY ["src/Oip.Security.BusinessLogic.Identity/Oip.Security.BusinessLogic.Identity.csproj", "src/Oip.Security.BusinessLogic.Identity/"]
-COPY ["src/Oip.Security.BusinessLogic.Shared/Oip.Security.BusinessLogic.Shared.csproj", "src/Oip.Security.BusinessLogic.Shared/"]
+COPY ["src/Oip.Security.Bl.Identity/Oip.Security.Bl.Identity.csproj", "src/Oip.Security.Bl.Identity/"]
+COPY ["src/Oip.Security.Bl.Shared/Oip.Security.Bl.Shared.csproj", "src/Oip.Security.Bl.Shared/"]
 RUN dotnet restore "src/Skoruba.IdentityServer4.STS.Identity/Skoruba.IdentityServer4.STS.Identity.csproj"
 COPY . .
 WORKDIR "/src/src/Skoruba.IdentityServer4.STS.Identity"

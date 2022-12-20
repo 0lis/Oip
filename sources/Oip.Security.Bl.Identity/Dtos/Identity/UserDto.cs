@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using Oip.Security.BusinessLogic.Identity.Dtos.Identity.Base;
-using Oip.Security.BusinessLogic.Identity.Dtos.Identity.Interfaces;
+using Oip.Security.Bl.Identity.Dtos.Identity.Base;
+using Oip.Security.Bl.Identity.Dtos.Identity.Interfaces;
 
-namespace Oip.Security.BusinessLogic.Identity.Dtos.Identity;
+namespace Oip.Security.Bl.Identity.Dtos.Identity;
 
 public class UserDto<TKey> : BaseUserDto<TKey>, IUserDto
 {

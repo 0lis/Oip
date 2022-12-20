@@ -5,8 +5,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using Skoruba.IdentityServer4.Shared.Configuration.Helpers;
+using Skoruba.IdentityServer4.STS.Identity;
 
-namespace Skoruba.IdentityServer4.STS.Identity;
+namespace Oip.Security.STS.Identity;
 
 public class Program
 {

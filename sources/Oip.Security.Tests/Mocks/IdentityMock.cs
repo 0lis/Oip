@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Moq;
-using Oip.Security.EntityFramework.Shared.Entities.Identity;
+using Oip.Security.Dal.Shared.Entities.Identity;
 
 namespace Oip.Security.UnitTests.Mocks;
 

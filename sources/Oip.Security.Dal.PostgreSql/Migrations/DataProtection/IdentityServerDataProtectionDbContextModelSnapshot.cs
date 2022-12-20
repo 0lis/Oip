@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Oip.Security.Dal.Common.DbContexts;
 
-namespace Oip.Security.EntityFramework.PostgreSQL.Migrations.DataProtection
+namespace Oip.Security.Dal.PostgreSQL.Migrations.DataProtection
 {
     [DbContext(typeof(IdentityServerDataProtectionDbContext))]
     partial class IdentityServerDataProtectionDbContextModelSnapshot : ModelSnapshot

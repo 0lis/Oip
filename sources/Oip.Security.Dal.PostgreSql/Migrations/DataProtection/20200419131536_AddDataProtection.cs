@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace Oip.Security.EntityFramework.PostgreSQL.Migrations.DataProtection;
+namespace Oip.Security.Dal.PostgreSQL.Migrations.DataProtection;
 
 public partial class AddDataProtection : Migration
 {

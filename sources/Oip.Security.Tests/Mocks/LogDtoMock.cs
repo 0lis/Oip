@@ -1,5 +1,5 @@
 ﻿using Bogus;
-using Oip.Security.BusinessLogic.Dtos.Log;
+using Oip.Security.Bl.Dtos.Log;
 
 namespace Oip.Security.UnitTests.Mocks;
 

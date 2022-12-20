@@ -2,14 +2,14 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Oip.Security.EntityFramework.Extensions.Common;
-using Oip.Security.EntityFramework.Extensions.Enums;
-using Oip.Security.EntityFramework.Extensions.Extensions;
-using Oip.Security.EntityFramework.Repositories.Interfaces;
+using Oip.Security.Dal.Extensions.Common;
+using Oip.Security.Dal.Extensions.Enums;
+using Oip.Security.Dal.Repositories.Interfaces;
+using Oip.Security.Dal.Extensions.Extensions;
 using Skoruba.AuditLogging.EntityFramework.DbContexts;
 using Skoruba.AuditLogging.EntityFramework.Entities;
 
-namespace Oip.Security.EntityFramework.Repositories;
+namespace Oip.Security.Dal.Repositories;
 
 public class AuditLogRepository<TDbContext, TAuditLog> : IAuditLogRepository<TAuditLog>
     where TDbContext : IAuditLoggingDbContext<TAuditLog>

@@ -1,4 +1,4 @@
-﻿namespace Oip.Security.EntityFramework.MySql.Helpers;
+﻿namespace Oip.Security.Dal.MySql.Helpers;
 
 public class MigrationAssembly
 {

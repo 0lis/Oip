@@ -4,9 +4,8 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Oip.Security.Dal.Common.DbContexts;
-using Oip.Security.EntityFramework.Common.DbContexts;
 
-namespace Oip.Security.EntityFramework.MySql.Migrations.AuditLogging
+namespace Oip.Security.Dal.MySql.Migrations.AuditLogging
 {
     [DbContext(typeof(AdminAuditLogDbContext))]
     partial class AdminAuditLogDbContextModelSnapshot : ModelSnapshot

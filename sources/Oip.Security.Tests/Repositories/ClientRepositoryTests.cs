@@ -6,8 +6,8 @@ using IdentityServer4.EntityFramework.Entities;
 using IdentityServer4.EntityFramework.Options;
 using Microsoft.EntityFrameworkCore;
 using Oip.Security.Dal.Common.DbContexts;
-using Oip.Security.EntityFramework.Repositories;
-using Oip.Security.EntityFramework.Repositories.Interfaces;
+using Oip.Security.Dal.Repositories;
+using Oip.Security.Dal.Repositories.Interfaces;
 using Oip.Security.UnitTests.Mocks;
 using Xunit;
 
@@ -189,7 +189,7 @@ public class ClientRepositoryTests
         using (var context = new IdentityServerConfigurationDbContext(_dbContextOptions, _storeOptions))
         {
             //Generate random new client
-            var client = ClientMock.GenerateRandomClient(0, true, true, false);
+            var client = ClientMock.GenerateRandomClient(0, true, true);
 
             var clientRepository = GetClientRepository(context);
 
@@ -214,7 +214,7 @@ public class ClientRepositoryTests
         using (var context = new IdentityServerConfigurationDbContext(_dbContextOptions, _storeOptions))
         {
             //Generate random new client
-            var client = ClientMock.GenerateRandomClient(0, true, true, false);
+            var client = ClientMock.GenerateRandomClient(0, true, true);
 
             var clientRepository = GetClientRepository(context);
 
@@ -239,7 +239,7 @@ public class ClientRepositoryTests
         using (var context = new IdentityServerConfigurationDbContext(_dbContextOptions, _storeOptions))
         {
             //Generate random new client
-            var client = ClientMock.GenerateRandomClient(0, true, true, false);
+            var client = ClientMock.GenerateRandomClient(0, true, true);
 
             var clientRepository = GetClientRepository(context);
 
@@ -264,7 +264,7 @@ public class ClientRepositoryTests
         using (var context = new IdentityServerConfigurationDbContext(_dbContextOptions, _storeOptions))
         {
             //Generate random new client
-            var client = ClientMock.GenerateRandomClient(0, true, true, false);
+            var client = ClientMock.GenerateRandomClient(0, true, true);
 
             var clientRepository = GetClientRepository(context);
 
@@ -289,7 +289,7 @@ public class ClientRepositoryTests
         using (var context = new IdentityServerConfigurationDbContext(_dbContextOptions, _storeOptions))
         {
             //Generate random new client
-            var client = ClientMock.GenerateRandomClient(0, true, true, false);
+            var client = ClientMock.GenerateRandomClient(0, true, true);
 
             var clientRepository = GetClientRepository(context);
 
@@ -314,7 +314,7 @@ public class ClientRepositoryTests
         using (var context = new IdentityServerConfigurationDbContext(_dbContextOptions, _storeOptions))
         {
             //Generate random new client
-            var client = ClientMock.GenerateRandomClient(0, true, true, false);
+            var client = ClientMock.GenerateRandomClient(0, true, true);
 
             var clientRepository = GetClientRepository(context);
 
@@ -340,7 +340,7 @@ public class ClientRepositoryTests
         using (var context = new IdentityServerConfigurationDbContext(_dbContextOptions, _storeOptions))
         {
             //Generate random new client
-            var client = ClientMock.GenerateRandomClient(0, true, true, false);
+            var client = ClientMock.GenerateRandomClient(0, true, true);
 
             var clientRepository = GetClientRepository(context);
 
@@ -366,7 +366,7 @@ public class ClientRepositoryTests
         using (var context = new IdentityServerConfigurationDbContext(_dbContextOptions, _storeOptions))
         {
             //Generate random new client
-            var client = ClientMock.GenerateRandomClient(0, true, true, false);
+            var client = ClientMock.GenerateRandomClient(0, true, true);
 
             var clientRepository = GetClientRepository(context);
 
@@ -391,7 +391,7 @@ public class ClientRepositoryTests
         using (var context = new IdentityServerConfigurationDbContext(_dbContextOptions, _storeOptions))
         {
             //Generate random new client
-            var client = ClientMock.GenerateRandomClient(0, true, true, false);
+            var client = ClientMock.GenerateRandomClient(0, true, true);
 
             var clientRepository = GetClientRepository(context);
 

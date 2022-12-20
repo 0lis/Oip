@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using IdentityServer4.EntityFramework.Entities;
-using Oip.Security.BusinessLogic.Dtos.Configuration;
-using Oip.Security.EntityFramework.Extensions.Common;
+using Oip.Security.Bl.Dtos.Configuration;
+using Oip.Security.Dal.Extensions.Common;
 
-namespace Oip.Security.BusinessLogic.Mappers;
+namespace Oip.Security.Bl.Mappers;
 
 public static class ApiScopeMappers
 {

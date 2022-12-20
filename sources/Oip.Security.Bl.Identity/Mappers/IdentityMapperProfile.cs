@@ -7,11 +7,11 @@ using System;
 using System.Collections.Generic;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
-using Oip.Security.BusinessLogic.Identity.Dtos.Identity;
-using Oip.Security.BusinessLogic.Shared.ExceptionHandling;
-using Oip.Security.EntityFramework.Extensions.Common;
+using Oip.Security.Bl.Identity.Dtos.Identity;
+using Oip.Security.Bl.Shared.ExceptionHandling;
+using Oip.Security.Dal.Extensions.Common;
 
-namespace Oip.Security.BusinessLogic.Identity.Mappers;
+namespace Oip.Security.Bl.Identity.Mappers;
 
 public class IdentityMapperProfile<TUserDto, TRoleDto, TUser, TRole, TKey, TUserClaim, TUserRole,
         TUserLogin, TRoleClaim, TUserToken,

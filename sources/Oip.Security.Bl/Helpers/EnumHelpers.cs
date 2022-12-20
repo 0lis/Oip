@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Oip.Security.BusinessLogic.Identity.Dtos.Common;
+using Oip.Security.Bl.Identity.Dtos.Common;
 
-namespace Oip.Security.BusinessLogic.Helpers;
+namespace Oip.Security.Bl.Helpers;
 
 public class EnumHelpers
 {

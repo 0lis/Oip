@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Oip.Security.Dal.Common.DbContexts;
 
-namespace Oip.Security.EntityFramework.PostgreSQL.Migrations.Logging
+namespace Oip.Security.Dal.PostgreSQL.Migrations.Logging
 {
     [DbContext(typeof(AdminLogDbContext))]
     [Migration("20191120100104_DbInit")]

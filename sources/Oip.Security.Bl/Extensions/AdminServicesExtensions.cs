@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Oip.Security.BusinessLogic.Resources;
-using Oip.Security.BusinessLogic.Services;
-using Oip.Security.BusinessLogic.Services.Interfaces;
-using Oip.Security.EntityFramework.Interfaces;
-using Oip.Security.EntityFramework.Repositories;
-using Oip.Security.EntityFramework.Repositories.Interfaces;
+using Oip.Security.Bl.Resources;
+using Oip.Security.Bl.Services;
+using Oip.Security.Bl.Services.Interfaces;
+using Oip.Security.Dal.Interfaces;
+using Oip.Security.Dal.Repositories;
+using Oip.Security.Dal.Repositories.Interfaces;
 
 namespace Microsoft.Extensions.DependencyInjection;
 

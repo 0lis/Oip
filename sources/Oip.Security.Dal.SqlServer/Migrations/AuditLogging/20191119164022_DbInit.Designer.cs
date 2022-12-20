@@ -6,9 +6,8 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Oip.Security.Dal.Common.DbContexts;
-using Oip.Security.EntityFramework.Common.DbContexts;
 
-namespace Oip.Security.EntityFramework.SqlServer.Migrations.AuditLogging
+namespace Oip.Security.Dal.SqlServer.Migrations.AuditLogging
 {
     [DbContext(typeof(AdminAuditLogDbContext))]
     [Migration("20191119164022_DbInit")]

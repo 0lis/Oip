@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using IdentityServer4.EntityFramework.Entities;
-using Oip.Security.EntityFramework.Extensions.Common;
+using Oip.Security.Dal.Extensions.Common;
 
-namespace Oip.Security.EntityFramework.Repositories.Interfaces;
+namespace Oip.Security.Dal.Repositories.Interfaces;
 
 public interface IIdentityResourceRepository
 {

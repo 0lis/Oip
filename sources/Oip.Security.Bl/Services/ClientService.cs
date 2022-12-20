@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using IdentityServer4.Models;
-using Oip.Security.BusinessLogic.Dtos.Configuration;
-using Oip.Security.BusinessLogic.Dtos.Enums;
-using Oip.Security.BusinessLogic.Events.Client;
-using Oip.Security.BusinessLogic.Helpers;
-using Oip.Security.BusinessLogic.Identity.Dtos.Common;
-using Oip.Security.BusinessLogic.Mappers;
-using Oip.Security.BusinessLogic.Resources;
-using Oip.Security.BusinessLogic.Services.Interfaces;
-using Oip.Security.BusinessLogic.Shared.ExceptionHandling;
-using Oip.Security.EntityFramework.Helpers;
-using Oip.Security.EntityFramework.Repositories.Interfaces;
+using Oip.Security.Bl.Dtos.Configuration;
+using Oip.Security.Bl.Dtos.Enums;
+using Oip.Security.Bl.Events.Client;
+using Oip.Security.Bl.Helpers;
+using Oip.Security.Bl.Identity.Dtos.Common;
+using Oip.Security.Bl.Mappers;
+using Oip.Security.Bl.Resources;
+using Oip.Security.Bl.Services.Interfaces;
+using Oip.Security.Bl.Shared.ExceptionHandling;
+using Oip.Security.Dal.Helpers;
+using Oip.Security.Dal.Repositories.Interfaces;
 using Skoruba.AuditLogging.Services;
 
-namespace Oip.Security.BusinessLogic.Services;
+namespace Oip.Security.Bl.Services;
 
 public class ClientService : IClientService
 {

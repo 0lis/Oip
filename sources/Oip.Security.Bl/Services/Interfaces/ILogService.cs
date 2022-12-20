@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Oip.Security.BusinessLogic.Dtos.Log;
+using Oip.Security.Bl.Dtos.Log;
 
-namespace Oip.Security.BusinessLogic.Services.Interfaces;
+namespace Oip.Security.Bl.Services.Interfaces;
 
 public interface ILogService
 {

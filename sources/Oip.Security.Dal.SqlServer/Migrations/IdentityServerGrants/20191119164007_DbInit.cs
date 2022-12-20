@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Oip.Security.EntityFramework.SqlServer.Migrations.IdentityServerGrants;
+namespace Oip.Security.Dal.SqlServer.Migrations.IdentityServerGrants;
 
 public partial class DbInit : Migration
 {

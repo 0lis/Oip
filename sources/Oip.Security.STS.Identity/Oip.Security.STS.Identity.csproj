@@ -47,7 +47,6 @@
 
     <ItemGroup>
         <ProjectReference Include="..\Oip.Security.Common\Oip.Security.Common.csproj" />
-        <ProjectReference Include="..\Oip.Security.Dal.Configuration\Oip.Security.Dal.Configuration.csproj" />
         <ProjectReference Include="..\Oip.Security.Dal.Common\Oip.Security.Dal.Common.csproj" />
         <ProjectReference Include="..\Oip.Security.Common\Oip.Security.Common.csproj" />
         <ProjectReference Include="..\Oip.Security.Dal.MySql\Oip.Security.Dal.MySql.csproj" />

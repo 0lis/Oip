@@ -7,15 +7,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Oip.Security.Dal.Common.DbContexts;
-using Oip.Security.EntityFramework.Common.DbContexts;
-using Oip.Security.EntityFramework.Common.Entities.Identity;
-using Oip.Security.EntityFramework.Shared.Entities.Identity;
+using Oip.Security.Dal.Common.Entities.Identity;
+using Oip.Security.Dal.Shared.Entities.Identity;
 using Oip.Security.STS.Identity.Helpers;
 using Skoruba.IdentityServer4.Shared.Configuration.Helpers;
 using Skoruba.IdentityServer4.STS.Identity.Configuration;
 using Skoruba.IdentityServer4.STS.Identity.Configuration.Constants;
 using Skoruba.IdentityServer4.STS.Identity.Configuration.Interfaces;
-using Skoruba.IdentityServer4.STS.Identity.Helpers;
 
 namespace Skoruba.IdentityServer4.STS.Identity;
 

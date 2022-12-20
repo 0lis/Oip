@@ -1,14 +1,14 @@
 ﻿using System.Threading.Tasks;
-using Oip.Security.BusinessLogic.Identity.Dtos.Grant;
-using Oip.Security.BusinessLogic.Identity.Events.PersistedGrant;
-using Oip.Security.BusinessLogic.Identity.Mappers;
-using Oip.Security.BusinessLogic.Identity.Resources;
-using Oip.Security.BusinessLogic.Identity.Services.Interfaces;
-using Oip.Security.BusinessLogic.Shared.ExceptionHandling;
-using Oip.Security.EntityFramework.Identity.Repositories.Interfaces;
+using Oip.Security.Bl.Identity.Dtos.Grant;
+using Oip.Security.Bl.Identity.Events.PersistedGrant;
+using Oip.Security.Bl.Identity.Mappers;
+using Oip.Security.Bl.Identity.Resources;
+using Oip.Security.Bl.Identity.Services.Interfaces;
+using Oip.Security.Bl.Shared.ExceptionHandling;
+using Oip.Security.Dal.Identity.Repositories.Interfaces;
 using Skoruba.AuditLogging.Services;
 
-namespace Oip.Security.BusinessLogic.Identity.Services;
+namespace Oip.Security.Bl.Identity.Services;
 
 public class PersistedGrantAspNetIdentityService : IPersistedGrantAspNetIdentityService
 {

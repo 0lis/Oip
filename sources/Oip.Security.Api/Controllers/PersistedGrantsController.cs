@@ -6,7 +6,7 @@ using Oip.Security.Api.Dtos.PersistedGrants;
 using Oip.Security.Api.ExceptionHandling;
 using Oip.Security.Api.Helpers;
 using Oip.Security.Api.Mappers;
-using Oip.Security.BusinessLogic.Identity.Services.Interfaces;
+using Oip.Security.Bl.Identity.Services.Interfaces;
 
 namespace Oip.Security.Api.Controllers;
 

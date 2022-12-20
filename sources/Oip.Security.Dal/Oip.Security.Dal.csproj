@@ -10,8 +10,4 @@
         <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.1" />
         <PackageReference Include="Skoruba.AuditLogging.EntityFramework" Version="1.0.0" />
     </ItemGroup>
-
-    <ItemGroup>
-        <ProjectReference Include="..\Oip.Security.Dal.Extensions\Oip.Security.Dal.Extensions.csproj" />
-    </ItemGroup>
 </Project>

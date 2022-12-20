@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Oip.Security.EntityFramework.Extensions.Extensions;
+namespace Oip.Security.Dal.Extensions.Extensions;
 
 public static class QueryableExtensions
 {

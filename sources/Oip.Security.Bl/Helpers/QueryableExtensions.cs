@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Oip.Security.BusinessLogic.Helpers;
+namespace Oip.Security.Bl.Helpers;
 
 public static class QueryableExtensions
 {

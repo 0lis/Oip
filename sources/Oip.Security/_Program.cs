@@ -6,11 +6,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Oip.Security.Dal.Common.DbContexts;
-using Oip.Security.EntityFramework.Common.DbContexts;
-using Oip.Security.EntityFramework.Common.Entities.Identity;
-using Oip.Security.EntityFramework.Configuration.Configuration;
-using Oip.Security.EntityFramework.Shared.Entities.Identity;
-using Oip.Security.EntityFramework.Shared.Helpers;
+using Oip.Security.Dal.Common.Entities.Identity;
+using Oip.Security.Dal.Configuration.Configuration;
+using Oip.Security.Dal.Shared.Entities.Identity;
+using Oip.Security.Dal.Shared.Helpers;
 using Serilog;
 using Skoruba.IdentityServer4.Shared.Configuration.Helpers;
 
@@ -48,7 +47,7 @@ public class Program
         }
         catch (Exception ex)
         {
-            Log.Fatal(ex, "Host terminated unexpectedly");
+            Log.Error(ex, "Host terminated unexpectedly");
         }
         finally
         {

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Linq;
 
-namespace Oip.Security.EntityFramework.Entities;
+namespace Oip.Security.Dal.Entities;
 
 public class Log
 {

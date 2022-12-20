@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Oip.Security.EntityFramework.Constants;
-using Oip.Security.EntityFramework.Entities;
-using Oip.Security.EntityFramework.Interfaces;
+using Oip.Security.Dal.Constants;
+using Oip.Security.Dal.Entities;
+using Oip.Security.Dal.Interfaces;
 
 namespace Oip.Security.Dal.Common.DbContexts;
 

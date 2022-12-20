@@ -4,7 +4,7 @@
 using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Oip.Security.EntityFramework.SqlServer.Migrations.IdentityServerConfiguration;
+namespace Oip.Security.Dal.SqlServer.Migrations.IdentityServerConfiguration;
 
 public partial class UpdateIdentityServerToVersion4 : Migration
 {

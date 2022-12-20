@@ -4,14 +4,14 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using IdentityServer4.EntityFramework.Entities;
 using Microsoft.EntityFrameworkCore;
-using Oip.Security.EntityFramework.Entities;
-using Oip.Security.EntityFramework.Extensions.Common;
-using Oip.Security.EntityFramework.Extensions.Enums;
-using Oip.Security.EntityFramework.Extensions.Extensions;
-using Oip.Security.EntityFramework.Interfaces;
-using Oip.Security.EntityFramework.Repositories.Interfaces;
+using Oip.Security.Dal.Entities;
+using Oip.Security.Dal.Extensions.Common;
+using Oip.Security.Dal.Extensions.Enums;
+using Oip.Security.Dal.Interfaces;
+using Oip.Security.Dal.Repositories.Interfaces;
+using Oip.Security.Dal.Extensions.Extensions;
 
-namespace Oip.Security.EntityFramework.Repositories;
+namespace Oip.Security.Dal.Repositories;
 
 public class PersistedGrantRepository<TDbContext> : IPersistedGrantRepository
     where TDbContext : DbContext, IAdminPersistedGrantDbContext

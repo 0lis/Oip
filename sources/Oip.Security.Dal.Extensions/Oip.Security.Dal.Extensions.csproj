@@ -3,7 +3,6 @@
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <Description>EntityFramework extensions for the administration of the IdentityServer4 and Asp.Net Core Identity</Description>
-        <RootNamespace>Oip.Security.EntityFramework.Extensions</RootNamespace>
     </PropertyGroup>
 
 </Project>

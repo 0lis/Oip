@@ -2,9 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Oip.Security.Dal.Common.DbContexts;
-using Oip.Security.EntityFramework.Common.DbContexts;
 using Oip.Security.STS.Identity.Helpers;
-using Skoruba.IdentityServer4.STS.Identity.Helpers;
 
 namespace Skoruba.IdentityServer4.STS.Identity.Configuration.Test;
 

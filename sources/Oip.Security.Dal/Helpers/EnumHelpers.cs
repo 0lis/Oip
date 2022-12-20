@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Oip.Security.EntityFramework.Extensions.Common;
+using Oip.Security.Dal.Extensions.Common;
 
-namespace Oip.Security.EntityFramework.Helpers;
+namespace Oip.Security.Dal.Helpers;
 
 public class EnumHelpers
 {

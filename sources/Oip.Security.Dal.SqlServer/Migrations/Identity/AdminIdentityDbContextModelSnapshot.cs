@@ -4,9 +4,9 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Oip.Security.EntityFramework.Common.DbContexts;
+using Oip.Security.Dal.Common.DbContexts;
 
-namespace Oip.Security.EntityFramework.SqlServer.Migrations.Identity
+namespace Oip.Security.Dal.SqlServer.Migrations.Identity
 {
     [DbContext(typeof(AdminIdentityDbContext))]
     partial class AdminIdentityDbContextModelSnapshot : ModelSnapshot

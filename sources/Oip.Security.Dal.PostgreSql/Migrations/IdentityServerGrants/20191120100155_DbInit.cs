@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Oip.Security.EntityFramework.PostgreSQL.Migrations.IdentityServerGrants;
+namespace Oip.Security.Dal.PostgreSQL.Migrations.IdentityServerGrants;
 
 public partial class DbInit : Migration
 {

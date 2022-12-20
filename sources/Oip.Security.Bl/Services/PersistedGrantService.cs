@@ -1,14 +1,14 @@
 ﻿using System.Threading.Tasks;
-using Oip.Security.BusinessLogic.Dtos.Grant;
-using Oip.Security.BusinessLogic.Events.PersistedGrant;
-using Oip.Security.BusinessLogic.Mappers;
-using Oip.Security.BusinessLogic.Resources;
-using Oip.Security.BusinessLogic.Services.Interfaces;
-using Oip.Security.BusinessLogic.Shared.ExceptionHandling;
-using Oip.Security.EntityFramework.Repositories.Interfaces;
+using Oip.Security.Bl.Dtos.Grant;
+using Oip.Security.Bl.Events.PersistedGrant;
+using Oip.Security.Bl.Mappers;
+using Oip.Security.Bl.Resources;
+using Oip.Security.Bl.Services.Interfaces;
+using Oip.Security.Bl.Shared.ExceptionHandling;
+using Oip.Security.Dal.Repositories.Interfaces;
 using Skoruba.AuditLogging.Services;
 
-namespace Oip.Security.BusinessLogic.Services;
+namespace Oip.Security.Bl.Services;
 
 public class PersistedGrantService : IPersistedGrantService
 {

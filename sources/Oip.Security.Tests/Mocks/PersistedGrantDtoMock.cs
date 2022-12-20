@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Bogus;
-using Oip.Security.BusinessLogic.Dtos.Grant;
+using Oip.Security.Bl.Dtos.Grant;
 
 namespace Oip.Security.UnitTests.Mocks;
 

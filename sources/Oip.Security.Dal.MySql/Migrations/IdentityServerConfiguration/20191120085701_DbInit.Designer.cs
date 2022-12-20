@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Oip.Security.Dal.Common.DbContexts;
 
-namespace Oip.Security.EntityFramework.MySql.Migrations.IdentityServerConfiguration
+namespace Oip.Security.Dal.MySql.Migrations.IdentityServerConfiguration
 {
     [DbContext(typeof(IdentityServerConfigurationDbContext))]
     [Migration("20191120085701_DbInit")]

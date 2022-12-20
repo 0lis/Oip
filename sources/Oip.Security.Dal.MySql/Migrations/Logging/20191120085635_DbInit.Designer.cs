@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Oip.Security.Dal.Common.DbContexts;
 
-namespace Oip.Security.EntityFramework.MySql.Migrations.Logging
+namespace Oip.Security.Dal.MySql.Migrations.Logging
 {
     [DbContext(typeof(AdminLogDbContext))]
     [Migration("20191120085635_DbInit")]

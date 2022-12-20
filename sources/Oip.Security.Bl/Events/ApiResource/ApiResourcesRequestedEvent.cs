@@ -1,7 +1,7 @@
-﻿using Oip.Security.BusinessLogic.Dtos.Configuration;
+﻿using Oip.Security.Bl.Dtos.Configuration;
 using Skoruba.AuditLogging.Events;
 
-namespace Oip.Security.BusinessLogic.Events.ApiResource;
+namespace Oip.Security.Bl.Events.ApiResource;
 
 public class ApiResourcesRequestedEvent : AuditEvent
 {

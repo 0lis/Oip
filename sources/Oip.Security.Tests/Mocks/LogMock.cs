@@ -1,5 +1,5 @@
 ﻿using Bogus;
-using Oip.Security.EntityFramework.Entities;
+using Oip.Security.Dal.Entities;
 
 namespace Oip.Security.UnitTests.Mocks;
 

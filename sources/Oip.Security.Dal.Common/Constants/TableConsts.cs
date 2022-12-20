@@ -1,4 +1,4 @@
-﻿namespace Oip.Security.EntityFramework.Common.Constants;
+﻿namespace Oip.Security.Dal.Common.Constants;
 
 public static class TableConsts
 {

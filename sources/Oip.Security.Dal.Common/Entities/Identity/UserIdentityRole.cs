@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace Oip.Security.EntityFramework.Shared.Entities.Identity;
+namespace Oip.Security.Dal.Shared.Entities.Identity;
 
 public class UserIdentityRole : IdentityRole
 {

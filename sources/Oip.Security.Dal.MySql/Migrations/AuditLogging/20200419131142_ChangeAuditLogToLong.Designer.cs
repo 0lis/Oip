@@ -5,9 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Oip.Security.Dal.Common.DbContexts;
-using Oip.Security.EntityFramework.Common.DbContexts;
 
-namespace Oip.Security.EntityFramework.MySql.Migrations.AuditLogging
+namespace Oip.Security.Dal.MySql.Migrations.AuditLogging
 {
     [DbContext(typeof(AdminAuditLogDbContext))]
     [Migration("20200419131142_ChangeAuditLogToLong")]

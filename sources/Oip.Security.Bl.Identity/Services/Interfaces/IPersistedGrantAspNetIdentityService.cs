@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using Oip.Security.BusinessLogic.Identity.Dtos.Grant;
+using Oip.Security.Bl.Identity.Dtos.Grant;
 
-namespace Oip.Security.BusinessLogic.Identity.Services.Interfaces;
+namespace Oip.Security.Bl.Identity.Services.Interfaces;
 
 public interface IPersistedGrantAspNetIdentityService
 {

@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Oip.Security.Dal.Common.DbContexts;
 using Oip.Security.Dal.Sqlite.ContextFactory;
 
 namespace Oip.Security.Dal.Sqlite;

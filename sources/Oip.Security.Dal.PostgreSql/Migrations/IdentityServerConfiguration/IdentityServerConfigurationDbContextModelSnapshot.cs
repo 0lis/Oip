@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Oip.Security.Dal.Common.DbContexts;
 
-namespace Oip.Security.EntityFramework.PostgreSQL.Migrations.IdentityServerConfiguration
+namespace Oip.Security.Dal.PostgreSQL.Migrations.IdentityServerConfiguration
 {
     [DbContext(typeof(IdentityServerConfigurationDbContext))]
     partial class IdentityServerConfigurationDbContextModelSnapshot : ModelSnapshot

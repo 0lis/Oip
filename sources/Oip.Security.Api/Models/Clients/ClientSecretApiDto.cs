@@ -1,6 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-using Oip.Security.EntityFramework.Helpers;
+using Oip.Security.Dal.Helpers;
 
 namespace Oip.Security.Api.Dtos.Clients;
 
@@ -18,7 +18,7 @@ public class ClientSecretApiDto
 
     public HashType HashTypeEnum => Enum.TryParse(HashType, true, out HashType result)
         ? result
-        : EntityFramework.Helpers.HashType.Sha256;
+        : Dal.Helpers.HashType.Sha256;
 
     public DateTime? Expiration { get; set; }
 }

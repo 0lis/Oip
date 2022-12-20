@@ -1,4 +1,4 @@
-﻿namespace Oip.Security.EntityFramework.PostgreSQL.Helpers;
+﻿namespace Oip.Security.Dal.PostgreSQL.Helpers;
 
 public class MigrationAssembly
 {

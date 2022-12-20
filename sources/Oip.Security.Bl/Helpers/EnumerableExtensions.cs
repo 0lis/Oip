@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Oip.Security.BusinessLogic.Helpers;
+namespace Oip.Security.Bl.Helpers;
 
 public static class EnumerableExtensions
 {

@@ -1,22 +1,8 @@
 {
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "https://localhost:44310",
-      "sslPort": 44310
-    }
-  },
-  "profiles": {
-    "IIS Express": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    },
-    "Skoruba.IdentityServer4.AspNetIdentity": {
+  "profiles": {   
+    "Oip.Security.STS.Identity": {
       "commandName": "Project",
+      "commandLineArgs": "/",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"

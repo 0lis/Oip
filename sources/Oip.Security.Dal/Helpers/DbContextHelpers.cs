@@ -3,7 +3,7 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Oip.Security.EntityFramework.Helpers;
+namespace Oip.Security.Dal.Helpers;
 
 public static class DbContextHelpers
 {

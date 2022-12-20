@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using Oip.Security.EntityFramework.Common.DbContexts;
+using Oip.Security.Dal.Common.DbContexts;
 
-namespace Oip.Security.EntityFramework.PostgreSQL.Migrations.Identity
+namespace Oip.Security.Dal.PostgreSQL.Migrations.Identity
 {
     [DbContext(typeof(AdminIdentityDbContext))]
     [Migration("20191120100035_DbInit")]

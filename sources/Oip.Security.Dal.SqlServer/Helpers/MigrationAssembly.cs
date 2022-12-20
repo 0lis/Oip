@@ -1,4 +1,4 @@
-﻿namespace Oip.Security.EntityFramework.SqlServer.Helpers;
+﻿namespace Oip.Security.Dal.SqlServer.Helpers;
 
 public class MigrationAssembly
 {

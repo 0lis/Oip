@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Oip.Security.BusinessLogic.Identity.Resources {
+namespace Oip.Security.Bl.Identity.Resources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Oip.Security.BusinessLogic.Identity.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Oip.Security.BlBl.Identity.Resources.IdentityServiceRes" +
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Oip.Security.Bl.Identity.Resources.IdentityServiceRes" +
                             "ource", typeof(IdentityServiceResource).Assembly);
                     resourceMan = temp;
                 }

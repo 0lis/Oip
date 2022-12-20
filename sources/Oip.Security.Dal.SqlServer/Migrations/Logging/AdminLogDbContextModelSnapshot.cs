@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Oip.Security.Dal.Common.DbContexts;
 
-namespace Oip.Security.EntityFramework.SqlServer.Migrations.Logging
+namespace Oip.Security.Dal.SqlServer.Migrations.Logging
 {
     [DbContext(typeof(AdminLogDbContext))]
     partial class AdminLogDbContextModelSnapshot : ModelSnapshot

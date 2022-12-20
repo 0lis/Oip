@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Oip.Security.BusinessLogic.Resources {
+namespace Oip.Security.Bl.Resources {
     using System;
     
     

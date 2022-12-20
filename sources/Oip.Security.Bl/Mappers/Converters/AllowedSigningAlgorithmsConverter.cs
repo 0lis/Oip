@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 
-namespace Oip.Security.BusinessLogic.Mappers.Converters;
+namespace Oip.Security.Bl.Mappers.Converters;
 
 public class AllowedSigningAlgorithmsConverter :
     IValueConverter<List<string>, string>,

@@ -9,12 +9,12 @@ using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Oip.Security.EntityFramework.Extensions.Common;
-using Oip.Security.EntityFramework.Extensions.Enums;
-using Oip.Security.EntityFramework.Extensions.Extensions;
-using Oip.Security.EntityFramework.Identity.Repositories.Interfaces;
+using Oip.Security.Dal.Extensions.Common;
+using Oip.Security.Dal.Extensions.Enums;
+using Oip.Security.Dal.Identity.Repositories.Interfaces;
+using Oip.Security.Dal.Extensions.Extensions;
 
-namespace Oip.Security.EntityFramework.Identity.Repositories;
+namespace Oip.Security.Dal.Identity.Repositories;
 
 public class IdentityRepository<TIdentityDbContext, TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim,
         TUserToken>

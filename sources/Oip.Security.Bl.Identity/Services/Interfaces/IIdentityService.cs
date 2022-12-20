@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
-using Oip.Security.BusinessLogic.Identity.Dtos.Identity;
+using Oip.Security.Bl.Identity.Dtos.Identity;
 
-namespace Oip.Security.BusinessLogic.Identity.Services.Interfaces;
+namespace Oip.Security.Bl.Identity.Services.Interfaces;
 
 public interface IIdentityService<TUserDto, TRoleDto, TUser, TRole, TKey, TUserClaim, TUserRole,
     TUserLogin, TRoleClaim, TUserToken,
@@ -36,7 +36,9 @@ public interface IIdentityService<TUserDto, TRoleDto, TUser, TRole, TKey, TUserC
     Task<bool> ExistsRoleAsync(string roleId);
 
     Task<TUsersDto> GetUsersAsync(string search, int page = 1, int pageSize = 10);
+    
     Task<TUsersDto> GetRoleUsersAsync(string roleId, string search, int page = 1, int pageSize = 10);
+    
     Task<TUsersDto> GetClaimUsersAsync(string claimType, string claimValue, int page = 1, int pageSize = 10);
 
     Task<TRolesDto> GetRolesAsync(string search, int page = 1, int pageSize = 10);
@@ -66,8 +68,7 @@ public interface IIdentityService<TUserDto, TRoleDto, TUser, TRole, TKey, TUserC
 
     Task<IdentityResult> DeleteUserRoleAsync(TUserRolesDto role);
 
-    Task<TUserClaimsDto> GetUserClaimsAsync(string userId, int page = 1,
-        int pageSize = 10);
+    Task<TUserClaimsDto> GetUserClaimsAsync(string userId, int page = 1, int pageSize = 10);
 
     Task<TUserClaimsDto> GetUserClaimAsync(string userId, int claimId);
 

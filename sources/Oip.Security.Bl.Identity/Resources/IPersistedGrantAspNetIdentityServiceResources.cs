@@ -1,6 +1,6 @@
-﻿using Oip.Security.BusinessLogic.Identity.Helpers;
+﻿using Oip.Security.Bl.Identity.Helpers;
 
-namespace Oip.Security.BusinessLogic.Identity.Resources;
+namespace Oip.Security.Bl.Identity.Resources;
 
 public interface IPersistedGrantAspNetIdentityServiceResources
 {

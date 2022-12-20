@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Oip.Security.Dal.Common.DbContexts;
 
-namespace Oip.Security.EntityFramework.SqlServer.Migrations.IdentityServerGrants
+namespace Oip.Security.Dal.SqlServer.Migrations.IdentityServerGrants
 {
     [DbContext(typeof(IdentityServerPersistedGrantDbContext))]
     partial class IdentityServerPersistedGrantDbContextModelSnapshot : ModelSnapshot

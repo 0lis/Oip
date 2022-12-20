@@ -3,9 +3,9 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Oip.Security.EntityFramework.Common.DbContexts;
+using Oip.Security.Dal.Common.DbContexts;
 
-namespace Oip.Security.EntityFramework.MySql.Migrations.Identity
+namespace Oip.Security.Dal.MySql.Migrations.Identity
 {
     [DbContext(typeof(AdminIdentityDbContext))]
     partial class AdminIdentityDbContextModelSnapshot : ModelSnapshot

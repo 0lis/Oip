@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Oip.Security.Api.Dtos.ApiScopes;
-using Oip.Security.BusinessLogic.Dtos.Configuration;
+using Oip.Security.Bl.Dtos.Configuration;
 
 namespace Oip.Security.Api.Mappers;
 

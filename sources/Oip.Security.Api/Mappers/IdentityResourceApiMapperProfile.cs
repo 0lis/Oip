@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Oip.Security.Api.Dtos.IdentityResources;
-using Oip.Security.BusinessLogic.Dtos.Configuration;
+using Oip.Security.Bl.Dtos.Configuration;
 
 namespace Oip.Security.Api.Mappers;
 

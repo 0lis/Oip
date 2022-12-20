@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Oip.Security.Dal.Common.DbContexts;
 
-namespace Oip.Security.EntityFramework.MySql.Migrations.IdentityServerGrants
+namespace Oip.Security.Dal.MySql.Migrations.IdentityServerGrants
 {
     [DbContext(typeof(IdentityServerPersistedGrantDbContext))]
     partial class IdentityServerPersistedGrantDbContextModelSnapshot : ModelSnapshot

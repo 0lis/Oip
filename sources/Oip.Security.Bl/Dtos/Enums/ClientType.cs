@@ -1,4 +1,4 @@
-﻿namespace Oip.Security.BusinessLogic.Dtos.Enums;
+﻿namespace Oip.Security.Bl.Dtos.Enums;
 
 public enum ClientType
 {

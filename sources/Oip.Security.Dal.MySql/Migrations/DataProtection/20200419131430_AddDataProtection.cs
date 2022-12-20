@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Oip.Security.EntityFramework.MySql.Migrations.DataProtection;
+namespace Oip.Security.Dal.MySql.Migrations.DataProtection;
 
 public partial class AddDataProtection : Migration
 {

@@ -6,9 +6,8 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Oip.Security.Dal.Common.DbContexts;
-using Oip.Security.EntityFramework.Common.DbContexts;
 
-namespace Oip.Security.EntityFramework.PostgreSQL.Migrations.AuditLogging
+namespace Oip.Security.Dal.PostgreSQL.Migrations.AuditLogging
 {
     [DbContext(typeof(AdminAuditLogDbContext))]
     [Migration("20200419130247_ChangeAuditLogToLong")]

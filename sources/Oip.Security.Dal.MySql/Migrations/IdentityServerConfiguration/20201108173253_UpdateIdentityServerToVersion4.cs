@@ -5,7 +5,7 @@ using System;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Oip.Security.EntityFramework.MySql.Migrations.IdentityServerConfiguration;
+namespace Oip.Security.Dal.MySql.Migrations.IdentityServerConfiguration;
 
 public partial class UpdateIdentityServerToVersion4 : Migration
 {

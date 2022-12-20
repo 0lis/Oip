@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Oip.Security.BusinessLogic.Dtos.Log;
-using Oip.Security.BusinessLogic.Services.Interfaces;
+using Oip.Security.Bl.Dtos.Log;
+using Oip.Security.Bl.Services.Interfaces;
 using Oip.Security.UI.Configuration.Constants;
 
 namespace Oip.Security.UI.Areas.AdminUI.Controllers;

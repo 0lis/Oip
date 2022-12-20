@@ -19,12 +19,12 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 using Microsoft.Identity.Web;
 using Oip.Security.Dal.Sqlite.Extensions;
-using Oip.Security.EntityFramework.Configuration.Configuration;
-using Oip.Security.EntityFramework.Configuration.PostgreSQL;
-using Oip.Security.EntityFramework.Helpers;
-using Oip.Security.EntityFramework.Interfaces;
-using Oip.Security.EntityFramework.MySql.Extensions;
-using Oip.Security.EntityFramework.SqlServer.Extensions;
+using Oip.Security.Dal.Configuration.Configuration;
+using Oip.Security.Dal.Configuration.PostgreSQL;
+using Oip.Security.Dal.Helpers;
+using Oip.Security.Dal.Interfaces;
+using Oip.Security.Dal.MySql.Extensions;
+using Oip.Security.Dal.SqlServer.Extensions;
 using Skoruba.IdentityServer4.Shared.Configuration.Authentication;
 using Skoruba.IdentityServer4.Shared.Configuration.Configuration.Identity;
 using Skoruba.IdentityServer4.STS.Identity.Configuration;
@@ -202,39 +202,30 @@ public static class StartupHelpers
             .Get<DatabaseProviderConfiguration>();
 
         var identityConnectionString =
-            configuration.GetConnectionString(ConfigurationConsts.IdentityDbConnectionStringKey);
-        var configurationConnectionString =
             configuration.GetConnectionString(ConfigurationConsts.ConfigurationDbConnectionStringKey);
-        var persistedGrantsConnectionString =
-            configuration.GetConnectionString(ConfigurationConsts.PersistedGrantDbConnectionStringKey);
-        var dataProtectionConnectionString =
-            configuration.GetConnectionString(ConfigurationConsts.DataProtectionDbConnectionStringKey);
+
 
         switch (databaseProvider.ProviderType)
         {
             case DatabaseProviderType.SqlServer:
                 services
                     .RegisterSqlServerDbContexts<TIdentityDbContext, TConfigurationDbContext, TPersistedGrantDbContext,
-                        TDataProtectionDbContext>(identityConnectionString, configurationConnectionString,
-                        persistedGrantsConnectionString, dataProtectionConnectionString);
+                        TDataProtectionDbContext>(identityConnectionString);
                 break;
             case DatabaseProviderType.PostgreSql:
                 services
                     .RegisterNpgSqlDbContexts<TIdentityDbContext, TConfigurationDbContext, TPersistedGrantDbContext,
-                        TDataProtectionDbContext>(identityConnectionString, configurationConnectionString,
-                        persistedGrantsConnectionString, dataProtectionConnectionString);
+                        TDataProtectionDbContext>(identityConnectionString);
                 break;
             case DatabaseProviderType.MySql:
                 services
                     .RegisterMySqlDbContexts<TIdentityDbContext, TConfigurationDbContext, TPersistedGrantDbContext,
-                        TDataProtectionDbContext>(identityConnectionString, configurationConnectionString,
-                        persistedGrantsConnectionString, dataProtectionConnectionString);
+                        TDataProtectionDbContext>(identityConnectionString);
                 break;
             case DatabaseProviderType.Sqlite:
                 services
                     .RegisterSqliteDbContexts<TIdentityDbContext, TConfigurationDbContext, TPersistedGrantDbContext,
-                        TDataProtectionDbContext>(identityConnectionString, configurationConnectionString,
-                        persistedGrantsConnectionString, dataProtectionConnectionString);
+                        TDataProtectionDbContext>(identityConnectionString);
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(databaseProvider.ProviderType),
@@ -458,12 +449,6 @@ public static class StartupHelpers
     {
         var configurationDbConnectionString =
             configuration.GetConnectionString(ConfigurationConsts.ConfigurationDbConnectionStringKey);
-        var persistedGrantsDbConnectionString =
-            configuration.GetConnectionString(ConfigurationConsts.PersistedGrantDbConnectionStringKey);
-        var identityDbConnectionString =
-            configuration.GetConnectionString(ConfigurationConsts.IdentityDbConnectionStringKey);
-        var dataProtectionDbConnectionString =
-            configuration.GetConnectionString(ConfigurationConsts.DataProtectionDbConnectionStringKey);
 
         var healthChecksBuilder = services.AddHealthChecks()
             .AddDbContextCheck<TConfigurationDbContext>("ConfigurationDbContext")
@@ -480,7 +465,7 @@ public static class StartupHelpers
             var persistedGrantTableName =
                 DbContextHelpers.GetEntityTable<TPersistedGrantDbContext>(scope.ServiceProvider);
             var identityTableName = DbContextHelpers.GetEntityTable<TIdentityDbContext>(scope.ServiceProvider);
-            var dataProtectionTableName =
+            var dataProtectionTableName = 
                 DbContextHelpers.GetEntityTable<TDataProtectionDbContext>(scope.ServiceProvider);
 
             var databaseProvider = configuration.GetSection(nameof(DatabaseProviderConfiguration))
@@ -491,11 +476,11 @@ public static class StartupHelpers
                     healthChecksBuilder
                         .AddSqlServer(configurationDbConnectionString, name: "ConfigurationDb",
                             healthQuery: $"SELECT TOP 1 * FROM dbo.[{configurationTableName}]")
-                        .AddSqlServer(persistedGrantsDbConnectionString, name: "PersistentGrantsDb",
+                        .AddSqlServer(configurationDbConnectionString, name: "PersistentGrantsDb",
                             healthQuery: $"SELECT TOP 1 * FROM dbo.[{persistedGrantTableName}]")
-                        .AddSqlServer(identityDbConnectionString, name: "IdentityDb",
+                        .AddSqlServer(configurationDbConnectionString, name: "IdentityDb",
                             healthQuery: $"SELECT TOP 1 * FROM dbo.[{identityTableName}]")
-                        .AddSqlServer(dataProtectionDbConnectionString, name: "DataProtectionDb",
+                        .AddSqlServer(configurationDbConnectionString, name: "DataProtectionDb",
                             healthQuery: $"SELECT TOP 1 * FROM dbo.[{dataProtectionTableName}]");
 
                     break;
@@ -503,26 +488,23 @@ public static class StartupHelpers
                     healthChecksBuilder
                         .AddNpgSql(configurationDbConnectionString, name: "ConfigurationDb",
                             healthQuery: $"SELECT * FROM \"{configurationTableName}\" LIMIT 1")
-                        .AddNpgSql(persistedGrantsDbConnectionString, name: "PersistentGrantsDb",
+                        .AddNpgSql(configurationDbConnectionString, name: "PersistentGrantsDb",
                             healthQuery: $"SELECT * FROM \"{persistedGrantTableName}\" LIMIT 1")
-                        .AddNpgSql(identityDbConnectionString, name: "IdentityDb",
+                        .AddNpgSql(configurationDbConnectionString, name: "IdentityDb",
                             healthQuery: $"SELECT * FROM \"{identityTableName}\" LIMIT 1")
-                        .AddNpgSql(dataProtectionDbConnectionString, name: "DataProtectionDb",
+                        .AddNpgSql(configurationDbConnectionString, name: "DataProtectionDb",
                             healthQuery: $"SELECT * FROM \"{dataProtectionTableName}\"  LIMIT 1");
                     break;
                 case DatabaseProviderType.MySql:
                     healthChecksBuilder
                         .AddMySql(configurationDbConnectionString, "ConfigurationDb")
-                        .AddMySql(persistedGrantsDbConnectionString, "PersistentGrantsDb")
-                        .AddMySql(identityDbConnectionString, "IdentityDb")
-                        .AddMySql(dataProtectionDbConnectionString, "DataProtectionDb");
+                        .AddMySql(configurationDbConnectionString, "PersistentGrantsDb")
+                        .AddMySql(configurationDbConnectionString, "IdentityDb")
+                        .AddMySql(configurationDbConnectionString, "DataProtectionDb");
                     break;
                 case DatabaseProviderType.Sqlite:
                     healthChecksBuilder
-                        .AddSqlite(configurationDbConnectionString, "ConfigurationDb")
-                        .AddSqlite(persistedGrantsDbConnectionString, "PersistentGrantsDb")
-                        .AddSqlite(identityDbConnectionString, "IdentityDb")
-                        .AddSqlite(dataProtectionDbConnectionString, "DataProtectionDb");
+                        .AddSqlite(configurationDbConnectionString, "ConfigurationDb");
                     break;
                 default:
                     throw new NotImplementedException(

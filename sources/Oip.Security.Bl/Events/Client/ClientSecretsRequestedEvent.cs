@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Skoruba.AuditLogging.Events;
 
-namespace Oip.Security.BusinessLogic.Events.Client;
+namespace Oip.Security.Bl.Events.Client;
 
 public class ClientSecretsRequestedEvent : AuditEvent
 {

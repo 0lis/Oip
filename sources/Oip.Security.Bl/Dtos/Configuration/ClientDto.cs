@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Oip.Security.BusinessLogic.Dtos.Enums;
-using Oip.Security.BusinessLogic.Identity.Dtos.Common;
+using Oip.Security.Bl.Dtos.Enums;
+using Oip.Security.Bl.Identity.Dtos.Common;
 
-namespace Oip.Security.BusinessLogic.Dtos.Configuration;
+namespace Oip.Security.Bl.Dtos.Configuration;
 
 public class ClientDto
 {

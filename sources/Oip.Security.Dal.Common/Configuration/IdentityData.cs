@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Oip.Security.EntityFramework.Configuration.Configuration.Identity;
+using Oip.Security.Dal.Configuration.Configuration.Identity;
 
-namespace Oip.Security.EntityFramework.Configuration.Configuration;
+namespace Oip.Security.Dal.Configuration.Configuration;
 
 public class IdentityData
 {

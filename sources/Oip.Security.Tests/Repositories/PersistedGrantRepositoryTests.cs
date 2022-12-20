@@ -4,11 +4,10 @@ using FluentAssertions;
 using IdentityServer4.EntityFramework.Options;
 using Microsoft.EntityFrameworkCore;
 using Oip.Security.Dal.Common.DbContexts;
-using Oip.Security.EntityFramework.Common.DbContexts;
-using Oip.Security.EntityFramework.Common.Entities.Identity;
-using Oip.Security.EntityFramework.Identity.Repositories;
-using Oip.Security.EntityFramework.Identity.Repositories.Interfaces;
-using Oip.Security.EntityFramework.Shared.Entities.Identity;
+using Oip.Security.Dal.Common.Entities.Identity;
+using Oip.Security.Dal.Identity.Repositories;
+using Oip.Security.Dal.Identity.Repositories.Interfaces;
+using Oip.Security.Dal.Shared.Entities.Identity;
 using Oip.Security.UnitTests.Mocks;
 using Xunit;
 

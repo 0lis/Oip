@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using IdentityServer4.EntityFramework.Entities;
-using Oip.Security.BusinessLogic.Dtos.Grant;
-using Oip.Security.EntityFramework.Entities;
-using Oip.Security.EntityFramework.Extensions.Common;
+using Oip.Security.Bl.Dtos.Grant;
+using Oip.Security.Dal.Entities;
+using Oip.Security.Dal.Extensions.Common;
 
-namespace Oip.Security.BusinessLogic.Mappers;
+namespace Oip.Security.Bl.Mappers;
 
 public static class PersistedGrantMappers
 {

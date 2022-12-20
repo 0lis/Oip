@@ -23,18 +23,18 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using Oip.Security.BusinessLogic.Identity.Dtos.Identity;
-using Oip.Security.BusinessLogic.Services;
-using Oip.Security.BusinessLogic.Services.Interfaces;
+using Oip.Security.Bl.Identity.Dtos.Identity;
+using Oip.Security.Bl.Services;
+using Oip.Security.Bl.Services.Interfaces;
 using Oip.Security.Dal.Sqlite.Extensions;
-using Oip.Security.EntityFramework.Configuration.Configuration;
-using Oip.Security.EntityFramework.Configuration.PostgreSQL;
-using Oip.Security.EntityFramework.Helpers;
-using Oip.Security.EntityFramework.Interfaces;
-using Oip.Security.EntityFramework.MySql.Extensions;
-using Oip.Security.EntityFramework.Repositories;
-using Oip.Security.EntityFramework.Repositories.Interfaces;
-using Oip.Security.EntityFramework.SqlServer.Extensions;
+using Oip.Security.Dal.Configuration.Configuration;
+using Oip.Security.Dal.Configuration.PostgreSQL;
+using Oip.Security.Dal.Helpers;
+using Oip.Security.Dal.Interfaces;
+using Oip.Security.Dal.MySql.Extensions;
+using Oip.Security.Dal.Repositories;
+using Oip.Security.Dal.Repositories.Interfaces;
+using Oip.Security.Dal.SqlServer.Extensions;
 using Oip.Security.UI.Configuration;
 using Oip.Security.UI.Configuration.ApplicationParts;
 using Oip.Security.UI.Configuration.Constants;
@@ -136,7 +136,7 @@ public static class StartupHelpers
                         TLogDbContext, TAuditLoggingDbContext, TDataProtectionDbContext, TAuditLog>(connectionStrings,
                         databaseMigrations);
                 break;
-            
+
             default:
                 throw new ArgumentOutOfRangeException(nameof(databaseProvider.ProviderType),
                     $@"The value needs to be one of {string.Join(", ", Enum.GetNames(typeof(DatabaseProviderType)))}.");
@@ -442,11 +442,6 @@ public static class StartupHelpers
         where TAuditLog : AuditLog
     {
         var configurationDbConnectionString = connectionStringsConfiguration.ConfigurationDbConnection;
-        var persistedGrantsDbConnectionString = connectionStringsConfiguration.PersistedGrantDbConnection;
-        var identityDbConnectionString = connectionStringsConfiguration.IdentityDbConnection;
-        var logDbConnectionString = connectionStringsConfiguration.AdminLogDbConnection;
-        var auditLogDbConnectionString = connectionStringsConfiguration.AdminAuditLogDbConnection;
-        var dataProtectionDbConnectionString = connectionStringsConfiguration.DataProtectionDbConnection;
 
         var identityServerUri = adminConfiguration.IdentityServerBaseUrl;
         healthChecksBuilder = healthChecksBuilder
@@ -478,49 +473,49 @@ public static class StartupHelpers
                     healthChecksBuilder
                         .AddSqlServer(configurationDbConnectionString, name: "ConfigurationDb",
                             healthQuery: $"SELECT TOP 1 * FROM dbo.[{configurationTableName}]")
-                        .AddSqlServer(persistedGrantsDbConnectionString, name: "PersistentGrantsDb",
+                        .AddSqlServer(configurationDbConnectionString, name: "PersistentGrantsDb",
                             healthQuery: $"SELECT TOP 1 * FROM dbo.[{persistedGrantTableName}]")
-                        .AddSqlServer(identityDbConnectionString, name: "IdentityDb",
+                        .AddSqlServer(configurationDbConnectionString, name: "IdentityDb",
                             healthQuery: $"SELECT TOP 1 * FROM dbo.[{identityTableName}]")
-                        .AddSqlServer(logDbConnectionString, name: "LogDb",
+                        .AddSqlServer(configurationDbConnectionString, name: "LogDb",
                             healthQuery: $"SELECT TOP 1 * FROM dbo.[{logTableName}]")
-                        .AddSqlServer(auditLogDbConnectionString, name: "AuditLogDb",
+                        .AddSqlServer(configurationDbConnectionString, name: "AuditLogDb",
                             healthQuery: $"SELECT TOP 1 * FROM dbo.[{auditLogTableName}]")
-                        .AddSqlServer(dataProtectionDbConnectionString, name: "DataProtectionDb",
+                        .AddSqlServer(configurationDbConnectionString, name: "DataProtectionDb",
                             healthQuery: $"SELECT TOP 1 * FROM dbo.[{dataProtectionTableName}]");
                     break;
                 case DatabaseProviderType.PostgreSql:
                     healthChecksBuilder
                         .AddNpgSql(configurationDbConnectionString, name: "ConfigurationDb",
                             healthQuery: $"SELECT * FROM \"{configurationTableName}\" LIMIT 1")
-                        .AddNpgSql(persistedGrantsDbConnectionString, name: "PersistentGrantsDb",
+                        .AddNpgSql(configurationDbConnectionString, name: "PersistentGrantsDb",
                             healthQuery: $"SELECT * FROM \"{persistedGrantTableName}\" LIMIT 1")
-                        .AddNpgSql(identityDbConnectionString, name: "IdentityDb",
+                        .AddNpgSql(configurationDbConnectionString, name: "IdentityDb",
                             healthQuery: $"SELECT * FROM \"{identityTableName}\" LIMIT 1")
-                        .AddNpgSql(logDbConnectionString, name: "LogDb",
+                        .AddNpgSql(configurationDbConnectionString, name: "LogDb",
                             healthQuery: $"SELECT * FROM \"{logTableName}\" LIMIT 1")
-                        .AddNpgSql(auditLogDbConnectionString, name: "AuditLogDb",
+                        .AddNpgSql(configurationDbConnectionString, name: "AuditLogDb",
                             healthQuery: $"SELECT * FROM \"{auditLogTableName}\"  LIMIT 1")
-                        .AddNpgSql(dataProtectionDbConnectionString, name: "DataProtectionDb",
+                        .AddNpgSql(configurationDbConnectionString, name: "DataProtectionDb",
                             healthQuery: $"SELECT * FROM \"{dataProtectionTableName}\"  LIMIT 1");
                     break;
                 case DatabaseProviderType.MySql:
                     healthChecksBuilder
                         .AddMySql(configurationDbConnectionString, "ConfigurationDb")
-                        .AddMySql(persistedGrantsDbConnectionString, "PersistentGrantsDb")
-                        .AddMySql(identityDbConnectionString, "IdentityDb")
-                        .AddMySql(logDbConnectionString, "LogDb")
-                        .AddMySql(auditLogDbConnectionString, "AuditLogDb")
-                        .AddMySql(dataProtectionDbConnectionString, "DataProtectionDb");
+                        .AddMySql(configurationDbConnectionString, "PersistentGrantsDb")
+                        .AddMySql(configurationDbConnectionString, "IdentityDb")
+                        .AddMySql(configurationDbConnectionString, "LogDb")
+                        .AddMySql(configurationDbConnectionString, "AuditLogDb")
+                        .AddMySql(configurationDbConnectionString, "DataProtectionDb");
                     break;
                 case DatabaseProviderType.Sqlite:
                     healthChecksBuilder
                         .AddSqlite(configurationDbConnectionString, "ConfigurationDb")
-                        .AddSqlite(persistedGrantsDbConnectionString, "PersistentGrantsDb")
-                        .AddSqlite(identityDbConnectionString, "IdentityDb")
-                        .AddSqlite(logDbConnectionString, "LogDb")
-                        .AddSqlite(auditLogDbConnectionString, "AuditLogDb")
-                        .AddSqlite(dataProtectionDbConnectionString, "DataProtectionDb");
+                        .AddSqlite(configurationDbConnectionString, "PersistentGrantsDb")
+                        .AddSqlite(configurationDbConnectionString, "IdentityDb")
+                        .AddSqlite(configurationDbConnectionString, "LogDb")
+                        .AddSqlite(configurationDbConnectionString, "AuditLogDb")
+                        .AddSqlite(configurationDbConnectionString, "DataProtectionDb");
                     break;
                 default:
                     throw new NotImplementedException(

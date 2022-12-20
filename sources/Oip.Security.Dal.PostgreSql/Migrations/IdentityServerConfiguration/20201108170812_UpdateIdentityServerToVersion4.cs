@@ -5,7 +5,7 @@ using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace Oip.Security.EntityFramework.PostgreSQL.Migrations.IdentityServerConfiguration;
+namespace Oip.Security.Dal.PostgreSQL.Migrations.IdentityServerConfiguration;
 
 public partial class UpdateIdentityServerToVersion4 : Migration
 {

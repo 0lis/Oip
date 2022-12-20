@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Oip.Security.EntityFramework.MySql.Migrations.IdentityServerGrants;
+namespace Oip.Security.Dal.MySql.Migrations.IdentityServerGrants;
 
 public partial class DbInit : Migration
 {

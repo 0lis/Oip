@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Oip.Security.Api.Dtos.Roles;
 using Oip.Security.Api.Dtos.Users;
-using Oip.Security.BusinessLogic.Identity.Dtos.Identity;
+using Oip.Security.Bl.Identity.Dtos.Identity;
 
 namespace Oip.Security.Api.Mappers;
 

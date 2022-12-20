@@ -1,4 +1,4 @@
-﻿namespace Oip.Security.EntityFramework.Helpers;
+﻿namespace Oip.Security.Dal.Helpers;
 
 public enum HashType
 {

@@ -1,4 +1,4 @@
-﻿namespace Oip.Security.BusinessLogic.Identity.Helpers;
+﻿namespace Oip.Security.Bl.Identity.Helpers;
 
 public class ResourceMessage
 {

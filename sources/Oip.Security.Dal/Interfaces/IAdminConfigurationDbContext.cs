@@ -2,7 +2,7 @@
 using IdentityServer4.EntityFramework.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace Oip.Security.EntityFramework.Interfaces;
+namespace Oip.Security.Dal.Interfaces;
 
 public interface IAdminConfigurationDbContext : IConfigurationDbContext
 {

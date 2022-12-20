@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Oip.Security.Dal.Common.DbContexts;
 
-namespace Oip.Security.EntityFramework.SqlServer.Migrations.Logging
+namespace Oip.Security.Dal.SqlServer.Migrations.Logging
 {
     [DbContext(typeof(AdminLogDbContext))]
     [Migration("20191119163936_DbInit")]

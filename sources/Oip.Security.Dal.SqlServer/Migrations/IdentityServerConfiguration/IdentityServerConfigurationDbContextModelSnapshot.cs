@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Oip.Security.Dal.Common.DbContexts;
 
-namespace Oip.Security.EntityFramework.SqlServer.Migrations.IdentityServerConfiguration
+namespace Oip.Security.Dal.SqlServer.Migrations.IdentityServerConfiguration
 {
     [DbContext(typeof(IdentityServerConfigurationDbContext))]
     partial class IdentityServerConfigurationDbContextModelSnapshot : ModelSnapshot

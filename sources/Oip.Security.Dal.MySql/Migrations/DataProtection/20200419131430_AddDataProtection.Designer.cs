@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Oip.Security.Dal.Common.DbContexts;
 
-namespace Oip.Security.EntityFramework.MySql.Migrations.DataProtection
+namespace Oip.Security.Dal.MySql.Migrations.DataProtection
 {
     [DbContext(typeof(IdentityServerDataProtectionDbContext))]
     [Migration("20200419131430_AddDataProtection")]

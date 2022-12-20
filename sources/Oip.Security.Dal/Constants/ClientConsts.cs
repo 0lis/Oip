@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Oip.Security.EntityFramework.Extensions.Common;
+using Oip.Security.Dal.Extensions.Common;
 
-namespace Oip.Security.EntityFramework.Constants;
+namespace Oip.Security.Dal.Constants;
 
 public static class ClientConsts
 {

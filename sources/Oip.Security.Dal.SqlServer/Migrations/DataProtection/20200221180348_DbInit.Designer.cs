@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Oip.Security.Dal.Common.DbContexts;
 
-namespace Oip.Security.EntityFramework.SqlServer.Migrations.DataProtection
+namespace Oip.Security.Dal.SqlServer.Migrations.DataProtection
 {
     [DbContext(typeof(IdentityServerDataProtectionDbContext))]
     [Migration("20200221180348_DbInit")]

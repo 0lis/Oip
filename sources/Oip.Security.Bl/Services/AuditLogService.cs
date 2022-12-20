@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Oip.Security.BusinessLogic.Dtos.Log;
-using Oip.Security.BusinessLogic.Mappers;
-using Oip.Security.BusinessLogic.Services.Interfaces;
-using Oip.Security.EntityFramework.Repositories.Interfaces;
+using Oip.Security.Bl.Dtos.Log;
+using Oip.Security.Bl.Mappers;
+using Oip.Security.Bl.Services.Interfaces;
+using Oip.Security.Dal.Repositories.Interfaces;
 using Skoruba.AuditLogging.EntityFramework.Entities;
 
-namespace Oip.Security.BusinessLogic.Services;
+namespace Oip.Security.Bl.Services;
 
 public class AuditLogService<TAuditLog> : IAuditLogService
     where TAuditLog : AuditLog

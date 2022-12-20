@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Bogus;
 using IdentityServer4.EntityFramework.Entities;
-using Oip.Security.EntityFramework.Constants;
+using Oip.Security.Dal.Constants;
 
 namespace Oip.Security.UnitTests.Mocks;
 

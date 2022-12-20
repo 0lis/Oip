@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace Oip.Security.BusinessLogic.Helpers;
+namespace Oip.Security.Bl.Helpers;
 
 public static class ComboBoxHelpers
 {

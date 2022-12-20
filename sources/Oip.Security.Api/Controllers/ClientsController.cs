@@ -6,8 +6,8 @@ using Oip.Security.Api.Dtos.Clients;
 using Oip.Security.Api.ExceptionHandling;
 using Oip.Security.Api.Mappers;
 using Oip.Security.Api.Resources;
-using Oip.Security.BusinessLogic.Dtos.Configuration;
-using Oip.Security.BusinessLogic.Services.Interfaces;
+using Oip.Security.Bl.Dtos.Configuration;
+using Oip.Security.Bl.Services.Interfaces;
 
 namespace Oip.Security.Api.Controllers;
 

@@ -1,38 +1,34 @@
-﻿using System;
+﻿#nullable disable
+
+using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-#nullable disable
+namespace Oip.Security.Dal.Sqlite.Migrations.AdminLog;
 
-namespace Oip.Security.Dal.Sqlite.Migrations.AdminLog
+public partial class Init : Migration
 {
-    public partial class Init : Migration
+    protected override void Up(MigrationBuilder migrationBuilder)
     {
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.CreateTable(
-                name: "Log",
-                columns: table => new
-                {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Message = table.Column<string>(type: "TEXT", nullable: true),
-                    MessageTemplate = table.Column<string>(type: "TEXT", nullable: true),
-                    Level = table.Column<string>(type: "TEXT", maxLength: 128, nullable: true),
-                    TimeStamp = table.Column<DateTimeOffset>(type: "TEXT", nullable: false),
-                    Exception = table.Column<string>(type: "TEXT", nullable: true),
-                    LogEvent = table.Column<string>(type: "TEXT", nullable: true),
-                    Properties = table.Column<string>(type: "TEXT", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Log", x => x.Id);
-                });
-        }
+        migrationBuilder.CreateTable(
+            "Log",
+            table => new
+            {
+                Id = table.Column<long>("INTEGER", nullable: false)
+                    .Annotation("Sqlite:Autoincrement", true),
+                Message = table.Column<string>("TEXT", nullable: true),
+                MessageTemplate = table.Column<string>("TEXT", nullable: true),
+                Level = table.Column<string>("TEXT", maxLength: 128, nullable: true),
+                TimeStamp = table.Column<DateTimeOffset>("TEXT", nullable: false),
+                Exception = table.Column<string>("TEXT", nullable: true),
+                LogEvent = table.Column<string>("TEXT", nullable: true),
+                Properties = table.Column<string>("TEXT", nullable: true)
+            },
+            constraints: table => { table.PrimaryKey("PK_Log", x => x.Id); });
+    }
 
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropTable(
-                name: "Log");
-        }
+    protected override void Down(MigrationBuilder migrationBuilder)
+    {
+        migrationBuilder.DropTable(
+            "Log");
     }
 }

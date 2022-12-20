@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Oip.Security.EntityFramework.Entities;
+using Oip.Security.Dal.Entities;
 
-namespace Oip.Security.EntityFramework.Interfaces;
+namespace Oip.Security.Dal.Interfaces;
 
 public interface IAdminLogDbContext
 {

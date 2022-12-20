@@ -3,7 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Oip.Security.EntityFramework.Common.DbContexts;
+using Oip.Security.Dal.Common.DbContexts;
 
 #nullable disable
 

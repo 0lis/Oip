@@ -1,4 +1,4 @@
-﻿namespace Oip.Security.BusinessLogic.Identity.Dtos.Enums;
+﻿namespace Oip.Security.Bl.Identity.Dtos.Enums;
 
 public enum SavedStatus
 {

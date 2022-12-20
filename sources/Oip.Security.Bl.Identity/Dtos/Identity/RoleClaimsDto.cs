@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Oip.Security.BusinessLogic.Identity.Dtos.Identity.Interfaces;
+using Oip.Security.Bl.Identity.Dtos.Identity.Interfaces;
 
-namespace Oip.Security.BusinessLogic.Identity.Dtos.Identity;
+namespace Oip.Security.Bl.Identity.Dtos.Identity;
 
 public class RoleClaimsDto<TRoleClaimDto, TKey> : RoleClaimDto<TKey>, IRoleClaimsDto
     where TRoleClaimDto : RoleClaimDto<TKey>

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Newtonsoft.Json;
-using Oip.Security.BusinessLogic.Shared.ExceptionHandling;
+using Oip.Security.Bl.Shared.ExceptionHandling;
 using Oip.Security.UI.Helpers;
 
 namespace Oip.Security.UI.ExceptionHandling;

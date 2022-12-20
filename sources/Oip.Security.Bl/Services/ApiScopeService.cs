@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Oip.Security.BusinessLogic.Dtos.Configuration;
-using Oip.Security.BusinessLogic.Events.ApiScope;
-using Oip.Security.BusinessLogic.Helpers;
-using Oip.Security.BusinessLogic.Mappers;
-using Oip.Security.BusinessLogic.Resources;
-using Oip.Security.BusinessLogic.Services.Interfaces;
-using Oip.Security.BusinessLogic.Shared.ExceptionHandling;
-using Oip.Security.EntityFramework.Repositories.Interfaces;
+using Oip.Security.Bl.Dtos.Configuration;
+using Oip.Security.Bl.Events.ApiScope;
+using Oip.Security.Bl.Helpers;
+using Oip.Security.Bl.Mappers;
+using Oip.Security.Bl.Resources;
+using Oip.Security.Bl.Services.Interfaces;
+using Oip.Security.Bl.Shared.ExceptionHandling;
+using Oip.Security.Dal.Repositories.Interfaces;
 using Skoruba.AuditLogging.Services;
 
-namespace Oip.Security.BusinessLogic.Services;
+namespace Oip.Security.Bl.Services;
 
 public class ApiScopeService : IApiScopeService
 {

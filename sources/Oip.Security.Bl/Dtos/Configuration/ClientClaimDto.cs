@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Oip.Security.BusinessLogic.Dtos.Configuration;
+namespace Oip.Security.Bl.Dtos.Configuration;
 
 public class ClientClaimDto
 {

@@ -1,4 +1,4 @@
-﻿namespace Oip.Security.EntityFramework.Extensions.Common;
+﻿namespace Oip.Security.Dal.Extensions.Common;
 
 public class SelectItem
 {

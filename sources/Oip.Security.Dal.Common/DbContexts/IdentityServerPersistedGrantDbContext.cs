@@ -1,7 +1,7 @@
 ﻿using IdentityServer4.EntityFramework.DbContexts;
 using IdentityServer4.EntityFramework.Options;
 using Microsoft.EntityFrameworkCore;
-using Oip.Security.EntityFramework.Interfaces;
+using Oip.Security.Dal.Interfaces;
 
 namespace Oip.Security.Dal.Common.DbContexts;
 

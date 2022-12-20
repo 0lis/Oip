@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Oip.Security.BusinessLogic.Identity.Dtos.Common;
-using Oip.Security.EntityFramework.Helpers;
+using Oip.Security.Bl.Identity.Dtos.Common;
+using Oip.Security.Dal.Helpers;
 
-namespace Oip.Security.BusinessLogic.Dtos.Configuration;
+namespace Oip.Security.Bl.Dtos.Configuration;
 
 public class ApiSecretsDto
 {
@@ -31,7 +31,7 @@ public class ApiSecretsDto
 
     public HashType HashTypeEnum => Enum.TryParse(HashType, true, out HashType result)
         ? result
-        : EntityFramework.Helpers.HashType.Sha256;
+        : Dal.Helpers.HashType.Sha256;
 
     public List<SelectItemDto> HashTypes { get; set; }
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using Skoruba.AuditLogging.Events;
 
-namespace Oip.Security.BusinessLogic.Events.ApiResource;
+namespace Oip.Security.Bl.Events.ApiResource;
 
 public class ApiSecretRequestedEvent : AuditEvent
 {

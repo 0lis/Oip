@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Oip.Security.Dal.Common.DbContexts;
 
-namespace Oip.Security.EntityFramework.MySql.Migrations.Logging
+namespace Oip.Security.Dal.MySql.Migrations.Logging
 {
     [DbContext(typeof(AdminLogDbContext))]
     partial class AdminLogDbContextModelSnapshot : ModelSnapshot

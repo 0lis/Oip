@@ -1,6 +1,6 @@
-﻿using Oip.Security.BusinessLogic.Identity.Dtos.Identity.Interfaces;
+﻿using Oip.Security.Bl.Identity.Dtos.Identity.Interfaces;
 
-namespace Oip.Security.BusinessLogic.Identity.Dtos.Identity.Base;
+namespace Oip.Security.Bl.Identity.Dtos.Identity.Base;
 
 public class BaseRoleClaimDto<TRoleId> : IBaseRoleClaimDto
 {

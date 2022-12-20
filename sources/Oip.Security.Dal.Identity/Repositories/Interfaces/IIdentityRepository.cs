@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
-using Oip.Security.EntityFramework.Extensions.Common;
+using Oip.Security.Dal.Extensions.Common;
 
-namespace Oip.Security.EntityFramework.Identity.Repositories.Interfaces;
+namespace Oip.Security.Dal.Identity.Repositories.Interfaces;
 
 public interface IIdentityRepository<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
     where TUser : IdentityUser<TKey>

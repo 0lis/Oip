@@ -1,4 +1,4 @@
-﻿namespace Oip.Security.BusinessLogic.Dtos.Configuration;
+﻿namespace Oip.Security.Bl.Dtos.Configuration;
 
 public class ApiResourcePropertyDto
 {

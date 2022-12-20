@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace Oip.Security.EntityFramework.PostgreSQL.Migrations.Logging;
+namespace Oip.Security.Dal.PostgreSQL.Migrations.Logging;
 
 public partial class DbInit : Migration
 {

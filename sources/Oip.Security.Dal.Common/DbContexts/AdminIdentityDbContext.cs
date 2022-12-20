@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Oip.Security.EntityFramework.Common.Constants;
-using Oip.Security.EntityFramework.Common.Entities.Identity;
-using Oip.Security.EntityFramework.Shared.Entities.Identity;
+using Oip.Security.Dal.Common.Constants;
+using Oip.Security.Dal.Common.Entities.Identity;
+using Oip.Security.Dal.Shared.Entities.Identity;
 
-namespace Oip.Security.EntityFramework.Common.DbContexts;
+namespace Oip.Security.Dal.Common.DbContexts;
 
-public class AdminIdentityDbContext : 
+public class AdminIdentityDbContext :
     IdentityDbContext<UserIdentity, UserIdentityRole, string, UserIdentityUserClaim,
-    UserIdentityUserRole, UserIdentityUserLogin, UserIdentityRoleClaim, UserIdentityUserToken>
+        UserIdentityUserRole, UserIdentityUserLogin, UserIdentityRoleClaim, UserIdentityUserToken>
 {
     public const string MigrationsHistoryTable = "AdminIdentityDbContextMigrationHistory";
 

@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using Oip.Security.BusinessLogic.Dtos.Log;
-using Oip.Security.EntityFramework.Entities;
-using Oip.Security.EntityFramework.Extensions.Common;
+using Oip.Security.Bl.Dtos.Log;
+using Oip.Security.Dal.Entities;
+using Oip.Security.Dal.Extensions.Common;
 using Skoruba.AuditLogging.EntityFramework.Entities;
 
-namespace Oip.Security.BusinessLogic.Mappers;
+namespace Oip.Security.Bl.Mappers;
 
 public static class LogMappers
 {

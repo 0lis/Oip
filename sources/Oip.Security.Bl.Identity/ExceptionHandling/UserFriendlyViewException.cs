@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Oip.Security.BusinessLogic.Shared.ExceptionHandling;
+namespace Oip.Security.Bl.Shared.ExceptionHandling;
 
 public class UserFriendlyViewException : Exception
 {

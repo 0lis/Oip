@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Oip.Security.EntityFramework.SqlServer.Migrations.DataProtection;
+namespace Oip.Security.Dal.SqlServer.Migrations.DataProtection;
 
 public partial class DbInit : Migration
 {

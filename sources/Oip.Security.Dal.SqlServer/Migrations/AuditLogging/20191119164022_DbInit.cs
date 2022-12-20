@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Oip.Security.EntityFramework.SqlServer.Migrations.AuditLogging;
+namespace Oip.Security.Dal.SqlServer.Migrations.AuditLogging;
 
 public partial class DbInit : Migration
 {

@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using Oip.Security.BusinessLogic.Dtos.Configuration;
+using Oip.Security.Bl.Dtos.Configuration;
 
-namespace Oip.Security.BusinessLogic.Services.Interfaces;
+namespace Oip.Security.Bl.Services.Interfaces;
 
 public interface IApiResourceService
 {

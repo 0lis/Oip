@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Oip.Security.BusinessLogic.Identity.Dtos.Grant;
+namespace Oip.Security.Bl.Identity.Dtos.Grant;
 
 public class PersistedGrantsDto
 {

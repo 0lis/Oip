@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 using IdentityServer4.EntityFramework.Entities;
 using IdentityServer4.Models;
 using Microsoft.EntityFrameworkCore;
-using Oip.Security.EntityFramework.Constants;
-using Oip.Security.EntityFramework.Extensions.Common;
-using Oip.Security.EntityFramework.Extensions.Enums;
-using Oip.Security.EntityFramework.Extensions.Extensions;
-using Oip.Security.EntityFramework.Helpers;
-using Oip.Security.EntityFramework.Interfaces;
-using Oip.Security.EntityFramework.Repositories.Interfaces;
+using Oip.Security.Dal.Constants;
+using Oip.Security.Dal.Extensions.Common;
+using Oip.Security.Dal.Extensions.Enums;
+using Oip.Security.Dal.Helpers;
+using Oip.Security.Dal.Interfaces;
+using Oip.Security.Dal.Repositories.Interfaces;
+using Oip.Security.Dal.Extensions.Extensions;
 using Client = IdentityServer4.EntityFramework.Entities.Client;
 using ClientClaim = IdentityServer4.EntityFramework.Entities.ClientClaim;
 
-namespace Oip.Security.EntityFramework.Repositories;
+namespace Oip.Security.Dal.Repositories;
 
 public class ClientRepository<TDbContext> : IClientRepository
     where TDbContext : DbContext, IAdminConfigurationDbContext

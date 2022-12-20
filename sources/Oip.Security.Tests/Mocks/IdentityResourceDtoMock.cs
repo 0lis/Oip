@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
 using Bogus;
-using Oip.Security.BusinessLogic.Dtos.Configuration;
-using Oip.Security.EntityFramework.Constants;
+using Oip.Security.Bl.Dtos.Configuration;
+using Oip.Security.Dal.Constants;
 
 namespace Oip.Security.UnitTests.Mocks;
 

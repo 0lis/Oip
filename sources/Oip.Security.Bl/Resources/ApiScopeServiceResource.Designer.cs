@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Oip.Security.BusinessLogic.Resources {
+namespace Oip.Security.Bl.Resources {
     using System;
     
     
@@ -28,7 +28,7 @@ namespace Oip.Security.BusinessLogic.Resources {
         public static System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.Equals(null, resourceMan)) {
-                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("Oip.Security.BusinessLogic.Resources.ApiScopeServiceResource", typeof(ApiScopeServiceResource).Assembly);
+                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("Oip.Security.Bl.Resources.ApiScopeServiceResource", typeof(ApiScopeServiceResource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

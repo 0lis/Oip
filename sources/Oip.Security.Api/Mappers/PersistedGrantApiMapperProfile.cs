@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Oip.Security.Api.Dtos.PersistedGrants;
-using Oip.Security.BusinessLogic.Dtos.Grant;
+using Oip.Security.Bl.Dtos.Grant;
 
 namespace Oip.Security.Api.Mappers;
 

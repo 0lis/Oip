@@ -48,6 +48,9 @@ public class LogControllerTests : BaseClassFixture
     [Fact]
     public async Task ReturnSuccessInErrorsLogWithAdminRole()
     {
+        //Remove
+        Client.DefaultRequestHeaders.Clear();
+        
         SetupAdminClaimsViaHeaders();
 
         // Act

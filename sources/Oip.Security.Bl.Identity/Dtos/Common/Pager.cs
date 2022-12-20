@@ -1,4 +1,4 @@
-﻿namespace Oip.Security.BusinessLogic.Identity.Dtos.Common;
+﻿namespace Oip.Security.Bl.Identity.Dtos.Common;
 
 public class Pager
 {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Oip.Security.EntityFramework.Configuration.Configuration.Identity;
+namespace Oip.Security.Dal.Configuration.Configuration.Identity;
 
 public class User
 {

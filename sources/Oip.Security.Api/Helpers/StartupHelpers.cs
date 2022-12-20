@@ -15,14 +15,14 @@ using Oip.Security.Api.Configuration;
 using Oip.Security.Api.Configuration.ApplicationParts;
 using Oip.Security.Api.Configuration.Constants;
 using Oip.Security.Api.Helpers.Localization;
-using Oip.Security.BusinessLogic.Identity.Dtos.Identity;
-using Oip.Security.EntityFramework.Configuration.Configuration;
-using Oip.Security.EntityFramework.Configuration.PostgreSQL;
-using Oip.Security.EntityFramework.Helpers;
-using Oip.Security.EntityFramework.Interfaces;
-using Oip.Security.EntityFramework.MySql.Extensions;
-using Oip.Security.EntityFramework.SqlServer.Extensions;
+using Oip.Security.Bl.Identity.Dtos.Identity;
 using Oip.Security.Dal.Sqlite.Extensions;
+using Oip.Security.Dal.Configuration.Configuration;
+using Oip.Security.Dal.Configuration.PostgreSQL;
+using Oip.Security.Dal.Helpers;
+using Oip.Security.Dal.Interfaces;
+using Oip.Security.Dal.MySql.Extensions;
+using Oip.Security.Dal.SqlServer.Extensions;
 using Skoruba.AuditLogging.EntityFramework.DbContexts;
 using Skoruba.AuditLogging.EntityFramework.Entities;
 using Skoruba.AuditLogging.EntityFramework.Extensions;
@@ -131,6 +131,7 @@ public static class StartupHelpers
     /// <typeparam name="TIdentityDbContext"></typeparam>
     /// <typeparam name="TAuditLoggingDbContext"></typeparam>
     /// <typeparam name="TDataProtectionDbContext"></typeparam>
+    /// <typeparam name="TAuditLog"></typeparam>
     /// <param name="services"></param>
     /// <param name="configuration"></param>
     public static void AddDbContexts<TIdentityDbContext, TConfigurationDbContext, TPersistedGrantDbContext,
@@ -295,18 +296,8 @@ public static class StartupHelpers
         where TAuditLoggingDbContext : DbContext, IAuditLoggingDbContext<AuditLog>
         where TDataProtectionDbContext : DbContext, IDataProtectionKeyContext
     {
-        var configurationDbConnectionString =
+        var connectionString =
             configuration.GetConnectionString(ConfigurationConsts.ConfigurationDbConnectionStringKey);
-        var persistedGrantsDbConnectionString =
-            configuration.GetConnectionString(ConfigurationConsts.PersistedGrantDbConnectionStringKey);
-        var identityDbConnectionString =
-            configuration.GetConnectionString(ConfigurationConsts.IdentityDbConnectionStringKey);
-        var logDbConnectionString =
-            configuration.GetConnectionString(ConfigurationConsts.AdminLogDbConnectionStringKey);
-        var auditLogDbConnectionString =
-            configuration.GetConnectionString(ConfigurationConsts.AdminAuditLogDbConnectionStringKey);
-        var dataProtectionDbConnectionString =
-            configuration.GetConnectionString(ConfigurationConsts.DataProtectionDbConnectionStringKey);
 
         var identityServerUri = adminApiConfiguration.IdentityServerBaseUrl;
         var healthChecksBuilder = services.AddHealthChecks()
@@ -324,13 +315,6 @@ public static class StartupHelpers
         {
             var configurationTableName =
                 DbContextHelpers.GetEntityTable<TConfigurationDbContext>(scope.ServiceProvider);
-            var persistedGrantTableName =
-                DbContextHelpers.GetEntityTable<TPersistedGrantDbContext>(scope.ServiceProvider);
-            var identityTableName = DbContextHelpers.GetEntityTable<TIdentityDbContext>(scope.ServiceProvider);
-            var logTableName = DbContextHelpers.GetEntityTable<TLogDbContext>(scope.ServiceProvider);
-            var auditLogTableName = DbContextHelpers.GetEntityTable<TAuditLoggingDbContext>(scope.ServiceProvider);
-            var dataProtectionTableName =
-                DbContextHelpers.GetEntityTable<TDataProtectionDbContext>(scope.ServiceProvider);
 
             var databaseProvider = configuration.GetSection(nameof(DatabaseProviderConfiguration))
                 .Get<DatabaseProviderConfiguration>();
@@ -338,51 +322,21 @@ public static class StartupHelpers
             {
                 case DatabaseProviderType.SqlServer:
                     healthChecksBuilder
-                        .AddSqlServer(configurationDbConnectionString, name: "ConfigurationDb",
-                            healthQuery: $"SELECT TOP 1 * FROM dbo.[{configurationTableName}]")
-                        .AddSqlServer(persistedGrantsDbConnectionString, name: "PersistentGrantsDb",
-                            healthQuery: $"SELECT TOP 1 * FROM dbo.[{persistedGrantTableName}]")
-                        .AddSqlServer(identityDbConnectionString, name: "IdentityDb",
-                            healthQuery: $"SELECT TOP 1 * FROM dbo.[{identityTableName}]")
-                        .AddSqlServer(logDbConnectionString, name: "LogDb",
-                            healthQuery: $"SELECT TOP 1 * FROM dbo.[{logTableName}]")
-                        .AddSqlServer(auditLogDbConnectionString, name: "AuditLogDb",
-                            healthQuery: $"SELECT TOP 1 * FROM dbo.[{auditLogTableName}]")
-                        .AddSqlServer(dataProtectionDbConnectionString, name: "DataProtectionDb",
-                            healthQuery: $"SELECT TOP 1 * FROM dbo.[{dataProtectionTableName}]");
+                        .AddSqlServer(connectionString, name: "ConfigurationDb",
+                            healthQuery: $"SELECT TOP 1 * FROM dbo.[{configurationTableName}]");
                     break;
                 case DatabaseProviderType.PostgreSql:
                     healthChecksBuilder
-                        .AddNpgSql(configurationDbConnectionString, name: "ConfigurationDb",
-                            healthQuery: $"SELECT * FROM \"{configurationTableName}\" LIMIT 1")
-                        .AddNpgSql(persistedGrantsDbConnectionString, name: "PersistentGrantsDb",
-                            healthQuery: $"SELECT * FROM \"{persistedGrantTableName}\" LIMIT 1")
-                        .AddNpgSql(identityDbConnectionString, name: "IdentityDb",
-                            healthQuery: $"SELECT * FROM \"{identityTableName}\" LIMIT 1")
-                        .AddNpgSql(logDbConnectionString, name: "LogDb",
-                            healthQuery: $"SELECT * FROM \"{logTableName}\" LIMIT 1")
-                        .AddNpgSql(auditLogDbConnectionString, name: "AuditLogDb",
-                            healthQuery: $"SELECT * FROM \"{auditLogTableName}\"  LIMIT 1")
-                        .AddNpgSql(dataProtectionDbConnectionString, name: "DataProtectionDb",
-                            healthQuery: $"SELECT * FROM \"{dataProtectionTableName}\"  LIMIT 1");
+                        .AddNpgSql(connectionString, name: "ConfigurationDb",
+                            healthQuery: $"SELECT * FROM \"{configurationTableName}\" LIMIT 1");
                     break;
                 case DatabaseProviderType.MySql:
                     healthChecksBuilder
-                        .AddMySql(configurationDbConnectionString, "ConfigurationDb")
-                        .AddMySql(persistedGrantsDbConnectionString, "PersistentGrantsDb")
-                        .AddMySql(identityDbConnectionString, "IdentityDb")
-                        .AddMySql(logDbConnectionString, "LogDb")
-                        .AddMySql(auditLogDbConnectionString, "AuditLogDb")
-                        .AddMySql(dataProtectionDbConnectionString, "DataProtectionDb");
+                        .AddMySql(connectionString, "ConfigurationDb");
                     break;
                 case DatabaseProviderType.Sqlite:
                     healthChecksBuilder
-                        .AddSqlite(configurationDbConnectionString, "ConfigurationDb")
-                        .AddSqlite(persistedGrantsDbConnectionString, "PersistentGrantsDb")
-                        .AddSqlite(identityDbConnectionString, "IdentityDb")
-                        .AddSqlite(logDbConnectionString, "LogDb")
-                        .AddSqlite(auditLogDbConnectionString, "AuditLogDb")
-                        .AddSqlite(dataProtectionDbConnectionString, "DataProtectionDb");
+                        .AddSqlite(connectionString);
                     break;
                 default:
                     throw new InvalidOperationException(

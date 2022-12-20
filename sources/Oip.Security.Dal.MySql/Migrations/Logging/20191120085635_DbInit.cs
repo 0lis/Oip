@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Oip.Security.EntityFramework.MySql.Migrations.Logging;
+namespace Oip.Security.Dal.MySql.Migrations.Logging;
 
 public partial class DbInit : Migration
 {

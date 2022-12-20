@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Oip.Security.EntityFramework.Extensions.Extensions;
+namespace Oip.Security.Dal.Extensions.Extensions;
 
 public static class EnumerableExtensions
 {
