@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Oip.Security.Dal.Common.Constants;
 using Oip.Security.Dal.Common.Entities.Identity;
+using Oip.Security.Dal.Constants;
 using Oip.Security.Dal.Shared.Entities.Identity;
 
 namespace Oip.Security.Dal.Common.DbContexts;
