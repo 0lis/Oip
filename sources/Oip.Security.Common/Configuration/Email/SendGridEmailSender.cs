@@ -6,7 +6,7 @@ using SendGrid;
 using SendGrid.Helpers.Mail;
 using Skoruba.IdentityServer4.Shared.Configuration.Configuration.Email;
 
-namespace Skoruba.IdentityServer4.Shared.Configuration.Email;
+namespace Oip.Security.Common.Configuration.Email;
 
 public class SendGridEmailSender : IEmailSender
 {

@@ -9,10 +9,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.AzureKeyVault;
 using Microsoft.Extensions.DependencyInjection;
+using Oip.Security.Common.Configuration.Email;
 using SendGrid;
 using Skoruba.IdentityServer4.Shared.Configuration.Configuration.Common;
 using Skoruba.IdentityServer4.Shared.Configuration.Configuration.Email;
-using Skoruba.IdentityServer4.Shared.Configuration.Email;
 
 namespace Oip.Security.Common.Configuration.Helpers;
 
