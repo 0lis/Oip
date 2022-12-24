@@ -15,7 +15,7 @@ using Skoruba.IdentityServer4.STS.Identity.Configuration;
 using Skoruba.IdentityServer4.STS.Identity.Configuration.Constants;
 using Skoruba.IdentityServer4.STS.Identity.Configuration.Interfaces;
 
-namespace Skoruba.IdentityServer4.STS.Identity;
+namespace Oip.Security.STS.Identity;
 
 public class Startup
 {
@@ -32,6 +32,7 @@ public class Startup
     {
         var rootConfiguration = CreateRootConfiguration();
         services.AddSingleton(rootConfiguration);
+        services.AddCors();
         // Register DbContexts for IdentityServer and Identity
         RegisterDbContexts(services);
 
@@ -63,12 +64,12 @@ public class Startup
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
         app.UseCookiePolicy();
-
+        app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader());
         if (env.IsDevelopment())
             app.UseDeveloperExceptionPage();
         else
             app.UseHsts();
-
+        
         app.UsePathBase(Configuration.GetValue<string>("BasePath"));
 
         app.UseStaticFiles();

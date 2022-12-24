@@ -3,10 +3,13 @@ using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Oip.Security.Common.Configuration.Helpers;
 using Serilog;
 using Skoruba.IdentityServer4.Shared.Configuration.Helpers;
 using Skoruba.IdentityServer4.STS.Identity;
+using NLog;
+using NLog.Web;
 
 namespace Oip.Security.STS.Identity;
 
@@ -14,11 +17,9 @@ public class Program
 {
     public static void Main(string[] args)
     {
+        var logger = LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
         var configuration = GetConfiguration(args);
-
-        Log.Logger = new LoggerConfiguration()
-            .ReadFrom.Configuration(configuration)
-            .CreateLogger();
+        
         try
         {
             DockerHelpers.ApplyDockerConfiguration(configuration);
@@ -27,11 +28,12 @@ public class Program
         }
         catch (Exception ex)
         {
-            Log.Fatal(ex, "Host terminated unexpectedly");
+            logger.Fatal(ex, "Host terminated unexpectedly");
+            throw;
         }
         finally
         {
-            Log.CloseAndFlush();
+            LogManager.Shutdown();
         }
     }
 
@@ -83,12 +85,9 @@ public class Program
             {
                 webBuilder.ConfigureKestrel(options => options.AddServerHeader = false);
                 webBuilder.UseStartup<Startup>();
+
             })
-            .UseSerilog((hostContext, loggerConfig) =>
-            {
-                loggerConfig
-                    .ReadFrom.Configuration(hostContext.Configuration)
-                    .Enrich.WithProperty("ApplicationName", hostContext.HostingEnvironment.ApplicationName);
-            });
+            .ConfigureLogging(x => x.ClearProviders())
+            .UseNLog();
     }
 }

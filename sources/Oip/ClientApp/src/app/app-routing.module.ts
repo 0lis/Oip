@@ -11,6 +11,7 @@ import {HomeComponent} from './pages/home/home.component';
 import {ProfileComponent} from './pages/profile/profile.component';
 import {TasksComponent} from './pages/tasks/tasks.component';
 import {DxDataGridModule, DxFormModule} from 'devextreme-angular';
+import {AuthCallbackComponent} from "./pages/auth-callback/auth-callback.component";
 
 const routes: Routes = [
   {
@@ -49,13 +50,17 @@ const routes: Routes = [
     canActivate: [AuthGuardService]
   },
   {
+    path: 'auth-callback',
+    component: AuthCallbackComponent,
+  },
+  {
     path: '**',
     redirectTo: 'home'
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {useHash: true}), DxDataGridModule, DxFormModule],
+  imports: [RouterModule.forRoot(routes, {useHash: false}), DxDataGridModule, DxFormModule],
   providers: [AuthGuardService],
   exports: [RouterModule],
   declarations: [

@@ -9,13 +9,14 @@ try
 {
     var builder = OipWebApplication.CreateBuilder(args, OipConfiguration.Configuration);
     builder.Services.AddOipServer();
+    builder.Services.AddCors();
     var app = builder.BuildOip();
     using (var scope = app.Services.CreateScope())
     {
         var context = scope.ServiceProvider.GetRequiredService<OipContext>();
         context.Database.Migrate();
     }
-
+    app.UseCors(corsPolicyBuilder => corsPolicyBuilder.AllowAnyOrigin());
     app.UseAuthorization();
 
     app.MapControllerRoute(
