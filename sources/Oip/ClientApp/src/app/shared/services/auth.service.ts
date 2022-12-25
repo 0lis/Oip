@@ -62,8 +62,7 @@ export class AuthService extends BaseService {
 
   async getUser() {
     try {
-      if (this.isAuthenticated())
-      {
+      if (this.isAuthenticated()) {
         let name: string = "";
         let url: string = "";
         let profile = this.user?.profile;
@@ -172,7 +171,9 @@ export class AuthGuardService implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if (this.authService.isAuthenticated()) { return true; }
+    if (this.authService.isAuthenticated()) {
+      return true;
+    }
     const isLoggedIn = this.authService.loggedIn;
     const isAuthForm = [
       'login-form',

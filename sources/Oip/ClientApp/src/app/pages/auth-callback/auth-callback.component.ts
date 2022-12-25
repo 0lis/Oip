@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../shared/services';
-import { ActivatedRoute, Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from '../../shared/services';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-auth-callback',
@@ -11,17 +11,17 @@ export class AuthCallbackComponent implements OnInit {
 
   error: boolean = true;
 
-  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) {}
+  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) {
+  }
 
   async ngOnInit() {
 
     // check for error
     if (this.route != null &&
       this.route?.snapshot != null &&
-      this.route?.snapshot?.fragment != null)
-    {
+      this.route?.snapshot?.fragment != null) {
       if (this.route?.snapshot?.fragment?.indexOf('error') >= 0) {
-        this.error=true;
+        this.error = true;
         return;
       }
     }

@@ -11,11 +11,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Oip.Security.STS.Identity.ViewModels.Manage;
 using Skoruba.IdentityServer4.STS.Identity.Helpers;
 using Skoruba.IdentityServer4.STS.Identity.Helpers.Localization;
 using Skoruba.IdentityServer4.STS.Identity.ViewModels.Manage;
 
-namespace Skoruba.IdentityServer4.STS.Identity.Controllers;
+namespace Oip.Security.STS.Identity.Controllers;
 
 [Authorize]
 public class ManageController<TUser, TKey> : Controller

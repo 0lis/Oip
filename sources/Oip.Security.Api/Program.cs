@@ -3,6 +3,8 @@ using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using NLog;
+using NLog.Web;
 using Oip.Security.Common.Configuration.Helpers;
 using Serilog;
 using Skoruba.IdentityServer4.Shared.Configuration.Helpers;
@@ -13,24 +15,23 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        var configuration = GetConfiguration(args);
+        var logger = LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
 
-        Log.Logger = new LoggerConfiguration()
-            .ReadFrom.Configuration(configuration)
-            .CreateLogger();
+
         try
         {
+            var configuration = GetConfiguration(args);
             DockerHelpers.ApplyDockerConfiguration(configuration);
 
             CreateHostBuilder(args).Build().Run();
         }
         catch (Exception ex)
         {
-            Log.Fatal(ex, "Host terminated unexpectedly");
+            logger.Fatal(ex, "Host terminated unexpectedly");
         }
         finally
         {
-            Log.CloseAndFlush();
+            LogManager.Shutdown();
         }
     }
 

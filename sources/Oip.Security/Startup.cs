@@ -41,7 +41,7 @@ public class Startup
                 UserIdentityUserLogin, UserIdentityRoleClaim, UserIdentityUserToken, string,
                 IdentityUserDto, IdentityRoleDto, IdentityUsersDto, IdentityRolesDto, IdentityUserRolesDto,
                 IdentityUserClaimsDto, IdentityUserProviderDto, IdentityUserProvidersDto, IdentityUserChangePasswordDto,
-                IdentityRoleClaimsDto, IdentityUserClaimDto, IdentityRoleClaimDto>(ConfigureUIOptions);
+                IdentityRoleClaimsDto, IdentityUserClaimDto, IdentityRoleClaimDto>(ConfigureUiOptions);
 
         // Monitor changes in Admin UI views
         services.AddAdminUIRazorRuntimeCompilation(HostingEnvironment);
@@ -63,7 +63,7 @@ public class Startup
         });
     }
 
-    public virtual void ConfigureUIOptions(IdentityServer4AdminUIOptions options)
+    public virtual void ConfigureUiOptions(IdentityServer4AdminUiOptions options)
     {
         // Applies configuration from appsettings.
         options.BindConfiguration(Configuration);

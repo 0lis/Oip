@@ -205,6 +205,8 @@ public static class StartupHelpers
     ///     Add authorization policies
     /// </summary>
     /// <param name="services"></param>
+    /// <param name="adminConfiguration"></param>
+    /// <param name="authorizationAction"></param>
     public static void AddAuthorizationPolicies(this IServiceCollection services, AdminConfiguration adminConfiguration,
         Action<AuthorizationOptions> authorizationAction)
     {
@@ -231,6 +233,7 @@ public static class StartupHelpers
     ///     Register services for MVC and localization including available languages
     /// </summary>
     /// <param name="services"></param>
+    /// <param name="cultureConfiguration"></param>
     public static void AddMvcWithLocalization<TUserDto, TRoleDto, TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin,
             TRoleClaim, TUserToken,
             TUsersDto, TRolesDto, TUserRolesDto, TUserClaimsDto,

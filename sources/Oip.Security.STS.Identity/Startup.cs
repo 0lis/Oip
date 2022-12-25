@@ -69,7 +69,7 @@ public class Startup
             app.UseDeveloperExceptionPage();
         else
             app.UseHsts();
-        
+
         app.UsePathBase(Configuration.GetValue<string>("BasePath"));
 
         app.UseStaticFiles();

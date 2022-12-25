@@ -23,9 +23,9 @@ public static class AdminUiServiceCollectionExtensions
     /// <param name="services"></param>
     /// <param name="optionsAction"></param>
     /// <returns></returns>
-    public static IServiceCollection AddIdentityServer4AdminUI<TIdentityDbContext, TIdentityServerDbContext,
+    public static IServiceCollection AddIdentityServer4AdminUi<TIdentityDbContext, TIdentityServerDbContext,
         TPersistedGrantDbContext, TLogDbContext, TAuditLogDbContext, TAuditLog, TDataProtectionDbContext>(
-        this IServiceCollection services, Action<IdentityServer4AdminUIOptions> optionsAction)
+        this IServiceCollection services, Action<IdentityServer4AdminUiOptions> optionsAction)
         where TIdentityDbContext : IdentityDbContext<IdentityUser<string>, IdentityRole, string,
             IdentityUserClaim<string>, IdentityUserRole<string>, IdentityUserLogin<string>, IdentityRoleClaim<string>,
             IdentityUserToken<string>>
@@ -64,7 +64,7 @@ public static class AdminUiServiceCollectionExtensions
     /// <returns></returns>
     public static IServiceCollection AddIdentityServer4AdminUi<TIdentityDbContext, TIdentityServerDbContext,
         TPersistedGrantDbContext, TLogDbContext, TAuditLogDbContext, TAuditLog, TDataProtectionDbContext, TUser>(
-        this IServiceCollection services, Action<IdentityServer4AdminUIOptions> optionsAction)
+        this IServiceCollection services, Action<IdentityServer4AdminUiOptions> optionsAction)
         where TIdentityDbContext : IdentityDbContext<TUser, IdentityRole, string, IdentityUserClaim<string>,
             IdentityUserRole<string>, IdentityUserLogin<string>, IdentityRoleClaim<string>,
             IdentityUserToken<string>>
@@ -101,7 +101,7 @@ public static class AdminUiServiceCollectionExtensions
             TUserRolesDto,
             TUserClaimsDto, TUserProviderDto, TUserProvidersDto, TUserChangePasswordDto, TRoleClaimsDto, TUserClaimDto,
             TRoleClaimDto>
-        (this IServiceCollection services, Action<IdentityServer4AdminUIOptions> optionsAction)
+        (this IServiceCollection services, Action<IdentityServer4AdminUiOptions> optionsAction)
         where TIdentityDbContext : IdentityDbContext<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim,
             TUserToken>
         where TIdentityServerDbContext : DbContext, IAdminConfigurationDbContext
@@ -132,7 +132,7 @@ public static class AdminUiServiceCollectionExtensions
         where TAuditLog : AuditLog, new()
     {
         // Builds the options from user preferences or configuration.
-        var options = new IdentityServer4AdminUIOptions();
+        var options = new IdentityServer4AdminUiOptions();
         optionsAction(options);
 
         // Adds root configuration to the DI.

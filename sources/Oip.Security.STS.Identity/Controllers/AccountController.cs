@@ -26,11 +26,12 @@ using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using Skoruba.IdentityServer4.Shared.Configuration.Configuration.Identity;
 using Skoruba.IdentityServer4.STS.Identity.Configuration;
+using Skoruba.IdentityServer4.STS.Identity.Controllers;
 using Skoruba.IdentityServer4.STS.Identity.Helpers;
 using Skoruba.IdentityServer4.STS.Identity.Helpers.Localization;
 using Skoruba.IdentityServer4.STS.Identity.ViewModels.Account;
 
-namespace Skoruba.IdentityServer4.STS.Identity.Controllers;
+namespace Oip.Security.STS.Identity.Controllers;
 
 [SecurityHeaders]
 [Authorize]
@@ -689,7 +690,7 @@ public class AccountController<TUser, TKey> : Controller
     {
         var vm = new LogoutViewModel { LogoutId = logoutId, ShowLogoutPrompt = AccountOptions.ShowLogoutPrompt };
 
-        if (User?.Identity.IsAuthenticated != true)
+        if (User.Identity != null && !User.Identity.IsAuthenticated != true)
         {
             // if the user is not authenticated, then just show logged out page
             vm.ShowLogoutPrompt = false;
@@ -723,7 +724,7 @@ public class AccountController<TUser, TKey> : Controller
             LogoutId = logoutId
         };
 
-        if (User?.Identity.IsAuthenticated == true)
+        if (User?.Identity?.IsAuthenticated == true)
         {
             var idp = User.FindFirst(JwtClaimTypes.IdentityProvider)?.Value;
             if (idp != null && idp != IdentityServerConstants.LocalIdentityProvider)

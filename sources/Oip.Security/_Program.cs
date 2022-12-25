@@ -5,13 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using NLog;
+using NLog.Web;
 using Oip.Security.Common.Configuration.Helpers;
 using Oip.Security.Dal.Common.DbContexts;
 using Oip.Security.Dal.Common.Entities.Identity;
 using Oip.Security.Dal.Configuration;
 using Oip.Security.Dal.Shared.Entities.Identity;
 using Oip.Security.Dal.Shared.Helpers;
-using Serilog;
 using Skoruba.IdentityServer4.Shared.Configuration.Helpers;
 
 namespace Oip.Security;
@@ -23,14 +25,11 @@ public class Program
 
     public static async Task Main(string[] args)
     {
-        var configuration = GetConfiguration(args);
-
-        Log.Logger = new LoggerConfiguration()
-            .ReadFrom.Configuration(configuration)
-            .CreateLogger();
-
+        var logger = LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
         try
         {
+            var configuration = GetConfiguration(args);
+
             DockerHelpers.ApplyDockerConfiguration(configuration);
 
             var host = CreateHostBuilder(args).Build();
@@ -48,11 +47,11 @@ public class Program
         }
         catch (Exception ex)
         {
-            Log.Error(ex, "Host terminated unexpectedly");
+            logger.Fatal(ex, "Host terminated unexpectedly");
         }
         finally
         {
-            Log.CloseAndFlush();
+            LogManager.Shutdown();
         }
     }
 
@@ -81,9 +80,7 @@ public class Program
         var configurationBuilder = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile("appsettings.json", false, true)
-            .AddJsonFile($"appsettings.{environment}.json", true, true)
-            .AddJsonFile("serilog.json", true, true)
-            .AddJsonFile($"serilog.{environment}.json", true, true);
+            .AddJsonFile($"appsettings.{environment}.json", true, true);
 
         if (isDevelopment) configurationBuilder.AddUserSecrets<Startup>(true);
 
@@ -100,19 +97,17 @@ public class Program
     public static IHostBuilder CreateHostBuilder(string[] args)
     {
         return Host.CreateDefaultBuilder(args)
+            .ConfigureLogging(x =>
+                x.ClearProviders()
+            )
             .ConfigureAppConfiguration((hostContext, configApp) =>
             {
                 var configurationRoot = configApp.Build();
 
-                configApp.AddJsonFile("serilog.json", true, true);
                 configApp.AddJsonFile("identitydata.json", true, true);
                 configApp.AddJsonFile("identityserverdata.json", true, true);
 
                 var env = hostContext.HostingEnvironment;
-
-                configApp.AddJsonFile($"serilog.{env.EnvironmentName}.json", true, true);
-                configApp.AddJsonFile($"identitydata.{env.EnvironmentName}.json", true, true);
-                configApp.AddJsonFile($"identityserverdata.{env.EnvironmentName}.json", true, true);
 
                 if (env.IsDevelopment()) configApp.AddUserSecrets<Startup>(true);
 
@@ -125,12 +120,6 @@ public class Program
             {
                 webBuilder.ConfigureKestrel(options => options.AddServerHeader = false);
                 webBuilder.UseStartup<Startup>();
-            })
-            .UseSerilog((hostContext, loggerConfig) =>
-            {
-                loggerConfig
-                    .ReadFrom.Configuration(hostContext.Configuration)
-                    .Enrich.WithProperty("ApplicationName", hostContext.HostingEnvironment.ApplicationName);
             });
     }
 }

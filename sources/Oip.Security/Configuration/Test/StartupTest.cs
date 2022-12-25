@@ -10,9 +10,9 @@ public class StartupTest : Startup
     {
     }
 
-    public override void ConfigureUIOptions(IdentityServer4AdminUIOptions options)
+    public override void ConfigureUiOptions(IdentityServer4AdminUiOptions options)
     {
-        base.ConfigureUIOptions(options);
+        base.ConfigureUiOptions(options);
 
         // Use staging DbContexts and auth services.
         options.Testing.IsStaging = true;

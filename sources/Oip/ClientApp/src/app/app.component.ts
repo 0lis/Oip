@@ -6,7 +6,7 @@ import {AppInfoService, AuthService, ScreenService} from './shared/services';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent  {
+export class AppComponent {
   constructor(private authService: AuthService, private screen: ScreenService, public appInfo: AppInfoService) {
   }
 

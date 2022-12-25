@@ -5,9 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Oip.Security.Common.Configuration.Helpers;
-using Serilog;
 using Skoruba.IdentityServer4.Shared.Configuration.Helpers;
-using Skoruba.IdentityServer4.STS.Identity;
 using NLog;
 using NLog.Web;
 
@@ -19,7 +17,7 @@ public class Program
     {
         var logger = LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
         var configuration = GetConfiguration(args);
-        
+
         try
         {
             DockerHelpers.ApplyDockerConfiguration(configuration);
@@ -45,9 +43,7 @@ public class Program
         var configurationBuilder = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile("appsettings.json", false, true)
-            .AddJsonFile($"appsettings.{environment}.json", true, true)
-            .AddJsonFile("serilog.json", true, true)
-            .AddJsonFile($"serilog.{environment}.json", true, true);
+            .AddJsonFile($"appsettings.{environment}.json", true, true);
 
         if (isDevelopment) configurationBuilder.AddUserSecrets<Startup>(true);
 
@@ -85,7 +81,6 @@ public class Program
             {
                 webBuilder.ConfigureKestrel(options => options.AddServerHeader = false);
                 webBuilder.UseStartup<Startup>();
-
             })
             .ConfigureLogging(x => x.ClearProviders())
             .UseNLog();

@@ -22,7 +22,7 @@ public static class OipWebApplication
         builder.Services.AddSwaggerGen(options =>
         {
             options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory,
-                    $"{Assembly.GetExecutingAssembly().GetName().Name}.xml"));
+                $"{Assembly.GetExecutingAssembly().GetName().Name}.xml"));
         });
         builder.Services.AddControllersWithViews();
         builder.Logging.ClearProviders();

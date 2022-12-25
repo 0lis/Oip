@@ -1,15 +1,11 @@
 ﻿using System.Collections.Generic;
+using Oip.Security.Api.Dtos.ApiResources;
 
-namespace Oip.Security.Api.Dtos.ApiResources;
+namespace Oip.Security.Api.Models.ApiResources;
 
 public class ApiResourcePropertiesApiDto
 {
-    public ApiResourcePropertiesApiDto()
-    {
-        ApiResourceProperties = new List<ApiResourcePropertyApiDto>();
-    }
-
-    public List<ApiResourcePropertyApiDto> ApiResourceProperties { get; set; }
+    public List<ApiResourcePropertyApiDto> ApiResourceProperties { get; set; } = new();
 
     public int TotalCount { get; set; }
 

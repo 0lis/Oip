@@ -9,7 +9,7 @@ using Skoruba.IdentityServer4.Shared.Configuration.Configuration.Common;
 // ReSharper disable once CheckNamespace
 namespace Microsoft.Extensions.DependencyInjection;
 
-public class IdentityServer4AdminUIOptions
+public class IdentityServer4AdminUiOptions
 {
     /// <summary>
     ///     The settings for test deployments.

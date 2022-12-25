@@ -5,6 +5,7 @@ using Oip.Security.Api.Configuration.Constants;
 using Oip.Security.Api.Dtos.ApiResources;
 using Oip.Security.Api.ExceptionHandling;
 using Oip.Security.Api.Mappers;
+using Oip.Security.Api.Models.ApiResources;
 using Oip.Security.Api.Resources;
 using Oip.Security.Bl.Dtos.Configuration;
 using Oip.Security.Bl.Services.Interfaces;
