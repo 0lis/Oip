@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Logging;
+using Oip.Security.Shared.Configuration.Configuration.Email;
 using SendGrid;
 using SendGrid.Helpers.Mail;
-using Skoruba.IdentityServer4.Shared.Configuration.Configuration.Email;
 
 namespace Oip.Security.Common.Configuration.Email;
 

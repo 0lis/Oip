@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Oip.Security.Shared.Configuration.Helpers;
 using Oip.Security.UI.Configuration.Constants;
 using Oip.Security.UI.ExceptionHandling;
-using Skoruba.IdentityServer4.Shared.Configuration.Helpers;
 
 namespace Oip.Security.UI.Areas.AdminUI.Controllers;
 

@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Oip.Security.Common.Configuration.Helpers;
-using Skoruba.IdentityServer4.Shared.Configuration.Helpers;
 using NLog;
 using NLog.Web;
+using Oip.Security.Common.Configuration.Helpers;
+using Oip.Security.Shared.Configuration.Helpers;
 
 namespace Oip.Security.STS.Identity;
 
@@ -64,11 +64,7 @@ public class Program
             {
                 var configurationRoot = configApp.Build();
 
-                configApp.AddJsonFile("serilog.json", true, true);
-
                 var env = hostContext.HostingEnvironment;
-
-                configApp.AddJsonFile($"serilog.{env.EnvironmentName}.json", true, true);
 
                 if (env.IsDevelopment()) configApp.AddUserSecrets<Startup>(true);
 

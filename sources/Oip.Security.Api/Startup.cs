@@ -19,9 +19,9 @@ using Oip.Security.Common.Configuration.Helpers;
 using Oip.Security.Dal.Common.DbContexts;
 using Oip.Security.Dal.Common.Entities.Identity;
 using Oip.Security.Dal.Shared.Entities.Identity;
+using Oip.Security.Shared.Dtos;
+using Oip.Security.Shared.Dtos.Identity;
 using Skoruba.AuditLogging.EntityFramework.Entities;
-using Skoruba.IdentityServer4.Shared.Dtos;
-using Skoruba.IdentityServer4.Shared.Dtos.Identity;
 
 namespace Oip.Security.Api;
 

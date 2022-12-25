@@ -21,7 +21,7 @@ public static class MigrationAssemblyConfiguration
             DatabaseProviderType.MySql =>
                 GetNameFromAssembly(typeof(MySqlMigrationAssembly)),
             DatabaseProviderType.Sqlite =>
-                typeof(SqliteMigrationAssembly).GetTypeInfo().Assembly.GetName().Name,
+                GetNameFromAssembly(typeof(SqliteMigrationAssembly)),
             _ => throw new ArgumentOutOfRangeException()
         };
     }

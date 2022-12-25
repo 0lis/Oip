@@ -14,7 +14,7 @@ using Oip.Security.Dal.Common.Entities.Identity;
 using Oip.Security.Dal.Configuration;
 using Oip.Security.Dal.Shared.Entities.Identity;
 using Oip.Security.Dal.Shared.Helpers;
-using Skoruba.IdentityServer4.Shared.Configuration.Helpers;
+using Oip.Security.Shared.Configuration.Helpers;
 
 namespace Oip.Security;
 

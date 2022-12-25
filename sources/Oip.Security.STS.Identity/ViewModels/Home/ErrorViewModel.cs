@@ -6,7 +6,7 @@
 
 using IdentityServer4.Models;
 
-namespace Skoruba.IdentityServer4.STS.Identity.ViewModels.Home;
+namespace Oip.Security.STS.Identity.ViewModels.Home;
 
 public class ErrorViewModel
 {

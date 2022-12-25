@@ -10,10 +10,10 @@ using Oip.Security.Common.Configuration.Helpers;
 using Oip.Security.Dal.Common.DbContexts;
 using Oip.Security.Dal.Common.Entities.Identity;
 using Oip.Security.Dal.Shared.Entities.Identity;
+using Oip.Security.STS.Identity.Configuration;
+using Oip.Security.STS.Identity.Configuration.Constants;
+using Oip.Security.STS.Identity.Configuration.Interfaces;
 using Oip.Security.STS.Identity.Helpers;
-using Skoruba.IdentityServer4.STS.Identity.Configuration;
-using Skoruba.IdentityServer4.STS.Identity.Configuration.Constants;
-using Skoruba.IdentityServer4.STS.Identity.Configuration.Interfaces;
 
 namespace Oip.Security.STS.Identity;
 
@@ -25,8 +25,8 @@ public class Startup
         Environment = environment;
     }
 
-    public IConfiguration Configuration { get; }
-    public IWebHostEnvironment Environment { get; }
+    private IConfiguration Configuration { get; }
+    private IWebHostEnvironment Environment { get; }
 
     public void ConfigureServices(IServiceCollection services)
     {
@@ -128,7 +128,7 @@ public class Startup
         });
     }
 
-    protected IRootConfiguration CreateRootConfiguration()
+    private IRootConfiguration CreateRootConfiguration()
     {
         var rootConfiguration = new RootConfiguration();
         Configuration.GetSection(ConfigurationConsts.AdminConfigurationKey).Bind(rootConfiguration.AdminConfiguration);

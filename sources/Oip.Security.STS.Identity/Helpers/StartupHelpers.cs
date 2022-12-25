@@ -25,14 +25,13 @@ using Oip.Security.Dal.Interfaces;
 using Oip.Security.Dal.MySql.Extensions;
 using Oip.Security.Dal.Sqlite.Extensions;
 using Oip.Security.Dal.SqlServer.Extensions;
-using Skoruba.IdentityServer4.Shared.Configuration.Authentication;
-using Skoruba.IdentityServer4.Shared.Configuration.Configuration.Identity;
-using Skoruba.IdentityServer4.STS.Identity.Configuration;
-using Skoruba.IdentityServer4.STS.Identity.Configuration.ApplicationParts;
-using Skoruba.IdentityServer4.STS.Identity.Configuration.Constants;
-using Skoruba.IdentityServer4.STS.Identity.Configuration.Interfaces;
-using Skoruba.IdentityServer4.STS.Identity.Helpers;
-using Skoruba.IdentityServer4.STS.Identity.Helpers.Localization;
+using Oip.Security.Shared.Configuration.Authentication;
+using Oip.Security.Shared.Configuration.Configuration.Identity;
+using Oip.Security.STS.Identity.Configuration;
+using Oip.Security.STS.Identity.Configuration.ApplicationParts;
+using Oip.Security.STS.Identity.Configuration.Constants;
+using Oip.Security.STS.Identity.Configuration.Interfaces;
+using Oip.Security.STS.Identity.Helpers.Localization;
 
 namespace Oip.Security.STS.Identity.Helpers;
 
@@ -189,6 +188,7 @@ public static class StartupHelpers
     /// <typeparam name="TConfigurationDbContext"></typeparam>
     /// <typeparam name="TPersistedGrantDbContext"></typeparam>
     /// <typeparam name="TIdentityDbContext"></typeparam>
+    /// <typeparam name="TDataProtectionDbContext"></typeparam>
     /// <param name="services"></param>
     /// <param name="configuration"></param>
     public static void RegisterDbContexts<TIdentityDbContext, TConfigurationDbContext, TPersistedGrantDbContext,
@@ -240,6 +240,7 @@ public static class StartupHelpers
     /// <typeparam name="TConfigurationDbContext"></typeparam>
     /// <typeparam name="TPersistedGrantDbContext"></typeparam>
     /// <typeparam name="TIdentityDbContext"></typeparam>
+    /// <typeparam name="TDataProtectionDbContext"></typeparam>
     /// <param name="services"></param>
     public static void RegisterDbContextsStaging<TIdentityDbContext, TConfigurationDbContext, TPersistedGrantDbContext,
         TDataProtectionDbContext>(

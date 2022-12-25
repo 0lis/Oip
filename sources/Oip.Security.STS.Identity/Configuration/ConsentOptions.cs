@@ -4,14 +4,14 @@
 // Original file: https://github.com/IdentityServer/IdentityServer4.Quickstart.UI
 // Modified by Jan Škoruba
 
-namespace Skoruba.IdentityServer4.STS.Identity.Configuration;
+namespace Oip.Security.STS.Identity.Configuration;
 
 public class ConsentOptions
 {
-    public static bool EnableOfflineAccess = true;
-    public static string OfflineAccessDisplayName = "Offline Access";
+    public static readonly bool EnableOfflineAccess = true;
+    public static readonly string OfflineAccessDisplayName = "Offline Access";
 
-    public static string OfflineAccessDescription =
+    public static readonly string OfflineAccessDescription =
         "Access to your applications and resources, even when you are offline";
 
     public static readonly string MustChooseOneErrorMessage = "You must pick at least one permission";

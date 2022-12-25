@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace Skoruba.IdentityServer4.STS.Identity.Helpers;
+namespace Oip.Security.STS.Identity.Helpers;
 
 public class ApplicationSignInManager<TUser> : SignInManager<TUser>
     where TUser : class

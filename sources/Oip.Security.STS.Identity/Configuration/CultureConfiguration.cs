@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Skoruba.IdentityServer4.STS.Identity.Configuration;
+namespace Oip.Security.STS.Identity.Configuration;
 
 public class CultureConfiguration
 {
@@ -8,7 +8,6 @@ public class CultureConfiguration
         { "en", "fa", "fr", "ru", "sv", "zh", "es", "da", "de", "nl", "fi", "pt" };
 
     public static readonly string DefaultRequestCulture = "en";
-
     public List<string> Cultures { get; set; }
     public string DefaultCulture { get; set; } = DefaultRequestCulture;
 }

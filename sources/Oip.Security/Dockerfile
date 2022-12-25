@@ -17,8 +17,8 @@ COPY ["src/Oip.Security.Bl.Shared/Oip.Security.Bl.Shared.csproj", "src/Oip.Secur
 COPY ["src/Oip.Security.EntityFramework.PostgreSQL/Oip.Security.EntityFramework.PostgreSQL.csproj", "src/Oip.Security.EntityFramework.PostgreSQL/"]
 COPY ["src/Oip.Security.Bl.Identity/Oip.Security.Bl.csproj", "src/Oip.Security.Bl.Identity/"]
 COPY ["src/Oip.Security.UI/Oip.Security.UI.csproj", "src/Oip.Security.UI/"]
-COPY ["src/Skoruba.IdentityServer4.Shared.Configuration/Skoruba.IdentityServer4.Shared.Configuration.csproj", "src/Skoruba.IdentityServer4.Shared.Configuration/"]
-COPY ["src/Skoruba.IdentityServer4.Shared/Skoruba.IdentityServer4.Shared.csproj", "src/Skoruba.IdentityServer4.Shared/"]
+COPY ["src/Oip.Security.Shared.Configuration/Oip.Security.Shared.Configuration.csproj", "src/Oip.Security.Shared.Configuration/"]
+COPY ["src/Oip.Security.Shared/Oip.Security.Shared.csproj", "src/Oip.Security.Shared/"]
 COPY ["src/Oip.Security.EntityFramework.SqlServer/Oip.Security.EntityFramework.SqlServer.csproj", "src/Oip.Security.EntityFramework.SqlServer/"]
 RUN dotnet restore "src/Oip.Security/Oip.Security.csproj"
 COPY . .

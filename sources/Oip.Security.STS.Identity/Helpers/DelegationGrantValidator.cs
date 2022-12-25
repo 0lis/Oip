@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using IdentityServer4.Models;
 using IdentityServer4.Validation;
 
-namespace Skoruba.IdentityServer4.STS.Identity.Helpers;
+namespace Oip.Security.STS.Identity.Helpers;
 
 public class DelegationGrantValidator : IExtensionGrantValidator
 {

@@ -3,7 +3,7 @@ using System.Linq;
 using System.Net.Http;
 using Microsoft.Net.Http.Headers;
 
-namespace Skoruba.IdentityServer4.STS.Identity.IntegrationTests.Common;
+namespace Oip.Security.STS.Identity.IntegrationTests.Common;
 
 public static class CookiesHelper
 {

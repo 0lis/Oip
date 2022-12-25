@@ -6,7 +6,6 @@ import {User, UserManager, UserManagerSettings} from 'oidc-client';
 import {BehaviorSubject} from 'rxjs';
 import {BaseService} from "./base.service";
 import {ConfigService} from './config.service';
-import {FF_MINUS} from "@angular/cdk/keycodes";
 
 export interface IUser {
   name: string;

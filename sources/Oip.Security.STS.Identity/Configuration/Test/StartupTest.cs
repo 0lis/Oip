@@ -2,10 +2,9 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Oip.Security.Dal.Common.DbContexts;
-using Oip.Security.STS.Identity;
 using Oip.Security.STS.Identity.Helpers;
 
-namespace Skoruba.IdentityServer4.STS.Identity.Configuration.Test;
+namespace Oip.Security.STS.Identity.Configuration.Test;
 
 public class StartupTest : Startup
 {

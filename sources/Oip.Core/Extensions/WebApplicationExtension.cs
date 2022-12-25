@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Hosting;
-using NLog;
-using NLog.Web;
 
 namespace Microsoft.Extensions.DependencyInjection;
 

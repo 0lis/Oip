@@ -1,4 +1,4 @@
-﻿namespace Skoruba.IdentityServer4.Shared.Configuration.Configuration.Common;
+﻿namespace Oip.Security.Shared.Configuration.Configuration.Common;
 
 public class DockerConfiguration
 {

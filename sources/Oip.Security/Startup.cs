@@ -11,9 +11,9 @@ using Oip.Security.Dal.Common.DbContexts;
 using Oip.Security.Dal.Common.Entities.Identity;
 using Oip.Security.Dal.Shared.Entities.Identity;
 using Oip.Security.Helpers;
+using Oip.Security.Shared.Dtos;
+using Oip.Security.Shared.Dtos.Identity;
 using Skoruba.AuditLogging.EntityFramework.Entities;
-using Skoruba.IdentityServer4.Shared.Dtos;
-using Skoruba.IdentityServer4.Shared.Dtos.Identity;
 
 namespace Oip.Security;
 
@@ -26,9 +26,9 @@ public class Startup
         Configuration = configuration;
     }
 
-    public IConfiguration Configuration { get; }
+    private IConfiguration Configuration { get; }
 
-    public IWebHostEnvironment HostingEnvironment { get; }
+    private IWebHostEnvironment HostingEnvironment { get; }
 
     public void ConfigureServices(IServiceCollection services)
     {

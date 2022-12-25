@@ -1,4 +1,4 @@
-﻿namespace Skoruba.IdentityServer4.STS.Identity.Configuration.Constants;
+﻿namespace Oip.Security.STS.Identity.Configuration.Constants;
 
 public class ConfigurationConsts
 {

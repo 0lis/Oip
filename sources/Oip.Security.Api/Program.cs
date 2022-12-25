@@ -6,8 +6,8 @@ using Microsoft.Extensions.Hosting;
 using NLog;
 using NLog.Web;
 using Oip.Security.Common.Configuration.Helpers;
+using Oip.Security.Shared.Configuration.Helpers;
 using Serilog;
-using Skoruba.IdentityServer4.Shared.Configuration.Helpers;
 
 namespace Oip.Security.Api;
 
@@ -16,8 +16,6 @@ public class Program
     public static void Main(string[] args)
     {
         var logger = LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
-
-
         try
         {
             var configuration = GetConfiguration(args);
@@ -43,9 +41,7 @@ public class Program
         var configurationBuilder = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile("appsettings.json", false, true)
-            .AddJsonFile($"appsettings.{environment}.json", true, true)
-            .AddJsonFile("serilog.json", true, true)
-            .AddJsonFile($"serilog.{environment}.json", true, true);
+            .AddJsonFile($"appsettings.{environment}.json", true, true);
 
         if (isDevelopment) configurationBuilder.AddUserSecrets<Startup>(true);
 
@@ -59,19 +55,13 @@ public class Program
         return configurationBuilder.Build();
     }
 
-    public static IHostBuilder CreateHostBuilder(string[] args)
+    private static IHostBuilder CreateHostBuilder(string[] args)
     {
         return Host.CreateDefaultBuilder(args)
             .ConfigureAppConfiguration((hostContext, configApp) =>
             {
                 var configurationRoot = configApp.Build();
-
-                configApp.AddJsonFile("serilog.json", true, true);
-
                 var env = hostContext.HostingEnvironment;
-
-                configApp.AddJsonFile($"serilog.{env.EnvironmentName}.json", true, true);
-
                 if (env.IsDevelopment()) configApp.AddUserSecrets<Startup>(true);
 
                 configurationRoot.AddAzureKeyVaultConfiguration(configApp);

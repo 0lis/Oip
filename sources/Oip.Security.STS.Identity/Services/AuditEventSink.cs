@@ -3,7 +3,7 @@ using IdentityServer4.Events;
 using IdentityServer4.Services;
 using Microsoft.Extensions.Logging;
 
-namespace Skoruba.IdentityServer4.STS.Identity.Services;
+namespace Oip.Security.STS.Identity.Services;
 
 public class AuditEventSink : DefaultEventSink
 {

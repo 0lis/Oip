@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Oip.Security.Dal.Configuration;
+using Oip.Security.Shared.Configuration.Configuration.Common;
 using Oip.Security.UI.Configuration;
 using Oip.Security.UI.Configuration.Constants;
-using Skoruba.IdentityServer4.Shared.Configuration.Configuration.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Microsoft.Extensions.DependencyInjection;

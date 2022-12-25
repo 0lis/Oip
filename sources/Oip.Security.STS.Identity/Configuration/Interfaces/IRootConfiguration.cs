@@ -1,6 +1,6 @@
-﻿using Skoruba.IdentityServer4.Shared.Configuration.Configuration.Identity;
+﻿using Oip.Security.Shared.Configuration.Configuration.Identity;
 
-namespace Skoruba.IdentityServer4.STS.Identity.Configuration.Interfaces;
+namespace Oip.Security.STS.Identity.Configuration.Interfaces;
 
 public interface IRootConfiguration
 {

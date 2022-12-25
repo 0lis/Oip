@@ -24,12 +24,11 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
-using Skoruba.IdentityServer4.Shared.Configuration.Configuration.Identity;
-using Skoruba.IdentityServer4.STS.Identity.Configuration;
-using Skoruba.IdentityServer4.STS.Identity.Controllers;
-using Skoruba.IdentityServer4.STS.Identity.Helpers;
-using Skoruba.IdentityServer4.STS.Identity.Helpers.Localization;
-using Skoruba.IdentityServer4.STS.Identity.ViewModels.Account;
+using Oip.Security.Shared.Configuration.Configuration.Identity;
+using Oip.Security.STS.Identity.Configuration;
+using Oip.Security.STS.Identity.Helpers;
+using Oip.Security.STS.Identity.Helpers.Localization;
+using Oip.Security.STS.Identity.ViewModels.Account;
 
 namespace Oip.Security.STS.Identity.Controllers;
 

@@ -4,7 +4,7 @@ using System.Net.Mail;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Logging;
-using Skoruba.IdentityServer4.Shared.Configuration.Configuration.Email;
+using Oip.Security.Shared.Configuration.Configuration.Email;
 
 namespace Oip.Security.Common.Configuration.Email;
 

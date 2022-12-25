@@ -7,9 +7,9 @@
 using System;
 using IdentityServer4.Models;
 using Microsoft.AspNetCore.Mvc;
-using Skoruba.IdentityServer4.STS.Identity.ViewModels.Account;
+using Oip.Security.STS.Identity.ViewModels.Account;
 
-namespace Skoruba.IdentityServer4.STS.Identity.Helpers;
+namespace Oip.Security.STS.Identity.Helpers;
 
 public static class Extensions
 {

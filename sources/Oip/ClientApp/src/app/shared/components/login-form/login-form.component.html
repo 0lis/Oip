@@ -3,9 +3,9 @@
 
     <dxi-item [editorOptions]="{ stylingMode: 'filled', placeholder: 'User', mode: 'user' }"
               dataField="login"
-              text="admin"
+              editorType="dxTextBox"
 
-              editorType="dxTextBox">
+              text="admin">
       <dxi-validation-rule message="Email is required" type="required"></dxi-validation-rule>
       <dxo-label [visible]="false"></dxo-label>
     </dxi-item>

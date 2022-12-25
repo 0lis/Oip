@@ -10,9 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.AzureKeyVault;
 using Microsoft.Extensions.DependencyInjection;
 using Oip.Security.Common.Configuration.Email;
+using Oip.Security.Shared.Configuration.Configuration.Common;
+using Oip.Security.Shared.Configuration.Configuration.Email;
 using SendGrid;
-using Skoruba.IdentityServer4.Shared.Configuration.Configuration.Common;
-using Skoruba.IdentityServer4.Shared.Configuration.Configuration.Email;
 
 namespace Oip.Security.Common.Configuration.Helpers;
 
@@ -63,44 +63,38 @@ public static class StartupHelpers
             .SetApplicationName("Skoruba.IdentityServer4")
             .PersistKeysToDbContext<TDbContext>();
 
-        if (dataProtectionConfiguration.ProtectKeysWithAzureKeyVault)
-        {
-            if (azureKeyVaultConfiguration.UseClientCredentials)
-                dataProtectionBuilder.ProtectKeysWithAzureKeyVault(
-                    new Uri(azureKeyVaultConfiguration.DataProtectionKeyIdentifier),
-                    new ClientSecretCredential(azureKeyVaultConfiguration.TenantId,
-                        azureKeyVaultConfiguration.ClientId, azureKeyVaultConfiguration.ClientSecret));
-            else
-                dataProtectionBuilder.ProtectKeysWithAzureKeyVault(
-                    new Uri(azureKeyVaultConfiguration.DataProtectionKeyIdentifier), new DefaultAzureCredential());
-        }
+        if (!dataProtectionConfiguration.ProtectKeysWithAzureKeyVault) return;
+        if (azureKeyVaultConfiguration.UseClientCredentials)
+            dataProtectionBuilder.ProtectKeysWithAzureKeyVault(
+                new Uri(azureKeyVaultConfiguration.DataProtectionKeyIdentifier),
+                new ClientSecretCredential(azureKeyVaultConfiguration.TenantId,
+                    azureKeyVaultConfiguration.ClientId, azureKeyVaultConfiguration.ClientSecret));
+        else
+            dataProtectionBuilder.ProtectKeysWithAzureKeyVault(
+                new Uri(azureKeyVaultConfiguration.DataProtectionKeyIdentifier), new DefaultAzureCredential());
     }
 
     public static void AddAzureKeyVaultConfiguration(this IConfiguration configuration,
         IConfigurationBuilder configurationBuilder)
     {
-        if (configuration.GetSection(nameof(AzureKeyVaultConfiguration)).Exists())
+        if (!configuration.GetSection(nameof(AzureKeyVaultConfiguration)).Exists()) return;
+        var azureKeyVaultConfiguration = configuration.GetSection(nameof(AzureKeyVaultConfiguration))
+            .Get<AzureKeyVaultConfiguration>();
+
+        if (!azureKeyVaultConfiguration.ReadConfigurationFromKeyVault) return;
+        if (azureKeyVaultConfiguration.UseClientCredentials)
         {
-            var azureKeyVaultConfiguration = configuration.GetSection(nameof(AzureKeyVaultConfiguration))
-                .Get<AzureKeyVaultConfiguration>();
+            configurationBuilder.AddAzureKeyVault(azureKeyVaultConfiguration.AzureKeyVaultEndpoint,
+                azureKeyVaultConfiguration.ClientId, azureKeyVaultConfiguration.ClientSecret);
+        }
+        else
+        {
+            var keyVaultClient = new KeyVaultClient(
+                new KeyVaultClient.AuthenticationCallback(new AzureServiceTokenProvider()
+                    .KeyVaultTokenCallback));
 
-            if (azureKeyVaultConfiguration.ReadConfigurationFromKeyVault)
-            {
-                if (azureKeyVaultConfiguration.UseClientCredentials)
-                {
-                    configurationBuilder.AddAzureKeyVault(azureKeyVaultConfiguration.AzureKeyVaultEndpoint,
-                        azureKeyVaultConfiguration.ClientId, azureKeyVaultConfiguration.ClientSecret);
-                }
-                else
-                {
-                    var keyVaultClient = new KeyVaultClient(
-                        new KeyVaultClient.AuthenticationCallback(new AzureServiceTokenProvider()
-                            .KeyVaultTokenCallback));
-
-                    configurationBuilder.AddAzureKeyVault(azureKeyVaultConfiguration.AzureKeyVaultEndpoint,
-                        keyVaultClient, new DefaultKeyVaultSecretManager());
-                }
-            }
+            configurationBuilder.AddAzureKeyVault(azureKeyVaultConfiguration.AzureKeyVaultEndpoint,
+                keyVaultClient, new DefaultKeyVaultSecretManager());
         }
     }
 }

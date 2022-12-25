@@ -4,7 +4,7 @@
 
 using Microsoft.AspNetCore.Http;
 
-namespace Skoruba.IdentityServer4.Shared.Configuration.Authentication;
+namespace Oip.Security.Shared.Configuration.Authentication;
 
 public static class AuthenticationHelpers
 {

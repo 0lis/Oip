@@ -35,6 +35,7 @@ using Oip.Security.Dal.Repositories;
 using Oip.Security.Dal.Repositories.Interfaces;
 using Oip.Security.Dal.Sqlite.Extensions;
 using Oip.Security.Dal.SqlServer.Extensions;
+using Oip.Security.Shared.Configuration.Authentication;
 using Oip.Security.UI.Configuration;
 using Oip.Security.UI.Configuration.ApplicationParts;
 using Oip.Security.UI.Configuration.Constants;
@@ -46,7 +47,6 @@ using Skoruba.AuditLogging.EntityFramework.Entities;
 using Skoruba.AuditLogging.EntityFramework.Extensions;
 using Skoruba.AuditLogging.EntityFramework.Repositories;
 using Skoruba.AuditLogging.EntityFramework.Services;
-using Skoruba.IdentityServer4.Shared.Configuration.Authentication;
 
 namespace Oip.Security.UI.Helpers;
 

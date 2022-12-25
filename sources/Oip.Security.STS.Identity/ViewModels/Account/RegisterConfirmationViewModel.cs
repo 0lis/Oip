@@ -1,4 +1,4 @@
-﻿namespace Skoruba.IdentityServer4.STS.Identity.ViewModels.Account;
+﻿namespace Oip.Security.STS.Identity.ViewModels.Account;
 
 public class RegisterConfirmationViewModel
 {

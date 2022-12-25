@@ -4,10 +4,10 @@ using System.Security.Cryptography.X509Certificates;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Oip.Security.Common.Configuration.Configuration.Common;
-using Skoruba.IdentityServer4.Shared.Configuration.Configuration.Common;
-using Skoruba.IdentityServer4.Shared.Configuration.Helpers;
+using Oip.Security.Shared.Configuration.Configuration.Common;
+using Oip.Security.Shared.Configuration.Helpers;
 
-namespace Skoruba.IdentityServer4.STS.Identity.Helpers;
+namespace Oip.Security.STS.Identity.Helpers;
 
 public static class IdentityServerBuilderExtensions
 {
