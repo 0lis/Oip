@@ -3,7 +3,7 @@ using Oip.Security.Dal.Constants;
 using Oip.Security.Dal.Entities;
 using Oip.Security.Dal.Interfaces;
 
-namespace Oip.Security.Dal.Common.DbContexts;
+namespace Oip.Security.Dal.DbContexts;
 
 public class AdminLogDbContext : DbContext, IAdminLogDbContext
 {
@@ -17,12 +17,6 @@ public class AdminLogDbContext : DbContext, IAdminLogDbContext
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
-
-        ConfigureLogContext(builder);
-    }
-
-    private void ConfigureLogContext(ModelBuilder builder)
-    {
         builder.Entity<Log>(log =>
         {
             log.ToTable(TableConsts.Logging);

@@ -41,6 +41,7 @@ public static class StartupHelpers
     ///     Register services for MVC and localization including available languages
     /// </summary>
     /// <param name="services"></param>
+    /// <param name="configuration"></param>
     public static IMvcBuilder AddMvcWithLocalization<TUser, TKey>(this IServiceCollection services,
         IConfiguration configuration)
         where TUser : IdentityUser<TKey>
@@ -441,6 +442,16 @@ public static class StartupHelpers
         });
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="services"></param>
+    /// <param name="configuration"></param>
+    /// <typeparam name="TConfigurationDbContext"></typeparam>
+    /// <typeparam name="TPersistedGrantDbContext"></typeparam>
+    /// <typeparam name="TIdentityDbContext"></typeparam>
+    /// <typeparam name="TDataProtectionDbContext"></typeparam>
+    /// <exception cref="NotImplementedException"></exception>
     public static void AddIdSHealthChecks<TConfigurationDbContext, TPersistedGrantDbContext, TIdentityDbContext,
         TDataProtectionDbContext>(this IServiceCollection services, IConfiguration configuration)
         where TConfigurationDbContext : DbContext, IAdminConfigurationDbContext
@@ -459,58 +470,57 @@ public static class StartupHelpers
 
         var serviceProvider = services.BuildServiceProvider();
         var scopeFactory = serviceProvider.GetRequiredService<IServiceScopeFactory>();
-        using (var scope = scopeFactory.CreateScope())
+        
+        using var scope = scopeFactory.CreateScope();
+        var configurationTableName =
+            DbContextHelpers.GetEntityTable<TConfigurationDbContext>(scope.ServiceProvider);
+        var persistedGrantTableName =
+            DbContextHelpers.GetEntityTable<TPersistedGrantDbContext>(scope.ServiceProvider);
+        var identityTableName = DbContextHelpers.GetEntityTable<TIdentityDbContext>(scope.ServiceProvider);
+        var dataProtectionTableName =
+            DbContextHelpers.GetEntityTable<TDataProtectionDbContext>(scope.ServiceProvider);
+
+        var databaseProvider = configuration.GetSection(nameof(DatabaseProviderConfiguration))
+            .Get<DatabaseProviderConfiguration>();
+        switch (databaseProvider.ProviderType)
         {
-            var configurationTableName =
-                DbContextHelpers.GetEntityTable<TConfigurationDbContext>(scope.ServiceProvider);
-            var persistedGrantTableName =
-                DbContextHelpers.GetEntityTable<TPersistedGrantDbContext>(scope.ServiceProvider);
-            var identityTableName = DbContextHelpers.GetEntityTable<TIdentityDbContext>(scope.ServiceProvider);
-            var dataProtectionTableName =
-                DbContextHelpers.GetEntityTable<TDataProtectionDbContext>(scope.ServiceProvider);
+            case DatabaseProviderType.SqlServer:
+                healthChecksBuilder
+                    .AddSqlServer(configurationDbConnectionString, name: "ConfigurationDb",
+                        healthQuery: $"SELECT TOP 1 * FROM dbo.[{configurationTableName}]")
+                    .AddSqlServer(configurationDbConnectionString, name: "PersistentGrantsDb",
+                        healthQuery: $"SELECT TOP 1 * FROM dbo.[{persistedGrantTableName}]")
+                    .AddSqlServer(configurationDbConnectionString, name: "IdentityDb",
+                        healthQuery: $"SELECT TOP 1 * FROM dbo.[{identityTableName}]")
+                    .AddSqlServer(configurationDbConnectionString, name: "DataProtectionDb",
+                        healthQuery: $"SELECT TOP 1 * FROM dbo.[{dataProtectionTableName}]");
 
-            var databaseProvider = configuration.GetSection(nameof(DatabaseProviderConfiguration))
-                .Get<DatabaseProviderConfiguration>();
-            switch (databaseProvider.ProviderType)
-            {
-                case DatabaseProviderType.SqlServer:
-                    healthChecksBuilder
-                        .AddSqlServer(configurationDbConnectionString, name: "ConfigurationDb",
-                            healthQuery: $"SELECT TOP 1 * FROM dbo.[{configurationTableName}]")
-                        .AddSqlServer(configurationDbConnectionString, name: "PersistentGrantsDb",
-                            healthQuery: $"SELECT TOP 1 * FROM dbo.[{persistedGrantTableName}]")
-                        .AddSqlServer(configurationDbConnectionString, name: "IdentityDb",
-                            healthQuery: $"SELECT TOP 1 * FROM dbo.[{identityTableName}]")
-                        .AddSqlServer(configurationDbConnectionString, name: "DataProtectionDb",
-                            healthQuery: $"SELECT TOP 1 * FROM dbo.[{dataProtectionTableName}]");
-
-                    break;
-                case DatabaseProviderType.PostgreSql:
-                    healthChecksBuilder
-                        .AddNpgSql(configurationDbConnectionString, name: "ConfigurationDb",
-                            healthQuery: $"SELECT * FROM \"{configurationTableName}\" LIMIT 1")
-                        .AddNpgSql(configurationDbConnectionString, name: "PersistentGrantsDb",
-                            healthQuery: $"SELECT * FROM \"{persistedGrantTableName}\" LIMIT 1")
-                        .AddNpgSql(configurationDbConnectionString, name: "IdentityDb",
-                            healthQuery: $"SELECT * FROM \"{identityTableName}\" LIMIT 1")
-                        .AddNpgSql(configurationDbConnectionString, name: "DataProtectionDb",
-                            healthQuery: $"SELECT * FROM \"{dataProtectionTableName}\"  LIMIT 1");
-                    break;
-                case DatabaseProviderType.MySql:
-                    healthChecksBuilder
-                        .AddMySql(configurationDbConnectionString, "ConfigurationDb")
-                        .AddMySql(configurationDbConnectionString, "PersistentGrantsDb")
-                        .AddMySql(configurationDbConnectionString, "IdentityDb")
-                        .AddMySql(configurationDbConnectionString, "DataProtectionDb");
-                    break;
-                case DatabaseProviderType.Sqlite:
-                    healthChecksBuilder
-                        .AddSqlite(configurationDbConnectionString, "ConfigurationDb");
-                    break;
-                default:
-                    throw new NotImplementedException(
-                        $"Health checks not defined for database provider {databaseProvider.ProviderType}");
-            }
+                break;
+            case DatabaseProviderType.PostgreSql:
+                healthChecksBuilder
+                    .AddNpgSql(configurationDbConnectionString, name: "ConfigurationDb",
+                        healthQuery: $"SELECT * FROM \"{configurationTableName}\" LIMIT 1")
+                    .AddNpgSql(configurationDbConnectionString, name: "PersistentGrantsDb",
+                        healthQuery: $"SELECT * FROM \"{persistedGrantTableName}\" LIMIT 1")
+                    .AddNpgSql(configurationDbConnectionString, name: "IdentityDb",
+                        healthQuery: $"SELECT * FROM \"{identityTableName}\" LIMIT 1")
+                    .AddNpgSql(configurationDbConnectionString, name: "DataProtectionDb",
+                        healthQuery: $"SELECT * FROM \"{dataProtectionTableName}\"  LIMIT 1");
+                break;
+            case DatabaseProviderType.MySql:
+                healthChecksBuilder
+                    .AddMySql(configurationDbConnectionString, "ConfigurationDb")
+                    .AddMySql(configurationDbConnectionString, "PersistentGrantsDb")
+                    .AddMySql(configurationDbConnectionString, "IdentityDb")
+                    .AddMySql(configurationDbConnectionString, "DataProtectionDb");
+                break;
+            case DatabaseProviderType.Sqlite:
+                healthChecksBuilder
+                    .AddSqlite(configurationDbConnectionString, "ConfigurationDb");
+                break;
+            default:
+                throw new NotImplementedException(
+                    $"Health checks not defined for database provider {databaseProvider.ProviderType}");
         }
     }
 }

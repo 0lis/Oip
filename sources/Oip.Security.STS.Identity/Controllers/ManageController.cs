@@ -43,7 +43,8 @@ public class ManageController<TUser, TKey> : Controller
         _urlEncoder = urlEncoder;
     }
 
-    [TempData] public string StatusMessage { get; set; }
+    [TempData] 
+    public string StatusMessage { get; set; }
 
     [HttpGet]
     public async Task<IActionResult> Index()

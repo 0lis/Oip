@@ -1,4 +1,4 @@
-﻿using Oip.Security.Dal.Common.DbContexts;
+﻿using Oip.Security.Dal.DbContexts;
 
 namespace Oip.Security.Dal.Sqlite.ContextFactory;
 

@@ -3,7 +3,7 @@ using IdentityServer4.EntityFramework.Options;
 using Microsoft.EntityFrameworkCore;
 using Oip.Security.Dal.Interfaces;
 
-namespace Oip.Security.Dal.Common.DbContexts;
+namespace Oip.Security.Dal.DbContexts;
 
 public class IdentityServerPersistedGrantDbContext : PersistedGrantDbContext<IdentityServerPersistedGrantDbContext>,
     IAdminPersistedGrantDbContext

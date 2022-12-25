@@ -2,7 +2,7 @@
 using IdentityServer4.EntityFramework.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using Oip.Security.Dal.Common.DbContexts;
+using Oip.Security.Dal.DbContexts;
 
 namespace Oip.Security.Dal.Sqlite.ContextFactory;
 

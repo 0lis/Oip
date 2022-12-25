@@ -3,7 +3,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Oip.Security.Dal.Common.DbContexts;
+using Oip.Security.Dal.DbContexts;
 
 namespace Oip.Security.Dal.SqlServer.Migrations.DataProtection
 {

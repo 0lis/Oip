@@ -19,6 +19,7 @@ public class OipContext : DbContext
     protected virtual string Schema => OipSchema;
     public DbSet<Uom> Uoms => default!;
 
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         if (!string.IsNullOrWhiteSpace(Schema))

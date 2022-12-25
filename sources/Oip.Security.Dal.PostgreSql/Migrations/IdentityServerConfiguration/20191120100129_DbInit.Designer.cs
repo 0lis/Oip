@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using Oip.Security.Dal.Common.DbContexts;
+using Oip.Security.Dal.DbContexts;
 
 namespace Oip.Security.Dal.PostgreSQL.Migrations.IdentityServerConfiguration
 {

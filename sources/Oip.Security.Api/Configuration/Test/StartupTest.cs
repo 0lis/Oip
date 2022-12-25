@@ -6,8 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Oip.Security.Api.Helpers;
 using Oip.Security.Api.Middlewares;
-using Oip.Security.Dal.Common.DbContexts;
 using Oip.Security.Dal.Common.Entities.Identity;
+using Oip.Security.Dal.DbContexts;
 using Oip.Security.Dal.Shared.Entities.Identity;
 
 namespace Oip.Security.Api.Configuration.Test;

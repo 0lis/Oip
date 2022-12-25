@@ -4,7 +4,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using Oip.Security.Dal.Common.DbContexts;
+using Oip.Security.Dal.DbContexts;
 
 namespace Oip.Security.Dal.PostgreSQL.Migrations.Identity
 {

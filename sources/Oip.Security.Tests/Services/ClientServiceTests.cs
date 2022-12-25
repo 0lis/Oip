@@ -9,7 +9,7 @@ using Oip.Security.Bl.Mappers;
 using Oip.Security.Bl.Resources;
 using Oip.Security.Bl.Services;
 using Oip.Security.Bl.Services.Interfaces;
-using Oip.Security.Dal.Common.DbContexts;
+using Oip.Security.Dal.DbContexts;
 using Oip.Security.Dal.Repositories;
 using Oip.Security.Dal.Repositories.Interfaces;
 using Oip.Security.UnitTests.Mocks;
