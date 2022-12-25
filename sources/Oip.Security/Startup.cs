@@ -44,7 +44,7 @@ public class Startup
                 IdentityRoleClaimsDto, IdentityUserClaimDto, IdentityRoleClaimDto>(ConfigureUiOptions);
 
         // Monitor changes in Admin UI views
-        services.AddAdminUIRazorRuntimeCompilation(HostingEnvironment);
+        services.AddAdminUiRazorRuntimeCompilation(HostingEnvironment);
 
         // Add email senders which is currently setup for SendGrid and SMTP
         services.AddEmailSenders(Configuration);

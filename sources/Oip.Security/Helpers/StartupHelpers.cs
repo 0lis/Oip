@@ -10,7 +10,7 @@ namespace Oip.Security.Helpers;
 
 public static class StartupHelpers
 {
-    public static void AddAdminUIRazorRuntimeCompilation(this IServiceCollection services,
+    public static void AddAdminUiRazorRuntimeCompilation(this IServiceCollection services,
         IWebHostEnvironment hostingEnvironment)
     {
         if (hostingEnvironment.IsDevelopment())

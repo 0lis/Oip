@@ -10,12 +10,12 @@ using Oip.Dal.SqlServer;
 namespace Microsoft.Extensions.DependencyInjection;
 
 /// <summary>
-///     Extension for asp net for planform
+///     Extension for asp net for platform
 /// </summary>
 public static class OipServiceCollectionExtensions
 {
     /// <summary>
-    ///     Extension for asp net for planform
+    ///     Extension for asp net for platform
     /// </summary>
     /// <param name="services"></param>
     /// <param name="configure"></param>

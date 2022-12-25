@@ -12,8 +12,7 @@ using Oip.Security.Dal.Repositories.Interfaces;
 
 namespace Oip.Security.Dal.Repositories;
 
-public class LogRepository<TDbContext> : ILogRepository
-    where TDbContext : DbContext, IAdminLogDbContext
+public class LogRepository<TDbContext> : ILogRepository where TDbContext : DbContext, IAdminLogDbContext
 {
     protected readonly TDbContext DbContext;
 

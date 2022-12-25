@@ -76,37 +76,37 @@ public static class DbMigrationHelpers
         var pendingMigrationCount = 0;
         using (var scope = services.GetRequiredService<IServiceScopeFactory>().CreateScope())
         {
-            using (var context = scope.ServiceProvider.GetRequiredService<TPersistedGrantDbContext>())
+            await using (var context = scope.ServiceProvider.GetRequiredService<TPersistedGrantDbContext>())
             {
                 await context.Database.MigrateAsync();
                 pendingMigrationCount += (await context.Database.GetPendingMigrationsAsync()).Count();
             }
 
-            using (var context = scope.ServiceProvider.GetRequiredService<TIdentityDbContext>())
+            await using (var context = scope.ServiceProvider.GetRequiredService<TIdentityDbContext>())
             {
                 await context.Database.MigrateAsync();
                 pendingMigrationCount += (await context.Database.GetPendingMigrationsAsync()).Count();
             }
 
-            using (var context = scope.ServiceProvider.GetRequiredService<TConfigurationDbContext>())
+            await using (var context = scope.ServiceProvider.GetRequiredService<TConfigurationDbContext>())
             {
                 await context.Database.MigrateAsync();
                 pendingMigrationCount += (await context.Database.GetPendingMigrationsAsync()).Count();
             }
 
-            using (var context = scope.ServiceProvider.GetRequiredService<TLogDbContext>())
+            await using (var context = scope.ServiceProvider.GetRequiredService<TLogDbContext>())
             {
                 await context.Database.MigrateAsync();
                 pendingMigrationCount += (await context.Database.GetPendingMigrationsAsync()).Count();
             }
 
-            using (var context = scope.ServiceProvider.GetRequiredService<TAuditLogDbContext>())
+            await using (var context = scope.ServiceProvider.GetRequiredService<TAuditLogDbContext>())
             {
                 await context.Database.MigrateAsync();
                 pendingMigrationCount += (await context.Database.GetPendingMigrationsAsync()).Count();
             }
 
-            using (var context = scope.ServiceProvider.GetRequiredService<TDataProtectionDbContext>())
+            await using (var context = scope.ServiceProvider.GetRequiredService<TDataProtectionDbContext>())
             {
                 await context.Database.MigrateAsync();
                 pendingMigrationCount += (await context.Database.GetPendingMigrationsAsync()).Count();

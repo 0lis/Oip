@@ -4,6 +4,7 @@ using NLog.Extensions.Logging;
 using NLog.Web;
 using Oip.Core.Configuration;
 using Oip.Dal.Core;
+using Oip.Dal.Core.Extensions;
 
 internal class Program
 {
@@ -16,14 +17,10 @@ internal class Program
             builder.Services.AddOipServer();
             builder.Services.AddCors();
             var app = builder.BuildOip();
-            using (var scope = app.Services.CreateScope())
-            {
-                var context = scope.ServiceProvider.GetRequiredService<OipContext>();
-                context.Database.Migrate();
-            }
-
+            
+            app.MigrateDatabase();
+            
             app.UseAuthorization();
-
             app.MapControllerRoute(
                 "default",
                 "{controller}/{action=Index}/{id?}");

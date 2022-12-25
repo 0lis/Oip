@@ -20,7 +20,7 @@ namespace Microsoft.Extensions.DependencyInjection;
 
 public static class AdminServicesExtensions
 {
-    public static IServiceCollection AddAdminServices<TAdminDbContext>(
+    private static IServiceCollection AddAdminServices<TAdminDbContext>(
         this IServiceCollection services)
         where TAdminDbContext : DbContext, IAdminPersistedGrantDbContext, IAdminConfigurationDbContext,
         IAdminLogDbContext

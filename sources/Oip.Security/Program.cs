@@ -94,7 +94,7 @@ public class Program
         return configurationBuilder.Build();
     }
 
-    public static IHostBuilder CreateHostBuilder(string[] args)
+    private static IHostBuilder CreateHostBuilder(string[] args)
     {
         return Host.CreateDefaultBuilder(args)
             .ConfigureLogging(x =>
