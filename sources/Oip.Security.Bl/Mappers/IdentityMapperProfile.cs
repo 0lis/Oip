@@ -9,7 +9,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Oip.Security.Bl.Dtos.Identity;
 using Oip.Security.Bl.Shared.ExceptionHandling;
-using Oip.Security.Dal.Extensions.Common;
+using Oip.Security.Dal.Common;
 
 namespace Oip.Security.Bl.Mappers;
 

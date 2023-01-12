@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using IdentityServer4.EntityFramework.Entities;
 using Oip.Security.Bl.Dtos.Configuration;
-using Oip.Security.Dal.Extensions.Common;
+using Oip.Security.Dal.Common;
 
 namespace Oip.Security.Bl.Mappers;
 

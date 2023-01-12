@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using Oip.Dal.Core;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
 namespace Oip.Dal.MySql;

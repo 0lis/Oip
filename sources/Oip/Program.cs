@@ -1,7 +1,9 @@
 using NLog;
 using NLog.Web;
 using Oip.Core.Configuration;
-using Oip.Dal.Core.Extensions;
+using Oip.Dal.Extensions;
+
+namespace Oip;
 
 internal class Program
 {
@@ -11,12 +13,13 @@ internal class Program
         try
         {
             var builder = OipWebApplication.CreateBuilder(args, OipConfiguration.Configuration);
+
             builder.Services.AddOipServer();
             builder.Services.AddCors();
+
             var app = builder.BuildOip();
 
             app.MigrateDatabase();
-
             app.UseAuthorization();
             app.MapControllerRoute(
                 "default",

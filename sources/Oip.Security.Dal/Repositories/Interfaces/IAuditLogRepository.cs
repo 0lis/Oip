@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Oip.Security.Dal.Extensions.Common;
+using Oip.Security.Dal.Common;
 using Skoruba.AuditLogging.EntityFramework.Entities;
 
 namespace Oip.Security.Dal.Repositories.Interfaces;

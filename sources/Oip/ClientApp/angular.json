@@ -101,7 +101,8 @@
               "browserTarget": "olp:build:production"
             },
             "development": {
-              "browserTarget": "olp:build:development"
+              "browserTarget": "olp:build:development",
+              "proxyConfig": "proxy.conf.js"
             }
           },
           "defaultConfiguration": "development"

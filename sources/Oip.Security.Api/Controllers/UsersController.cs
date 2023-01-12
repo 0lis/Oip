@@ -141,7 +141,7 @@ public class UsersController<TUserDto, TRoleDto, TUser, TRole, TKey, TUserClaim,
     {
         var userId = User.FindFirst(JwtClaimTypes.Subject);
 
-        return userId == null ? false : userId.Value == id.ToString();
+        return userId != null && userId.Value == id.ToString();
     }
 
     [HttpGet("{id}/Roles")]

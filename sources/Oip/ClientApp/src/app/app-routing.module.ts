@@ -12,6 +12,7 @@ import {ProfileComponent} from './pages/profile/profile.component';
 import {TasksComponent} from './pages/tasks/tasks.component';
 import {DxDataGridModule, DxFormModule} from 'devextreme-angular';
 import {AuthCallbackComponent} from "./pages/auth-callback/auth-callback.component";
+import {ModulesComponent} from "./pages/modules/modules.component";
 
 const routes: Routes = [
   {
@@ -54,6 +55,11 @@ const routes: Routes = [
     component: AuthCallbackComponent,
   },
   {
+    path: 'modules',
+    component: ModulesComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
     path: '**',
     redirectTo: 'home'
   }
@@ -66,7 +72,8 @@ const routes: Routes = [
   declarations: [
     HomeComponent,
     ProfileComponent,
-    TasksComponent
+    TasksComponent,
+    ModulesComponent
   ]
 })
 export class AppRoutingModule {

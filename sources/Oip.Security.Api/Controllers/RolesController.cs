@@ -9,6 +9,7 @@ using Oip.Security.Api.Configuration.Constants;
 using Oip.Security.Api.Dtos.Roles;
 using Oip.Security.Api.ExceptionHandling;
 using Oip.Security.Api.Helpers.Localization;
+using Oip.Security.Api.Models.Roles;
 using Oip.Security.Api.Resources;
 using Oip.Security.Bl.Dtos.Identity;
 using Oip.Security.Bl.Services.Interfaces;

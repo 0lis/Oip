@@ -6,7 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Oip.Dal.Core\Oip.Dal.Core.csproj"/>
+        <ProjectReference Include="..\Oip.Dal\Oip.Dal.csproj"/>
     </ItemGroup>
 
     <ItemGroup Condition=" '$(TargetFramework)' == 'net6.0'">
@@ -15,10 +15,6 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.0"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <Folder Include="Migrations\"/>
     </ItemGroup>
 
 </Project>

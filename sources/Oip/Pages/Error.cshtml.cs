@@ -36,6 +36,7 @@ public class ErrorModel : PageModel
     /// </summary>
     public void OnGet()
     {
+        _logger.LogDebug("OnLog");
         RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
     }
 }

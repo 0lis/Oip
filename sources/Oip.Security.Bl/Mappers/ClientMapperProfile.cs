@@ -8,6 +8,7 @@ using IdentityServer4.EntityFramework.Entities;
 using Oip.Security.Bl.Dtos.Common;
 using Oip.Security.Bl.Dtos.Configuration;
 using Oip.Security.Bl.Mappers.Converters;
+using Oip.Security.Dal.Common;
 using Oip.Security.Dal.Extensions.Common;
 
 namespace Oip.Security.Bl.Mappers;

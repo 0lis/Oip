@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using IdentityServer4.EntityFramework.Entities;
 using IdentityServer4.Models;
 using Microsoft.EntityFrameworkCore;
+using Oip.Security.Dal.Common;
 using Oip.Security.Dal.Constants;
 using Oip.Security.Dal.Extensions.Common;
 using Oip.Security.Dal.Extensions.Enums;

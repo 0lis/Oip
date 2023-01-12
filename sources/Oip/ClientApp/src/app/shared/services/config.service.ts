@@ -9,8 +9,4 @@ export class ConfigService {
   get authApiURI() {
     return 'https://localhost:5000/api';
   }
-
-  get resourceApiURI() {
-    return 'http://localhost:5050/api';
-  }
 }

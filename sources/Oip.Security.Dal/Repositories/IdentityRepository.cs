@@ -9,7 +9,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Oip.Security.Dal.Extensions.Common;
+using Oip.Security.Dal.Common;
 using Oip.Security.Dal.Extensions.Enums;
 using Oip.Security.Dal.Extensions.Extensions;
 using Oip.Security.Dal.Identity.Repositories.Interfaces;

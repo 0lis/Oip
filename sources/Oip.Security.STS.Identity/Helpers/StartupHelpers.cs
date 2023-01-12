@@ -443,7 +443,6 @@ public static class StartupHelpers
     }
 
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="services"></param>
     /// <param name="configuration"></param>
@@ -470,7 +469,7 @@ public static class StartupHelpers
 
         var serviceProvider = services.BuildServiceProvider();
         var scopeFactory = serviceProvider.GetRequiredService<IServiceScopeFactory>();
-        
+
         using var scope = scopeFactory.CreateScope();
         var configurationTableName =
             DbContextHelpers.GetEntityTable<TConfigurationDbContext>(scope.ServiceProvider);

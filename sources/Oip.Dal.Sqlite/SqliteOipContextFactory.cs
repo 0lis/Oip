@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using Oip.Dal.Core;
 
 namespace Oip.Dal.Sqlite;
 

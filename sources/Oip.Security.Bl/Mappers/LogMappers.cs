@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Oip.Security.Bl.Dtos.Log;
+using Oip.Security.Dal.Common;
 using Oip.Security.Dal.Entities;
-using Oip.Security.Dal.Extensions.Common;
 using Skoruba.AuditLogging.EntityFramework.Entities;
 
 namespace Oip.Security.Bl.Mappers;

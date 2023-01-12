@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Oip.Security.Dal.Extensions.Common;
+namespace Oip.Security.Dal.Common;
 
 public class PagedList<T> where T : class
 {

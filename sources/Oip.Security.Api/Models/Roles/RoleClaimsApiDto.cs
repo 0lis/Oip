@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Oip.Security.Api.Models.Roles;
 
 namespace Oip.Security.Api.Dtos.Roles;
 

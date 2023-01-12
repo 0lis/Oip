@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using IdentityServer4.EntityFramework.Entities;
+using Oip.Security.Dal.Common;
 using Oip.Security.Dal.Entities;
-using Oip.Security.Dal.Extensions.Common;
 
 namespace Oip.Security.Dal.Identity.Repositories.Interfaces;
 

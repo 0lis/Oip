@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Oip.Security.Dal.Common;
 using Oip.Security.Dal.Entities;
-using Oip.Security.Dal.Extensions.Common;
 
 namespace Oip.Security.Dal.Repositories.Interfaces;
 

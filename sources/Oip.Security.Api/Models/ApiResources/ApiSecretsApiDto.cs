@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Oip.Security.Api.Dtos.ApiResources;
+namespace Oip.Security.Api.Models.ApiResources;
 
 public class ApiSecretsApiDto
 {

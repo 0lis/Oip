@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Oip.Security.Api.Dtos.Roles;
+namespace Oip.Security.Api.Models.Roles;
 
 public class RoleClaimApiDto<TKey>
 {

@@ -1,8 +1,10 @@
 using Microsoft.Extensions.Hosting.Internal;
+using Oip.Bl.Services;
 using Oip.Core.Configuration;
 using Oip.Core.Runtime;
-using Oip.Dal.Core;
+using Oip.Dal;
 using Oip.Dal.PostgreSql;
+using Oip.Dal.Repositories;
 using Oip.Dal.Sqlite;
 using Oip.Dal.SqlServer;
 
@@ -23,7 +25,7 @@ public static class OipServiceCollectionExtensions
     public static IServiceCollection AddOipServer(this IServiceCollection services,
         Action<OipOptionsBuilder>? configure = default)
     {
-        return services
+        var serviceCollection = services
             .AddSingleton<IHostApplicationLifetime, ApplicationLifetime>()
             .AddStartupRunner()
             .AddDbContext<OipContext>(ef =>
@@ -43,6 +45,12 @@ public static class OipServiceCollectionExtensions
                         //ef.UseInMemoryDb();
                         break;
                 }
-            });
+            })
+            .AddScoped<UomService>()
+            .AddScoped<UomRepository>()
+            .AddScoped<ModuleRepository>()
+            .AddScoped<ModuleService>();
+
+        return serviceCollection;
     }
 }

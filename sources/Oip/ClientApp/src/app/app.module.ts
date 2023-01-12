@@ -15,6 +15,7 @@ import {UnauthenticatedContentModule} from './unauthenticated-content';
 import {AppRoutingModule} from './app-routing.module';
 import {ConfigService} from './shared/services/config.service'
 import {AuthCallbackComponent} from "./pages/auth-callback/auth-callback.component";
+import {ModulesService} from "./pages/modules/modules.service";
 
 @NgModule({
   declarations: [
@@ -34,13 +35,13 @@ import {AuthCallbackComponent} from "./pages/auth-callback/auth-callback.compone
     UnauthenticatedContentModule,
     AppRoutingModule,
     HttpClientModule,
-
   ],
   providers: [
     AuthService,
     ScreenService,
     AppInfoService,
-    ConfigService
+    ConfigService,
+    ModulesService
   ],
   bootstrap: [AppComponent]
 })

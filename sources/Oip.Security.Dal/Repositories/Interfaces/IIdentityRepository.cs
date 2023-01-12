@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
-using Oip.Security.Dal.Extensions.Common;
+using Oip.Security.Dal.Common;
 
 namespace Oip.Security.Dal.Identity.Repositories.Interfaces;
 

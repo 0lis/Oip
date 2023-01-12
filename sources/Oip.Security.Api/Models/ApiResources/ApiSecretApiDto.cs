@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Oip.Security.Api.Dtos.ApiResources;
+namespace Oip.Security.Api.Models.ApiResources;
 
 public class ApiSecretApiDto
 {

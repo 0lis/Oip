@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Oip.Security.Dal.Extensions.Common;
+using Oip.Security.Dal.Common;
 using Oip.Security.Dal.Extensions.Enums;
 using Oip.Security.Dal.Extensions.Extensions;
 using Oip.Security.Dal.Repositories.Interfaces;
