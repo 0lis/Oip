@@ -6,12 +6,15 @@ Open Industrial Platform
 ## Architecture
 
 - [x] Auth
-- [ ] Module/Angular plugin system
+- [ ] Module/Angular plugin system 
+https://habr.com/ru/company/auriga/blog/659199/
+https://github.com/oktadev/okta-angular-microfrontend-example.git
 - [ ] Events
 - [ ] Integration bus
 - [ ] Database configuration
 - [ ] Choose TSDB
 - [ ] Choose web display editor SVG
+  - https://demo.bpmn.io/new
 - [ ] 
 
 ## Modules
