@@ -17,11 +17,11 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Oip.Dal\Oip.Dal.csproj"/>
+        <ProjectReference Include="..\Oip.Dal\Oip.Dal.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Mapster" Version="7.3.0"/>
+        <PackageReference Include="Mapster" Version="7.3.0" />
     </ItemGroup>
 
 </Project>

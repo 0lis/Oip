@@ -12,7 +12,7 @@ https://github.com/oktadev/okta-angular-microfrontend-example.git
 - [ ] Events
 - [ ] Integration bus
 - [ ] Database configuration
-- [ ] Choose TSDB
+- [x] Choose TSDB - clickhouse
 - [ ] Choose web display editor SVG
   - https://demo.bpmn.io/new
 - [ ] 

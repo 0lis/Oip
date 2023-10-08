@@ -26,9 +26,9 @@
         .dx-icon {
           width: $side-panel-min-width !important;
           margin: 0 !important;
+          color: $icon-color
         }
       }
-
       // ##
 
       // ## Arrow customization
@@ -45,7 +45,6 @@
         left: 10px;
         right: auto;
       }
-
       // ##
 
       // ## Item levels customization
@@ -60,7 +59,6 @@
           padding: 0 $side-panel-min-width;
         }
       }
-
       // ##
     }
 
@@ -68,7 +66,7 @@
     ::ng-deep .dx-treeview {
       .dx-treeview-node-container {
         .dx-treeview-node {
-          &.dx-state-selected:not(.dx-state-focused) > .dx-treeview-item {
+          &.dx-state-selected:not(.dx-state-focused)> .dx-treeview-item {
             background: transparent;
           }
 
@@ -76,8 +74,8 @@
             color: $base-accent;
           }
 
-          &:not(.dx-state-focused) > .dx-treeview-item.dx-state-hover {
-            background-color: lighten($base-bg, 4.00);
+          &:not(.dx-state-focused)>.dx-treeview-item.dx-state-hover {
+            background-color: $base-bg;
           }
         }
       }
@@ -88,7 +86,6 @@
         color: inherit;
       }
     }
-
     // ##
   }
 }

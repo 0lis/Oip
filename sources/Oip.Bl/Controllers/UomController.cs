@@ -1,3 +1,4 @@
+using Indusoft.IntegrationService.Controllers.Api;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -7,7 +8,7 @@ using Oip.Bl.Services;
 namespace Oip.Bl.Controllers;
 
 /// <summary>
-///     Uom controller
+/// Uom controller
 /// </summary>
 [ApiController]
 [Route("api/uom")]
@@ -17,7 +18,7 @@ public class UomController : ControllerBase
     private readonly UomService _uomService;
 
     /// <summary>
-    ///     Constructor
+    /// Constructor
     /// </summary>
     /// <param name="logger"></param>
     /// <param name="uomService"></param>
@@ -28,17 +29,22 @@ public class UomController : ControllerBase
     }
 
     /// <summary>
-    ///     Get Uoms
+    /// Get Uoms
     /// </summary>
     /// <returns></returns>
     [HttpGet("get-all")]
-    public List<GetUomResponse>? GetAll()
+    public GridResponse<GetUomResponse> GetAll()
     {
-        return _uomService.GetAll().Select(x => x.Adapt<GetUomResponse>()).ToList();
+        var data = _uomService.GetAll().Select(x => x.Adapt<GetUomResponse>()).ToList();
+        return new GridResponse<GetUomResponse>()
+        {
+            Data = data,
+            TotalCount = data.Count
+        };
     }
 
     /// <summary>
-    ///     Add Uom
+    /// Add Uom
     /// </summary>
     /// <param name="request"></param>
     /// <returns></returns>
@@ -50,7 +56,7 @@ public class UomController : ControllerBase
     }
 
     /// <summary>
-    ///     Update module
+    /// Update module
     /// </summary>
     /// <param name="request"></param>
     /// <returns></returns>
@@ -62,7 +68,7 @@ public class UomController : ControllerBase
     }
 
     /// <summary>
-    ///     Delete module
+    /// Delete module
     /// </summary>
     /// <param name="request"></param>
     /// <returns></returns>

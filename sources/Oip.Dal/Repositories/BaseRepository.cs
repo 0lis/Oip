@@ -46,6 +46,6 @@ public class BaseRepository<TEntity> where TEntity : class
 
     public IEnumerable<TEntity> ToList()
     {
-        return DbSet.ToList();
+        return DbSet;
     }
 }

@@ -16,11 +16,12 @@ import {AppRoutingModule} from './app-routing.module';
 import {ConfigService} from './shared/services/config.service'
 import {AuthCallbackComponent} from "./pages/auth-callback/auth-callback.component";
 import {ModulesService} from "./pages/modules/modules.service";
+import {DataService} from "./shared/services/data.service";
 
 @NgModule({
   declarations: [
     AppComponent,
-    AuthCallbackComponent
+    AuthCallbackComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +42,8 @@ import {ModulesService} from "./pages/modules/modules.service";
     ScreenService,
     AppInfoService,
     ConfigService,
-    ModulesService
+    ModulesService,
+    DataService
   ],
   bootstrap: [AppComponent]
 })

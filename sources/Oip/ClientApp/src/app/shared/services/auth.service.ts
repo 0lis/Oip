@@ -204,7 +204,7 @@ export class AuthGuardService implements CanActivate {
 export function getClientSettings(): UserManagerSettings {
   return {
     authority: 'https://localhost:44310/',
-    client_id: 'angular_spa',
+    client_id: 'spa',
     redirect_uri: 'http://localhost:44418/auth-callback',
     post_logout_redirect_uri: 'http://localhost:44418/',
     response_type: "id_token token",

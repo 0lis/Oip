@@ -22,6 +22,11 @@ export const navigation = [
         text: 'Modules',
         path: '/modules',
         icon: 'message'
+      },
+      {
+        text: 'Uoms',
+        path: '/uoms',
+        icon: 'home'
       }
     ]
   }

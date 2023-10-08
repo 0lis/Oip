@@ -5,7 +5,7 @@ using Oip.Dal;
 namespace Oip.Bl.Controllers;
 
 /// <summary>
-///     In current time architecture not stable
+/// In current time architecture not stable
 /// </summary>
 [ApiController]
 [Route("api/oip")]
@@ -16,7 +16,7 @@ public class OipController : ControllerBase
     private readonly IServiceProvider _serviceProvider;
 
     /// <summary>
-    ///     Constructor
+    /// Constructor
     /// </summary>
     /// <param name="logger"></param>
     /// <param name="serviceProvider"></param>
