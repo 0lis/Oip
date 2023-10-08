@@ -15,7 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Oip.Dal.Core\Oip.Dal.Core.csproj"/>
+        <ProjectReference Include="..\Oip.Dal\Oip.Dal.csproj"/>
     </ItemGroup>
 
     <ItemGroup>

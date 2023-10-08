@@ -1,12 +1,12 @@
-import {Component, Input, NgModule, OnInit, ViewChild} from '@angular/core';
-import {HeaderModule, SideNavigationMenuModule} from '../../shared/components';
-import {ScreenService} from '../../shared/services';
-import {ItemClickEvent} from 'devextreme/ui/tree_view';
-import {DxDrawerModule} from 'devextreme-angular/ui/drawer';
-import {DxScrollViewComponent, DxScrollViewModule} from 'devextreme-angular/ui/scroll-view';
-import {CommonModule} from '@angular/common';
+import { Component, OnInit, NgModule, Input, ViewChild } from '@angular/core';
+import { SideNavigationMenuModule, HeaderModule } from '../../shared/components';
+import { ScreenService } from '../../shared/services';
+import { ItemClickEvent } from 'devextreme/ui/tree_view';
+import { DxDrawerModule } from 'devextreme-angular/ui/drawer';
+import { DxScrollViewModule, DxScrollViewComponent } from 'devextreme-angular/ui/scroll-view';
+import { CommonModule } from '@angular/common';
 
-import {NavigationEnd, Router} from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-side-nav-outer-toolbar',
@@ -14,7 +14,7 @@ import {NavigationEnd, Router} from '@angular/router';
   styleUrls: ['./side-nav-outer-toolbar.component.scss']
 })
 export class SideNavOuterToolbarComponent implements OnInit {
-  @ViewChild(DxScrollViewComponent, {static: true}) scrollView!: DxScrollViewComponent;
+  @ViewChild(DxScrollViewComponent, { static: true }) scrollView!: DxScrollViewComponent;
   selectedRoute = '';
 
   menuOpened!: boolean;
@@ -28,16 +28,7 @@ export class SideNavOuterToolbarComponent implements OnInit {
   minMenuSize = 0;
   shaderEnabled = false;
 
-  constructor(private screen: ScreenService, private router: Router) {
-  }
-
-  get hideMenuAfterNavigation() {
-    return this.menuMode === 'overlap' || this.temporaryMenuOpened;
-  }
-
-  get showMenuAfterClick() {
-    return !this.menuOpened;
-  }
+  constructor(private screen: ScreenService, private router: Router) { }
 
   ngOnInit() {
     this.menuOpened = this.screen.sizes['screen-large'];
@@ -61,6 +52,14 @@ export class SideNavOuterToolbarComponent implements OnInit {
     this.menuRevealMode = isXSmall ? 'slide' : 'expand';
     this.minMenuSize = isXSmall ? 0 : 60;
     this.shaderEnabled = !isLarge;
+  }
+
+  get hideMenuAfterNavigation() {
+    return this.menuMode === 'overlap' || this.temporaryMenuOpened;
+  }
+
+  get showMenuAfterClick() {
+    return !this.menuOpened;
   }
 
   navigationChanged(event: ItemClickEvent) {
@@ -94,9 +93,8 @@ export class SideNavOuterToolbarComponent implements OnInit {
 }
 
 @NgModule({
-  imports: [SideNavigationMenuModule, DxDrawerModule, HeaderModule, DxScrollViewModule, CommonModule],
-  exports: [SideNavOuterToolbarComponent],
-  declarations: [SideNavOuterToolbarComponent]
+  imports: [ SideNavigationMenuModule, DxDrawerModule, HeaderModule, DxScrollViewModule, CommonModule ],
+  exports: [ SideNavOuterToolbarComponent ],
+  declarations: [ SideNavOuterToolbarComponent ]
 })
-export class SideNavOuterToolbarModule {
-}
+export class SideNavOuterToolbarModule { }

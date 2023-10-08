@@ -1,10 +1,14 @@
-import {Component, EventEmitter, Input, NgModule, OnInit, Output} from '@angular/core';
+import {Component, NgModule, Input, Output, EventEmitter, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
 import {AuthService, IUser} from '../../services';
+import {ThemeService} from '../../services/theme.service';
+import {ThemeSelectorModule} from '../theme-selector/theme-selector.component';
 import {UserPanelModule} from '../user-panel/user-panel.component';
 import {DxButtonModule} from 'devextreme-angular/ui/button';
 import {DxToolbarModule} from 'devextreme-angular/ui/toolbar';
+
+import {currentTheme, getTheme, refreshTheme} from 'devextreme/viz/themes';
 
 import {Router} from '@angular/router';
 
@@ -24,22 +28,24 @@ export class HeaderComponent implements OnInit {
   @Input()
   title!: string;
 
-  user: IUser | null = {email: ''};
+  user: IUser | null = {name: ''};
 
-  userMenuItems = [{
-    text: 'Profile',
-    icon: 'user',
-    onClick: () => {
-      this.router.navigate(['/profile']);
-    }
-  },
+  userMenuItems = [
+    {
+      text: 'Profile',
+      icon: 'user',
+      onClick: () => {
+        this.router.navigate(['/profile']);
+      }
+    },
     {
       text: 'Logout',
       icon: 'runner',
       onClick: () => {
         this.authService.logOut();
       }
-    }];
+    }
+  ];
 
   constructor(private authService: AuthService, private router: Router) {
   }
@@ -58,7 +64,8 @@ export class HeaderComponent implements OnInit {
     CommonModule,
     DxButtonModule,
     UserPanelModule,
-    DxToolbarModule
+    DxToolbarModule,
+    ThemeSelectorModule
   ],
   declarations: [HeaderComponent],
   exports: [HeaderComponent]

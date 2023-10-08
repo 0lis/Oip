@@ -1,0 +1,15 @@
+<h2 class="content-block">Tasks</h2>
+
+<dx-data-grid [columnAutoWidth]="true"
+              [columnHidingEnabled]="true"
+              [dataSource]="dataSource"
+              [focusedRowEnabled]="true"
+              [focusedRowIndex]="0"
+              [showBorders]="false"
+              class="dx-card wide-card">
+
+  <dxo-paging [pageSize]="10"></dxo-paging>
+  <dxo-pager [showInfo]="true" [showPageSizeSelector]="true"></dxo-pager>
+  <dxo-filter-row [visible]="true"></dxo-filter-row>
+
+</dx-data-grid>

@@ -30,9 +30,6 @@
         },
         "@schematics/angular:service": {
           "skipTests": true
-        },
-        "@schematics/angular:application": {
-          "strict": true
         }
       },
       "root": "",
@@ -54,10 +51,15 @@
             ],
             "styles": [
               "node_modules/devextreme/dist/css/dx.common.css",
-              "src/themes/generated/theme.base.css",
-              "src/themes/generated/theme.additional.css",
               "src/dx-styles.scss",
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/themes/generated/variables.css",
+              { "input": "src/themes/generated/theme.additional.dark.css", "bundleName": "dx.theme.material.additional.dark" },
+              { "input": "src/themes/generated/theme.additional.light.css", "bundleName": "dx.theme.material.additional.light" },
+              { "input": "src/themes/generated/theme.base.css", "bundleName": "dx.theme.material.orange.light" },
+              { "input": "node_modules/devextreme/dist/css/dx.material.blue.light.css", "bundleName": "dx.theme.material.blue.light" },
+              { "input": "node_modules/devextreme/dist/css/dx.material.purple.light.css", "bundleName": "dx.theme.material.purple.light" },
+              { "input": "node_modules/devextreme/dist/css/dx.material.purple.dark.css", "bundleName": "dx.theme.material.purple.dark" }
             ],
             "scripts": []
           },
@@ -67,12 +69,12 @@
                 {
                   "type": "initial",
                   "maximumWarning": "4mb",
-                  "maximumError": "7mb"
+                  "maximumError": "17mb"
                 },
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumError": "14kb"
                 }
               ],
               "fileReplacements": [
@@ -81,7 +83,16 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "media",
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": false
+                },
+                "fonts": false
+              },
+              "sourceMap": true
             },
             "development": {
               "buildOptimizer": false,
@@ -101,7 +112,8 @@
               "browserTarget": "olp:build:production"
             },
             "development": {
-              "browserTarget": "olp:build:development"
+              "browserTarget": "olp:build:development",
+              "proxyConfig": "proxy.conf.js"
             }
           },
           "defaultConfiguration": "development"
@@ -133,5 +145,8 @@
       }
     }
   },
-  "defaultProject": "olp"
+  "defaultProject": "olp",
+  "cli": {
+    "analytics": false
+  }
 }

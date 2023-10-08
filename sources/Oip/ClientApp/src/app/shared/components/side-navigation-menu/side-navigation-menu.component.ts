@@ -1,13 +1,13 @@
 import {
-  AfterViewInit,
   Component,
-  ElementRef,
-  EventEmitter,
-  Input,
   NgModule,
-  OnDestroy,
   Output,
-  ViewChild
+  Input,
+  EventEmitter,
+  ViewChild,
+  ElementRef,
+  AfterViewInit,
+  OnDestroy
 } from '@angular/core';
 import {ItemClickEvent} from 'devextreme/ui/tree_view';
 import {DxTreeViewComponent, DxTreeViewModule} from 'devextreme-angular/ui/tree-view';

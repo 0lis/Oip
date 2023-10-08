@@ -1,0 +1,34 @@
+<h3 class="content-block">UOMs</h3>
+
+<dx-data-grid
+              [dataSource]="dataSource"
+              [showBorders]="true"
+              [focusedRowEnabled]="true"
+              [allowColumnResizing]="true"
+              columnResizingMode="nextColumn"
+              [columnMinWidth]="50"
+              [columnAutoWidth]="true"
+              [remoteOperations]="false"
+              [height]="gridHeight()"
+              (onFocusedRowChanged)="onFocusedRowChanged($event)">
+  <dxo-paging [pageSize]="50"> </dxo-paging>
+  <dxo-pager
+    [visible]="true"
+    [allowedPageSizes]="allowedPageSizes"
+    [showPageSizeSelector]="true">
+  </dxo-pager>
+  <dxo-filter-row [visible]="true"></dxo-filter-row>
+
+  <dxo-search-panel [visible]="true"
+                    [width]="240"
+                    placeholder="Поиск..."></dxo-search-panel>
+  <dxo-editing mode="batch"
+               [allowAdding]="true"
+               [allowUpdating]="true"
+               [allowDeleting]="true"
+               [useIcons]="true" >
+  </dxo-editing>
+  <dxo-scrolling columnRenderingMode="virtual"></dxo-scrolling>
+</dx-data-grid>
+
+

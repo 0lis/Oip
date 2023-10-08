@@ -11,6 +11,10 @@ import {HomeComponent} from './pages/home/home.component';
 import {ProfileComponent} from './pages/profile/profile.component';
 import {TasksComponent} from './pages/tasks/tasks.component';
 import {DxDataGridModule, DxFormModule} from 'devextreme-angular';
+import {AuthCallbackComponent} from "./pages/auth-callback/auth-callback.component";
+import {ModulesComponent} from "./pages/modules/modules.component";
+import {UomsComponent} from "./pages/uoms/uoms.component";
+import {ThemeSelectorModule} from "./shared/components/theme-selector/theme-selector.component";
 
 const routes: Routes = [
   {
@@ -21,6 +25,11 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'uoms',
+    component: UomsComponent,
     canActivate: [AuthGuardService]
   },
   {
@@ -49,19 +58,30 @@ const routes: Routes = [
     canActivate: [AuthGuardService]
   },
   {
+    path: 'auth-callback',
+    component: AuthCallbackComponent,
+  },
+  {
+    path: 'modules',
+    component: ModulesComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
     path: '**',
     redirectTo: 'home'
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {useHash: true}), DxDataGridModule, DxFormModule],
-  providers: [AuthGuardService],
+  imports: [RouterModule.forRoot(routes, {useHash: false}), DxDataGridModule, DxFormModule, ThemeSelectorModule],
+  providers: [AuthGuardService  ],
   exports: [RouterModule],
   declarations: [
     HomeComponent,
     ProfileComponent,
-    TasksComponent
+    TasksComponent,
+    ModulesComponent,
+    UomsComponent,
   ]
 })
 export class AppRoutingModule {

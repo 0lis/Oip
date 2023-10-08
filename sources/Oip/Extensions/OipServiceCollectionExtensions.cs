@@ -1,19 +1,23 @@
 using Microsoft.Extensions.Hosting.Internal;
+using Oip.Bl.Services;
 using Oip.Core.Configuration;
 using Oip.Core.Runtime;
-using Oip.Dal.Core;
+using Oip.Dal;
 using Oip.Dal.PostgreSql;
+using Oip.Dal.Repositories;
 using Oip.Dal.Sqlite;
+using Oip.Dal.SqlServer;
 
+// ReSharper disable once CheckNamespace
 namespace Microsoft.Extensions.DependencyInjection;
 
 /// <summary>
-///     Extension for asp net for planform
+///     Extension for asp net for platform
 /// </summary>
 public static class OipServiceCollectionExtensions
 {
     /// <summary>
-    ///     Extension for asp net for planform
+    ///     Extension for asp net for platform
     /// </summary>
     /// <param name="services"></param>
     /// <param name="configure"></param>
@@ -21,7 +25,7 @@ public static class OipServiceCollectionExtensions
     public static IServiceCollection AddOipServer(this IServiceCollection services,
         Action<OipOptionsBuilder>? configure = default)
     {
-        return services
+        var serviceCollection = services
             .AddSingleton<IHostApplicationLifetime, ApplicationLifetime>()
             .AddStartupRunner()
             .AddDbContext<OipContext>(ef =>
@@ -29,9 +33,9 @@ public static class OipServiceCollectionExtensions
                 switch (OipConfiguration.Configuration.Storage)
                 {
                     case "MSSQL":
-                        ef.UseSqlite(OipConfiguration.Configuration.ConnectionString);
+                        ef.UseSqlServer(OipConfiguration.Configuration.ConnectionString);
                         break;
-                    case "Postgres":
+                    case "PostgreSql":
                         ef.UsePostgreSql(OipConfiguration.Configuration.ConnectionString);
                         break;
                     case "Sqlite":
@@ -41,6 +45,12 @@ public static class OipServiceCollectionExtensions
                         //ef.UseInMemoryDb();
                         break;
                 }
-            });
+            })
+            .AddScoped<UomService>()
+            .AddScoped<UomRepository>()
+            .AddScoped<ModuleRepository>()
+            .AddScoped<ModuleService>();
+
+        return serviceCollection;
     }
 }

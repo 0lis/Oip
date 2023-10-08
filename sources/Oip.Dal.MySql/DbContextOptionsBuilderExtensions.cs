@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Oip.Dal.Core;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
 namespace Oip.Dal.MySql;

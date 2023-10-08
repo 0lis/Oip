@@ -1,5 +1,6 @@
 import {Component, HostBinding} from '@angular/core';
 import {AppInfoService, AuthService, ScreenService} from './shared/services';
+import {ThemeService} from './shared/services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,7 @@ import {AppInfoService, AuthService, ScreenService} from './shared/services';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(private authService: AuthService, private screen: ScreenService, public appInfo: AppInfoService) {
+  constructor(private themeService: ThemeService, private authService: AuthService, private screen: ScreenService, public appInfo: AppInfoService) {
   }
 
   @HostBinding('class') get getClass() {
@@ -16,5 +17,9 @@ export class AppComponent {
 
   isAuthenticated() {
     return this.authService.loggedIn;
+  }
+
+  ngOnInit() {
+    this.themeService.applyTheme();
   }
 }

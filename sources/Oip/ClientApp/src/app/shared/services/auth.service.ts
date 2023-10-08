@@ -1,26 +1,47 @@
 import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, Router} from '@angular/router';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
+import {catchError} from 'rxjs/operators';
+import {HttpClient} from '@angular/common/http';
+import {User, UserManager, UserManagerSettings} from 'oidc-client';
+import {BehaviorSubject} from 'rxjs';
+import {BaseService} from "./base.service";
+import {ConfigService} from './config.service';
+import {environment} from "../../../environments/environment";
 
 export interface IUser {
-  email: string;
+  name: string;
   avatarUrl?: string
 }
 
 const defaultPath = '/';
 const defaultUser = {
-  email: 'sandra@example.com',
+  name: 'Olis Kaplan',
   avatarUrl: 'https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/images/employees/06.png'
 };
 
 @Injectable()
-export class AuthService {
+export class AuthService extends BaseService {
   private _user: IUser | null = defaultUser;
+  // Observable navItem source
+  private _authNavStatusSource = new BehaviorSubject<boolean>(false);
+  // Observable navItem stream
+  authNavStatus$ = this._authNavStatusSource.asObservable();
+  private manager = new UserManager(getClientSettings());
+  private user: User | null | undefined;
 
-  constructor(private router: Router) {
+  constructor(private http: HttpClient, private configService: ConfigService, private router: Router) {
+    super();
+
+    this.manager.getUser().then(user => {
+      this.user = user;
+      this._authNavStatusSource.next(this.isAuthenticated());
+    });
   }
 
   get loggedIn(): boolean {
-    return !!this._user;
+    if (environment.useAuthentication)
+      return !!this.user;
+    return true;
   }
 
   private _lastAuthenticatedPath: string = defaultPath;
@@ -29,40 +50,45 @@ export class AuthService {
     this._lastAuthenticatedPath = value;
   }
 
-  async logIn(email: string, password: string) {
+  get authorizationHeaderValue(): string {
+    return `${this.user?.token_type} ${this.user?.access_token}`;
+  }
 
-    try {
-      // Send request
-      console.log(email, password);
-      this._user = {...defaultUser, email};
-      this.router.navigate([this._lastAuthenticatedPath]);
-
-      return {
-        isOk: true,
-        data: this._user
-      };
-    } catch {
-      return {
-        isOk: false,
-        message: "Authentication failed"
-      };
-    }
+  get name(): string {
+    let profile = this.user?.profile;
+    if (profile != undefined && profile.name != undefined)
+      return profile.name;
+    else
+      return '';
   }
 
   async getUser() {
     try {
-      // Send request
-
-      return {
-        isOk: true,
-        data: this._user
-      };
-    } catch {
-      return {
-        isOk: false,
-        data: null
-      };
+      if (this.isAuthenticated()) {
+        let name: string = defaultUser.name;
+        let url: string = defaultUser.avatarUrl;
+        let profile = this.user?.profile;
+        if (this.user?.profile?.name != null) {
+          name = this.user?.profile?.name;
+        }
+        if (this.user?.profile?.picture != null) {
+          url = this.user?.profile?.picture;
+        }
+        return {
+          isOk: true,
+          data: {
+            name: name,
+            avatarUrl: url
+          }
+        }
+      }
+    } catch (e: any) {
+      console.log(e);
     }
+    return {
+      isOk: false,
+      data: defaultUser
+    };
   }
 
   async createAccount(email: string, password: string) {
@@ -116,8 +142,37 @@ export class AuthService {
 
   async logOut() {
     this._user = null;
-    this.router.navigate(['/login-form']);
+    await this.manager.signoutRedirect();
   }
+
+  login() {
+    if (environment.useAuthentication) {
+      return this.manager.signinRedirect();
+    }
+    return;
+  }
+
+  async completeAuthentication() {
+    this.user = await this.manager.signinRedirectCallback();
+    this._authNavStatusSource.next(this.isAuthenticated());
+  }
+
+  register(userRegistration: any) {
+    return this.http.post(this.configService.authApiURI + '/account', userRegistration).pipe(catchError(this.handleError));
+  }
+
+  isAuthenticated(): boolean {
+    if (environment.useAuthentication) {
+      return this.user != null && !this.user.expired;
+    }
+    return true;
+  }
+
+  async signout() {
+    await this.manager.signoutRedirect();
+  }
+
+
 }
 
 @Injectable()
@@ -125,29 +180,54 @@ export class AuthGuardService implements CanActivate {
   constructor(private router: Router, private authService: AuthService) {
   }
 
-  canActivate(route: ActivatedRouteSnapshot): boolean {
-    const isLoggedIn = this.authService.loggedIn;
-    const isAuthForm = [
-      'login-form',
-      'reset-password',
-      'create-account',
-      'change-password/:recoveryCode'
-    ].includes(route.routeConfig?.path || defaultPath);
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
 
-    if (isLoggedIn && isAuthForm) {
-      this.authService.lastAuthenticatedPath = defaultPath;
-      this.router.navigate([defaultPath]);
-      return false;
+    if (environment.useAuthentication) {
+
+      if (this.authService.isAuthenticated()) {
+        return true;
+      }
+      const isLoggedIn = this.authService.loggedIn;
+      const isAuthForm = [
+        'login-form',
+        'reset-password',
+        'create-account',
+        'auth-callback',
+        'change-password/:recoveryCode'
+      ].includes(route.routeConfig?.path || defaultPath);
+
+      if (isLoggedIn && isAuthForm) {
+        this.authService.lastAuthenticatedPath = defaultPath;
+        this.router.navigate([defaultPath]);
+        return false;
+      }
+
+      if (!isLoggedIn && !isAuthForm) {
+        this.authService.login();
+      }
+
+
+      if (isLoggedIn) {
+        this.authService.lastAuthenticatedPath = route.routeConfig?.path || defaultPath;
+      }
+
+      return isLoggedIn || isAuthForm;
     }
-
-    if (!isLoggedIn && !isAuthForm) {
-      this.router.navigate(['/login-form']);
-    }
-
-    if (isLoggedIn) {
-      this.authService.lastAuthenticatedPath = route.routeConfig?.path || defaultPath;
-    }
-
-    return isLoggedIn || isAuthForm;
+    return true;
   }
+}
+
+export function getClientSettings(): UserManagerSettings {
+  return {
+    authority: 'https://localhost:44310/',
+    client_id: 'spa',
+    redirect_uri: 'http://localhost:44418/auth-callback',
+    post_logout_redirect_uri: 'http://localhost:44418/',
+    response_type: "id_token token",
+    scope: "openid profile email",
+    filterProtocolClaims: true,
+    loadUserInfo: true,
+    automaticSilentRenew: true,
+    silent_redirect_uri: 'http://localhost:44418/silent-refresh.html',
+  };
 }
