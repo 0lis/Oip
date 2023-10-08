@@ -17,6 +17,7 @@ import {ConfigService} from './shared/services/config.service'
 import {AuthCallbackComponent} from "./pages/auth-callback/auth-callback.component";
 import {ModulesService} from "./pages/modules/modules.service";
 import {DataService} from "./shared/services/data.service";
+import {ThemeService} from './shared/services/theme.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import {DataService} from "./shared/services/data.service";
     AppInfoService,
     ConfigService,
     ModulesService,
-    DataService
+    DataService,
+    ThemeService
   ],
   bootstrap: [AppComponent]
 })

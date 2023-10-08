@@ -6,6 +6,7 @@ import {User, UserManager, UserManagerSettings} from 'oidc-client';
 import {BehaviorSubject} from 'rxjs';
 import {BaseService} from "./base.service";
 import {ConfigService} from './config.service';
+import {environment} from "../../../environments/environment";
 
 export interface IUser {
   name: string;
@@ -14,7 +15,7 @@ export interface IUser {
 
 const defaultPath = '/';
 const defaultUser = {
-  name: 'bug',
+  name: 'Olis Kaplan',
   avatarUrl: 'https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/images/employees/06.png'
 };
 
@@ -38,7 +39,9 @@ export class AuthService extends BaseService {
   }
 
   get loggedIn(): boolean {
-    return !!this.user;
+    if (environment.useAuthentication)
+      return !!this.user;
+    return true;
   }
 
   private _lastAuthenticatedPath: string = defaultPath;
@@ -62,13 +65,15 @@ export class AuthService extends BaseService {
   async getUser() {
     try {
       if (this.isAuthenticated()) {
-        let name: string = "";
-        let url: string = "";
+        let name: string = defaultUser.name;
+        let url: string = defaultUser.avatarUrl;
         let profile = this.user?.profile;
-        if (this.user?.profile?.name != null)
+        if (this.user?.profile?.name != null) {
           name = this.user?.profile?.name;
-        if (this.user?.profile?.picture != null)
+        }
+        if (this.user?.profile?.picture != null) {
           url = this.user?.profile?.picture;
+        }
         return {
           isOk: true,
           data: {
@@ -77,8 +82,8 @@ export class AuthService extends BaseService {
           }
         }
       }
-    } catch {
-
+    } catch (e: any) {
+      console.log(e);
     }
     return {
       isOk: false,
@@ -141,7 +146,10 @@ export class AuthService extends BaseService {
   }
 
   login() {
-    return this.manager.signinRedirect();
+    if (environment.useAuthentication) {
+      return this.manager.signinRedirect();
+    }
+    return;
   }
 
   async completeAuthentication() {
@@ -154,7 +162,10 @@ export class AuthService extends BaseService {
   }
 
   isAuthenticated(): boolean {
-    return this.user != null && !this.user.expired;
+    if (environment.useAuthentication) {
+      return this.user != null && !this.user.expired;
+    }
+    return true;
   }
 
   async signout() {
@@ -170,34 +181,39 @@ export class AuthGuardService implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if (this.authService.isAuthenticated()) {
-      return true;
+
+    if (environment.useAuthentication) {
+
+      if (this.authService.isAuthenticated()) {
+        return true;
+      }
+      const isLoggedIn = this.authService.loggedIn;
+      const isAuthForm = [
+        'login-form',
+        'reset-password',
+        'create-account',
+        'auth-callback',
+        'change-password/:recoveryCode'
+      ].includes(route.routeConfig?.path || defaultPath);
+
+      if (isLoggedIn && isAuthForm) {
+        this.authService.lastAuthenticatedPath = defaultPath;
+        this.router.navigate([defaultPath]);
+        return false;
+      }
+
+      if (!isLoggedIn && !isAuthForm) {
+        this.authService.login();
+      }
+
+
+      if (isLoggedIn) {
+        this.authService.lastAuthenticatedPath = route.routeConfig?.path || defaultPath;
+      }
+
+      return isLoggedIn || isAuthForm;
     }
-    const isLoggedIn = this.authService.loggedIn;
-    const isAuthForm = [
-      'login-form',
-      'reset-password',
-      'create-account',
-      'auth-callback',
-      'change-password/:recoveryCode'
-    ].includes(route.routeConfig?.path || defaultPath);
-
-    if (isLoggedIn && isAuthForm) {
-      this.authService.lastAuthenticatedPath = defaultPath;
-      this.router.navigate([defaultPath]);
-      return false;
-    }
-
-    if (!isLoggedIn && !isAuthForm) {
-      this.authService.login();
-    }
-
-
-    if (isLoggedIn) {
-      this.authService.lastAuthenticatedPath = route.routeConfig?.path || defaultPath;
-    }
-
-    return isLoggedIn || isAuthForm;
+    return true;
   }
 }
 

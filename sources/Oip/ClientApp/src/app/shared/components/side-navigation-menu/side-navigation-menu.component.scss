@@ -30,7 +30,7 @@
         }
       }
       // ##
-
+      
       // ## Arrow customization
       .dx-treeview-node {
         padding: 0 0 !important;
@@ -53,7 +53,7 @@
           font-weight: bold;
           border-bottom: 1px solid $base-border-color;
         }
-
+  
         &[aria-level='2'] .dx-treeview-item-content {
           font-weight: normal;
           padding: 0 $side-panel-min-width;

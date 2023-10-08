@@ -1,3 +1,5 @@
+<h3 class="content-block">UOMs</h3>
+
 <dx-data-grid
               [dataSource]="dataSource"
               [showBorders]="true"
@@ -15,7 +17,8 @@
     [allowedPageSizes]="allowedPageSizes"
     [showPageSizeSelector]="true">
   </dxo-pager>
-  <dxo-header-filter [visible]="true"></dxo-header-filter>
+  <dxo-filter-row [visible]="true"></dxo-filter-row>
+
   <dxo-search-panel [visible]="true"
                     [width]="240"
                     placeholder="Поиск..."></dxo-search-panel>

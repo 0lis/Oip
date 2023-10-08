@@ -30,9 +30,6 @@
         },
         "@schematics/angular:service": {
           "skipTests": true
-        },
-        "@schematics/angular:application": {
-          "strict": true
         }
       },
       "root": "",
@@ -72,12 +69,12 @@
                 {
                   "type": "initial",
                   "maximumWarning": "4mb",
-                  "maximumError": "7mb"
+                  "maximumError": "17mb"
                 },
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumError": "14kb"
                 }
               ],
               "fileReplacements": [
@@ -86,7 +83,16 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "media",
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": false
+                },
+                "fonts": false
+              },
+              "sourceMap": true
             },
             "development": {
               "buildOptimizer": false,
@@ -139,5 +145,8 @@
       }
     }
   },
-  "defaultProject": "olp"
+  "defaultProject": "olp",
+  "cli": {
+    "analytics": false
+  }
 }

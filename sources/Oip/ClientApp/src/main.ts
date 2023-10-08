@@ -13,12 +13,16 @@ export function getBaseUrl() {
   return document.getElementsByTagName('base')[0].href;
 }
 
+export function getAuthSettings() {
+  return false;
+}
+
 const providers = [
-  { provide: 'BASE_URL', useFactory: getBaseUrl, deps: [] }
+  { provide: 'BASE_URL', useFactory: getBaseUrl, deps: [] },
+  { provide: 'AUTH_ENABLE', useFactory: getAuthSettings, deps: [] }
 ];
 
 themes.initialized(() => {
   platformBrowserDynamic(providers).bootstrapModule(AppModule)
     .catch(err => console.error(err));
 });
-

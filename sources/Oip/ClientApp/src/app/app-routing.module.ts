@@ -13,7 +13,8 @@ import {TasksComponent} from './pages/tasks/tasks.component';
 import {DxDataGridModule, DxFormModule} from 'devextreme-angular';
 import {AuthCallbackComponent} from "./pages/auth-callback/auth-callback.component";
 import {ModulesComponent} from "./pages/modules/modules.component";
-import {FactoryComponent} from "./pages/factory/factory.component"
+import {UomsComponent} from "./pages/uoms/uoms.component";
+import {ThemeSelectorModule} from "./shared/components/theme-selector/theme-selector.component";
 
 const routes: Routes = [
   {
@@ -28,7 +29,7 @@ const routes: Routes = [
   },
   {
     path: 'uoms',
-    component: FactoryComponent,
+    component: UomsComponent,
     canActivate: [AuthGuardService]
   },
   {
@@ -72,7 +73,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {useHash: false}), DxDataGridModule, DxFormModule],
+  imports: [RouterModule.forRoot(routes, {useHash: false}), DxDataGridModule, DxFormModule, ThemeSelectorModule],
   providers: [AuthGuardService  ],
   exports: [RouterModule],
   declarations: [
@@ -80,7 +81,7 @@ const routes: Routes = [
     ProfileComponent,
     TasksComponent,
     ModulesComponent,
-    FactoryComponent,
+    UomsComponent,
   ]
 })
 export class AppRoutingModule {
